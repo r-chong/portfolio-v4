@@ -7,11 +7,6 @@ import Link from 'next/link';
 // since projectData is constant...
 type ProjectProps = (typeof projectsData)[number];
 
-interface tagProps {
-    tag: string;
-    index: number;
-}
-
 // if it's changing (not const we could do it like this:)
 
 // passing down key technically allowed but not recommended
@@ -53,8 +48,6 @@ export default function ProjectDefault({
                             Read more
                         </Link> */}
                     </p>
-
-                    {/* sticky footer problem: solve by putting flex, flex-col, mt-auto on parent element. margin expands as much as it can */}
                     <ul className='flex flex-wrap gap-2 mt-4 sm:mt-auto'>
                         {tags.map((tag, index) => (
                             <li
@@ -65,6 +58,8 @@ export default function ProjectDefault({
                             </li>
                         ))}
                     </ul>
+
+                    {/* sticky footer problem: solve by putting flex, flex-col, mt-auto on parent element. margin expands as much as it can */}
                 </div>
                 {/* local images don't need the height and width!! */}
                 {/* next js performs optimizations so may want to specify quality */}

@@ -1,12 +1,14 @@
 import React from 'react';
 import Link from 'next/link';
+import type { Route } from 'next';
 
-type Button1Type = {
+export default function Button1<T extends string>({
+    children,
+    url,
+}: {
     children: string;
-    url: string;
-};
-
-export default function Button1({ children, url }: Button1Type) {
+    url: Route<T> | URL;
+}) {
     return (
         <Link
             href={url}

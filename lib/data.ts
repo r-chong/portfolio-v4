@@ -10,20 +10,10 @@ import coffeeCoachImg from '@/public/projects/CoffeeCoach.png';
 import geniusChatImg from '@/public/projects/AccessibleChat.png';
 import csyaWebsiteImg from '@/public/projects/CSYAWebsite.png';
 
-type LinkUrl =
-    | '/'
-    | '/about'
-    | '/projects'
-    | '/experience'
-    | '/blog'
-    | '/contact'
-    | StaticRoute<'/'>
-    | Omit<StaticRoute<'/'>, 'pathname'>;
-
 // will change these to external links
 type LinkType = {
     name: string;
-    url: LinkUrl;
+    url: string;
     hash: string;
 };
 
@@ -112,7 +102,7 @@ type projectData = [
     blogLink: string
 ];
 
-export const projectsData: ProjectData[] = [
+export const projectsData = [
     {
         title: 'Lexplora',
         description:
