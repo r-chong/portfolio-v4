@@ -2,47 +2,77 @@ import React from 'react';
 import { CgWorkAlt } from 'react-icons/cg';
 import { FaReact } from 'react-icons/fa';
 import { LuGraduationCap } from 'react-icons/lu';
-import lexploraImg from '@/public/Lexplora.png';
-import htnImg from '@/public/HackTheNorth2023.png';
-import spottyImg from '@/public/Spotty.png';
+import lexploraImg from '@/public/projects/Lexplora.png';
+import htnImg from '@/public/projects/HackTheNorth2023.png';
+import spottyImg from '@/public/projects/Spotty.png';
+import interviewGPTImg from '@/public/projects/InterviewGPT.png';
+import coffeeCoachImg from '@/public/projects/CoffeeCoach.png';
+import geniusChatImg from '@/public/projects/AccessibleChat.png';
+import csyaWebsiteImg from '@/public/projects/CSYAWebsite.png';
+
+type LinkUrl =
+    | '/'
+    | '/about'
+    | '/projects'
+    | '/experience'
+    | '/blog'
+    | '/contact'
+    | StaticRoute<'/'>
+    | Omit<StaticRoute<'/'>, 'pathname'>;
 
 // will change these to external links
-export const links = [
+type LinkType = {
+    name: string;
+    url: LinkUrl;
+    hash: string;
+};
+
+export const links: LinkType[] = [
     {
         name: 'Home',
-        href: '/',
+        url: '/',
         hash: '#home',
     },
     {
         name: 'About',
-        href: 'about',
+        url: '/about',
         hash: '#about',
     },
     {
         name: 'Projects',
-        href: 'projects',
+        url: '/projects',
         hash: '#projects',
     },
     {
         name: 'Experience',
-        href: 'experience',
+        url: '/experience',
         hash: '#experience',
     },
     {
         name: 'Blog',
-        href: 'blog',
+        url: '/blog',
         hash: '#blog',
     },
     {
         name: 'Contact',
-        href: 'contact',
+        url: '/contact',
         hash: '#contact',
     },
 ] as const;
 // as const is a TypeScript feature that adds precision to the type of an array
 // you don't need it but it's good practice
 
-export const experiencesData = [
+type ExperienceType = {
+    title: string;
+    location: string;
+    description: string;
+    icon: React.ReactElement;
+    date: string;
+};
+
+type ExperiencesDataType = ExperienceType[];
+
+export const experiencesData: ExperiencesDataType = [
     {
         title: 'Graduated bootcamp',
         location: 'Miami, FL',
@@ -69,7 +99,20 @@ export const experiencesData = [
     },
 ] as const;
 
-export const projectsData = [
+interface TagProps {
+    tag: string;
+    index: number;
+}
+
+type projectData = [
+    title: string,
+    description: string,
+    tags: string[],
+    imageUrl: string,
+    blogLink: string
+];
+
+export const projectsData: ProjectData[] = [
     {
         title: 'Lexplora',
         description:
@@ -83,6 +126,7 @@ export const projectsData = [
             'Neo4j',
         ],
         imageUrl: lexploraImg,
+        blogLink: '/projects/lexplora',
     },
     {
         title: 'Hawkeye',
@@ -90,19 +134,20 @@ export const projectsData = [
             'Project for Hack The North 2023 that uses the AdHawk MindLink to allow visually impaired people to know what lecturers are writing.',
         tags: ['GPT-4', 'Google Cloud Platform', 'AdHawk MindLink SDK'],
         imageUrl: htnImg,
+        blogLink: '/projects/hawkeye',
     },
     {
-        title: 'Spotify Clone',
+        title: 'Computer Science Youth of America Website',
         description:
-            "A full stack app using Spotify's Official SDK. It plays music, retrieves lyrics, and censors profanity (togglable). I also added new themes",
-        tags: ['React', 'Node JS', 'Spotify API', 'Bootstrap'],
-        imageUrl: spottyImg,
+            'CSYA teaches computer science to 950+ youth around the world! I transitioned their website from Wix to a modern React-Next platform, optimizing page load.',
+        tags: ['REACT.js', 'Next.js', 'TypeScript'],
+        imageUrl: csyaWebsiteImg,
+        blogLink: '/projects/computer-science-youth-of-america',
     },
-
     {
         title: 'Coffee Coach',
         description:
-            'An emotion analyzer for people in video calls, analyzing facial expressions to aid individuals who struggle with picking up on these cues, as well as reflecting back what expressions they are conveying.',
+            'Full-stack app that analyzes facial expressions in video calls to aid individuals who struggle with picking up on nonverbal cues.',
         tags: [
             'REACT.js',
             'Vite',
@@ -111,32 +156,38 @@ export const projectsData = [
             'OpenCV',
             'Face API',
         ],
-        imageUrl: 'coffeeCoachImg',
+        imageUrl: coffeeCoachImg,
+        blogLink: '/projects/coffee-coach',
     },
     {
         title: 'InterviewGPT',
         description:
-            'A CLI application that evaluates tech candidates using Large Language Models (LLMs), featuring tracking and analysis reporting capabilities via email.',
+            'A CLI application that asynchronously evaluates tech candidates using AI, featuring tracking and analysis reporting capabilities via email.',
         tags: ['Python', 'Langchain', 'OpenAI API', 'Firebase Firestore'],
-        imageUrl: 'interviewGPTImg',
-    },
-    {
-        title: 'Computer Science Youth of America Website',
-        description:
-            'An educational initiative teaching computer science to youth, reaching over 950 students globally. The website was transitioned from Wix to a modern React-Next platform, optimizing page load times.',
-        tags: ['REACT.js', 'Next.js', 'TypeScript'],
-        imageUrl: 'csyaWebsiteImg',
+        imageUrl: interviewGPTImg,
+        blogLink: '/projects/interviewgpt',
     },
     {
         title: 'Genius Chat',
         description:
-            'A custom solution developed to meet the specific contrast requirements for visually impaired users, resulting in the creation of a specialized web theme for enhanced accessibility.',
+            'A custom chat website that I made in grade 8 to talk to my friend who is colour-sensitive. Pictured are the various modes of the website (not stripes)',
         tags: ['HTML/CSS', 'JavaScript', 'PHP', 'MySQL'],
-        imageUrl: 'geniusChatImg',
+        imageUrl: geniusChatImg,
+        blogLink: '/projects/accessible-chat',
+    },
+    {
+        title: 'Spotify Clone',
+        description:
+            "A full stack app using Spotify's Official SDK. It plays music, retrieves lyrics, and censors profanity (togglable). I also added new themes",
+        tags: ['React', 'Node JS', 'Spotify API', 'Bootstrap'],
+        imageUrl: spottyImg,
+        blogLink: '/projects/spotty',
     },
 ] as const;
 
-export const skillsData = [
+type SkillsDataType = string[];
+
+export const skillsData: SkillsDataType = [
     'HTML',
     'CSS',
     'JavaScript',

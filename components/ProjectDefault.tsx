@@ -2,18 +2,25 @@ import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { projectsData } from '@/lib/data';
 import Image from 'next/image';
+import Link from 'next/link';
 
 // since projectData is constant...
 type ProjectProps = (typeof projectsData)[number];
 
+interface tagProps {
+    tag: string;
+    index: number;
+}
+
 // if it's changing (not const we could do it like this:)
 
 // passing down key technically allowed but not recommended
-export default function Project({
+export default function ProjectDefault({
     title,
     description,
     tags,
     imageUrl,
+    blogLink,
 }: ProjectProps) {
     const ref = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({
@@ -34,11 +41,17 @@ export default function Project({
             }}
             className='mb-3 group sm:mb-8 last:mb-0'
         >
-            <section className='hover:bg-gray-200 group bg-gray-100 group-even:pl-8 rounded-lg border border-black/5 overflow-hidden sm:pr-8 relative sm:h-[20rem] sm:mb-8 mb-3 last:mb-0'>
+            <section className='hover:bg-gray-200 group pb-3 bg-gray-100 group-even:pl-8 rounded-lg border border-black/5 overflow-hidden sm:pr-8 relative sm:h-[20rem] sm:mb-8 mb-3 last:mb-0'>
                 <div className='px-5 py-4 mt-4 pb-7 sm:pl-10 group-even:ml-[21rem] even:pl-8 sm:pr-2 sm-pt-10 sm:max-w-[50%] flex flex-col h-full'>
                     <h3 className='text-2xl font-semibold'>{title}</h3>
                     <p className='mt-2 leading-relaxed text-gray-700'>
-                        {description}
+                        {description} <br />
+                        {/* <Link
+                            className=' text-gray-400 pb-3 font-semibold hover:underline cursor-pointer'
+                            href={blogLink}
+                        >
+                            Read more
+                        </Link> */}
                     </p>
 
                     {/* sticky footer problem: solve by putting flex, flex-col, mt-auto on parent element. margin expands as much as it can */}

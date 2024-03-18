@@ -16,7 +16,7 @@ export default function Intro() {
 
         setIsCopied(true);
         setTimeout(() => setIsCopied(false), 2000);
-        // toast('Email ! ✅', {
+        // toast('Copied Email Address! ✅', {
         //     backgroundColor: '#41a047',
         //     color: '#ffffff',
         // });
@@ -54,6 +54,10 @@ export default function Intro() {
                             delay: 0.1,
                             stiffness: 125,
                             duration: 0.7,
+                        }}
+                        whileHover={{
+                            scale: 1.1,
+                            transition: { duration: 1 },
                         }}
                     >
                         <Image
@@ -102,10 +106,16 @@ export default function Intro() {
                     className='flex gap-2 px-4 py-2 text-lg font-medium text-white transition-all bg-black rounded-full shadow-md outline-none hover:bg-gray-900 focus:scale-110 hover:scale-110 active:scale-105 cursor:pointer'
                 >
                     <span className='flex items-center gap-2 group'>
-                        {isCopied
-                            ? 'Copied Email Address! ✅'
-                            : 'Copy email address '}
-                        <MdOutlineMail className='transition opacity-70 group-hover:translate-x-1' />
+                        {isCopied ? (
+                            <>
+                                <span>Copied Email Address! ✅</span>
+                            </>
+                        ) : (
+                            <>
+                                <span>Copy email address</span>
+                                <MdOutlineMail className='transition opacity-70 group-hover:translate-x-1' />
+                            </>
+                        )}
                     </span>
                 </button>
 

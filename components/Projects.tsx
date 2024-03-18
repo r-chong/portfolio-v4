@@ -1,21 +1,32 @@
 'use client';
 import React, { useRef } from 'react';
-import SectionHeading from './Section-heading';
 import { projectsData } from '@/lib/data';
-import Project from './Project';
+import ProjectDefault from './ProjectDefault';
 
-export default function Projects() {
+type ProjectsProps = {
+    displayType: 'grid' | 'linear';
+    maxIndex: number;
+};
+
+export default function Projects({ displayType, maxIndex }: ProjectsProps) {
     return (
         <section>
-            <SectionHeading>My Projects</SectionHeading>
-            <div>
-                {projectsData.slice(0, 3).map((project, index) => (
+            <div
+                className={`${
+                    displayType === 'grid' ? 'flex flex-wrap -m-2' : ''
+                }`}
+            >
+                {projectsData.slice(0, maxIndex).map((project, index) => (
                     // key would matter if shuffling or editing the list
 
                     // React.Fragment lets us not make another unnecessary div
                     // ...project is a spread operator (passes down everything about the object)
                     <React.Fragment key={index}>
-                        <Project {...project} />
+                        {displayType == 'grid' ? (
+                            <ProjectDefault {...project} />
+                        ) : (
+                            <ProjectDefault {...project} />
+                        )}
                     </React.Fragment>
                 ))}
             </div>
