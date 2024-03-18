@@ -40,9 +40,10 @@ export default function Intro() {
                             width={192}
                             height={192}
                             quality={95}
+                            draggable='false'
                             priority={true}
-                            className='w-36 h-36 rounded-full object-cover border-[0.35rem] border-white shadow-xl hover:scale-105'
-                        ></Image>
+                            className='w-36 h-36 rounded-full object-cover border-[0.35rem] border-white shadow-xl'
+                        />
                     </motion.div>
                     {/* TODO: Make it wave */}
                     <motion.span
