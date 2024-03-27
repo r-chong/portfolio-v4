@@ -80,9 +80,9 @@ export default function Intro() {
             >
                 <div className=''>
                     <span className='font-bold'>Hello, I&apos;m Reese.</span>{' '}
-                    I&apos;m a{' '}
-                    <span className='font-bold'>full-stack developer</span> from
-                    <span> Toronto</span>! <p className='block xl:hidden'>🇨🇦</p>
+                    I&apos;m a full-stack developer from
+                    <span className='font-bold'> Toronto</span>!{' '}
+                    <p className='block xl:hidden'>🇨🇦</p>
                     <Image
                         draggable='false'
                         alt='🇨🇦'
