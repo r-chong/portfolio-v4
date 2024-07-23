@@ -1,4 +1,16 @@
 import React from 'react';
+import siteMetadata from '@/data/siteMetadata';
+import Link from 'next/link';
+// import { formatDate } from 'pliny/utils/formatDate'
+// import NewsletterForm from 'pliny/ui/NewsletterForm'
+
+const MAX_DISPLAY = 5;
+
+export default function BlogPage({ posts }) {
+    const sortedPosts = sortPosts(allBlogs);
+    const posts = allCoreContent(sortedPosts);
+    return <Main posts={posts} />;
+}
 
 export default function Main() {
     return (
@@ -85,11 +97,11 @@ export default function Main() {
                     </Link>
                 </div>
             )}
-            {siteMetadata.newsletter?.provider && (
+            {/* {siteMetadata.newsletter?.provider && (
                 <div className='flex items-center justify-center pt-4'>
                     <NewsletterForm />
                 </div>
-            )}
+            )} */}
         </>
     );
 }

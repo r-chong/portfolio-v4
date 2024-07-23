@@ -12,7 +12,7 @@ export default function Footere() {
         <div className='w-full py-4 bg-gray-100 border-t-2 lg:flex'>
             <div className='flex justify-center lg:justify-left'>
                 <p className='text-m mx-8 items-center text-[#888] hidden md:block'>
-                    Reese Chong &copy;, 2023
+                    Reese Chong 2024
                 </p>
                 <div className='flex space-x-4'>
                     {/* <a
@@ -56,7 +56,7 @@ export default function Footere() {
                             size={30}
                         />
                     </a>
-                    <a
+                    {/* <a
                         href='https://github.com/r-chong'
                         target='_blank'
                         rel='noopener noreferrer'
@@ -65,8 +65,8 @@ export default function Footere() {
                             className='text-gray-900 hover:text-gray-700'
                             size={30}
                         />
-                    </a>
-                    <em className='items-center'>Random blog post!</em>
+                    </a> */}
+                    {/* <em className='items-center'>Random blog post!</em> */}
                 </div>
             </div>
         </div>

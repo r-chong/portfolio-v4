@@ -38,7 +38,7 @@ export default function RootLayout({
 bg-stone-50 relative text-gray-950 pt-28 sm:pt-36 flex flex-col items-center`}
             >
                 <Header />
-                <div className='z-10 flex justify-center min-h-screen lg:w-[30em] xl:w-[45em] w-[15em]'>
+                <div className='z-10 flex justify-center min-h-screen lg:w-[30rem] xl:w-[45rem] w-[30rem]'>
                     {children}
                 </div>
                 <div className='h-10'></div>
