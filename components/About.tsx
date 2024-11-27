@@ -17,8 +17,9 @@ export default function About() {
             <SectionHeading>About me</SectionHeading>
             <p>
                 <span>
-                    Hello! I&apos;m Reese, a driven high school student
-                    passionate about software development!{'  '}
+                    Hello! I&apos;m Reese, a Computer Science and Business
+                    student at the University of Waterloo who is passionate
+                    about software development!{'  '}
                 </span>
                 <br />
                 <br />
