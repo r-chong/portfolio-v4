@@ -6,10 +6,10 @@ import Link from 'next/link';
 
 const MAX_DISPLAY = 5;
 
-export default function BlogPage({ posts }) {
+export function BlogPage({ posts }) {
     const sortedPosts = sortPosts(allBlogs);
-    const posts = allCoreContent(sortedPosts);
-    return <Main posts={posts} />;
+    const processedPosts = allCoreContent(sortedPosts);
+    return <Main posts={processedPosts} />;
 }
 
 export default function Main() {
