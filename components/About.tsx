@@ -27,18 +27,18 @@ export default function About() {
                 <ul className='list-disc pl-6 mb-4'>
                     <li>
                         Getting started early: I did{' '}
-                        <strong className='text-amber-700'>
+                        <strong className='text-orange-500 underline'>
                             2 software internships
                         </strong>{' '}
                         in high school.
                     </li>
                     <li>
-                        Making an impact: Ran a{' '}
+                        Making an impact: I ran a{' '}
                         <a
                             href='https://jamhacks.ca'
                             target='_blank'
                             rel='nofollow'
-                            className='text-amber-700 font-bold'
+                            className='text-orange-500 font-bold underline'
                         >
                             hackathon
                         </a>{' '}
