@@ -19,10 +19,7 @@ function PostCard(post: Post) {
             >
                 {format(parseISO(post.date), 'LLLL d, yyyy')}
             </time>
-            <div
-                className='text-sm [&>*]:mb-3 [&>*:last-child]:mb-0'
-                dangerouslySetInnerHTML={{ __html: post.body.html }}
-            />
+            <div className='text-sm [&>*]:mb-3 [&>*:last-child]:mb-0' />
         </div>
     );
 }
