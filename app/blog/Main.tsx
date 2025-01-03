@@ -1,18 +1,48 @@
 import React from 'react';
 import siteMetadata from '@/data/siteMetadata';
 import Link from 'next/link';
-// import { formatDate } from 'pliny/utils/formatDate'
-// import NewsletterForm from 'pliny/ui/NewsletterForm'
+import type { Route } from 'next';
+import { Post } from 'contentlayer/generated';
+
+interface ExtendedPost extends Post {
+    slug: string;
+}
+import {
+    sortPosts,
+    coreContent,
+} from '@/node_modules/pliny/utils/contentlayer';
+import { formatDate } from '@/node_modules/pliny/utils/formatDate';
 
 const MAX_DISPLAY = 5;
 
-export function BlogPage({ posts }) {
-    const sortedPosts = sortPosts(allBlogs);
-    const processedPosts = allCoreContent(sortedPosts);
+interface BlogPageProps {
+    posts: ExtendedPost[];
+}
+
+interface MainProps {
+    posts: {
+        title: string;
+        date: string;
+        path: Route;
+    }[];
+}
+
+export function BlogPage({ posts }: BlogPageProps) {
+    const sortedPosts = sortPosts(posts);
+    const processedPosts = sortedPosts.map((post) => {
+        const slug = post.slug;
+        const path = `/blog/${slug}`;
+        const content = coreContent(post);
+        return {
+            title: content.title,
+            date: content.date,
+            path,
+        };
+    });
     return <Main posts={processedPosts} />;
 }
 
-export default function Main() {
+export default function Main({ posts }: MainProps) {
     return (
         <>
             <div className='divide-y divide-gray-200 dark:divide-gray-700'>
@@ -27,9 +57,9 @@ export default function Main() {
                 <ul className='divide-y divide-gray-200 dark:divide-gray-700'>
                     {!posts.length && 'No posts found.'}
                     {posts.slice(0, MAX_DISPLAY).map((post) => {
-                        const { slug, date, title, summary, tags } = post;
+                        const { path, date, title } = post;
                         return (
-                            <li key={slug} className='py-12'>
+                            <li key={path} className='py-12'>
                                 <article>
                                     <div className='space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0'>
                                         <dl>
@@ -50,28 +80,19 @@ export default function Main() {
                                                 <div>
                                                     <h2 className='text-2xl font-bold leading-8 tracking-tight'>
                                                         <Link
-                                                            href={`/blog/${slug}`}
+                                                            // @ts-ignore
+                                                            href={path as '/'}
                                                             className='text-gray-900 dark:text-gray-100'
                                                         >
                                                             {title}
                                                         </Link>
                                                     </h2>
-                                                    {/* <div className='flex flex-wrap'>
-                                                        {tags.map((tag) => (
-                                                            <Tag
-                                                                key={tag}
-                                                                text={tag}
-                                                            />
-                                                        ))}
-                                                    </div> */}
-                                                </div>
-                                                <div className='prose max-w-none text-gray-500 dark:text-gray-400'>
-                                                    {summary}
                                                 </div>
                                             </div>
                                             <div className='text-base font-medium leading-6'>
                                                 <Link
-                                                    href={`/blog/${slug}`}
+                                                    // @ts-ignore
+                                                    href={path}
                                                     className='text-primary-500 hover:text-primary-600 dark:hover:text-primary-400'
                                                     aria-label={`Read more: "${title}"`}
                                                 >
@@ -89,6 +110,7 @@ export default function Main() {
             {posts.length > MAX_DISPLAY && (
                 <div className='flex justify-end text-base font-medium leading-6'>
                     <Link
+                        //@ts-ignore
                         href='/blog'
                         className='text-primary-500 hover:text-primary-600 dark:hover:text-primary-400'
                         aria-label='All posts'
@@ -97,11 +119,6 @@ export default function Main() {
                     </Link>
                 </div>
             )}
-            {/* {siteMetadata.newsletter?.provider && (
-                <div className='flex items-center justify-center pt-4'>
-                    <NewsletterForm />
-                </div>
-            )} */}
         </>
     );
 }

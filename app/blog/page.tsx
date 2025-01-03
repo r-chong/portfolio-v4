@@ -1,12 +1,36 @@
+import type {
+    Markdown,
+    MDX,
+    ImageFieldData,
+    IsoDateTimeString,
+} from 'contentlayer/core';
 import { compareDesc, format, parseISO } from 'date-fns'; // date imports
 import { allPosts, Post } from 'contentlayer/generated';
 import Link from 'next/link';
 import Image from 'next/image';
 
-function PostCard(post: Post) {
+type StaticRoute<Path extends string> = {
+    pathname: Path; // Represents a specific route like "/blog"
+};
+
+// Allowed route types
+type AllowedRoutes =
+    | '/' // Root route
+    | StaticRoute<'/'>; // A specific static route
+
+type PostLinkModified = {
+    type: string;
+    title: string;
+    date: IsoDateTimeString;
+    /** MDX file body */
+    body: MDX;
+    url: string;
+};
+
+function PostCard({ post }: { post: PostLinkModified }) {
     return (
         <Link
-            href={post.url}
+            href={post.url as string}
             className='flex justify-between gap-4 p-2 pb-8 pt-6 border-b-2 hover:bg-gray-100 cursor-pointer'
         >
             <div className='mb-8'>
@@ -44,7 +68,7 @@ export default function BlogHome() {
                 Reese&apos;s Blog
             </h1>
             {posts.map((post, idx) => (
-                <PostCard key={idx} {...post} />
+                <PostCard key={idx} post={post} />
             ))}
         </div>
     );

@@ -27,6 +27,7 @@ export default function Header() {
                             whileHover={{ scale: 1.015 }}
                         >
                             <Link
+                                // @ts-ignore
                                 href={link.url}
                                 className='flex items-center justify-center w-full px-3 py-3 transition hover:text-gray-950'
                             >
