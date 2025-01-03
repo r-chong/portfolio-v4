@@ -23,18 +23,18 @@ export const links: LinkType[] = [
         url: '/',
         hash: '#home',
     },
-    {
-        name: 'About',
-        url: '/about',
-        hash: '#about',
-    },
+    // {
+    //     name: 'About',
+    //     url: '/about',
+    //     hash: '#about',
+    // },
     {
         name: 'Projects',
         url: '/projects',
         hash: '#projects',
     },
     {
-        name: 'Experience',
+        name: 'Resume',
         url: '/experience',
         hash: '#experience',
     },
@@ -43,11 +43,11 @@ export const links: LinkType[] = [
         url: '/blog',
         hash: '#blog',
     },
-    {
-        name: 'Contact',
-        url: '/contact',
-        hash: '#contact',
-    },
+    // {
+    //     name: 'Contact',
+    //     url: '/contact',
+    //     hash: '#contact',
+    // },
 ] as const;
 // as const is a TypeScript feature that adds precision to the type of an array
 // you don't need it but it's good practice
