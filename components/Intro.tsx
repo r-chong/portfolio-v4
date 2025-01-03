@@ -12,7 +12,7 @@ export default function Intro() {
     const [isCopied, setIsCopied] = useState(false);
 
     const copyEmailAddress = () => {
-        navigator.clipboard.writeText(process.env.EMAIL_ADDRESS);
+        navigator.clipboard.writeText(`${process.env.EMAIL_ADDRESS}`);
 
         setIsCopied(true);
         setTimeout(() => setIsCopied(false), 2000);

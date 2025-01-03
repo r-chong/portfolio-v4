@@ -35,6 +35,7 @@ const PostLayout = ({ params }: { params: { slug: string } }) => {
                         width={500}
                         height={250}
                         className='w-full h-full object-cover object-center'
+                        alt={`Image for ${post.title}`}
                     />
                 </div>
 
