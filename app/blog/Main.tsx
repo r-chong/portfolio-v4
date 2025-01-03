@@ -1,6 +1,6 @@
 import React from 'react';
 import siteMetadata from '@/data/siteMetadata';
-import Link from 'next/link';
+import Link, { LinkProps } from 'next/link';
 import type { Route } from 'next';
 import { Post } from 'contentlayer/generated';
 
@@ -80,8 +80,9 @@ export default function Main({ posts }: MainProps) {
                                                 <div>
                                                     <h2 className='text-2xl font-bold leading-8 tracking-tight'>
                                                         <Link
-                                                            // @ts-ignore
-                                                            href={path as '/'}
+                                                            href={
+                                                                path as LinkProps['href']
+                                                            }
                                                             className='text-gray-900 dark:text-gray-100'
                                                         >
                                                             {title}
@@ -91,8 +92,9 @@ export default function Main({ posts }: MainProps) {
                                             </div>
                                             <div className='text-base font-medium leading-6'>
                                                 <Link
-                                                    // @ts-ignore
-                                                    href={path}
+                                                    href={
+                                                        path as LinkProps['href']
+                                                    }
                                                     className='text-primary-500 hover:text-primary-600 dark:hover:text-primary-400'
                                                     aria-label={`Read more: "${title}"`}
                                                 >
@@ -110,8 +112,7 @@ export default function Main({ posts }: MainProps) {
             {posts.length > MAX_DISPLAY && (
                 <div className='flex justify-end text-base font-medium leading-6'>
                     <Link
-                        //@ts-ignore
-                        href='/blog'
+                        href={'/blog' as LinkProps['href']}
                         className='text-primary-500 hover:text-primary-600 dark:hover:text-primary-400'
                         aria-label='All posts'
                     >

@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { links } from '@/lib/data';
-import Link from 'next/link';
+import Link, { LinkProps } from 'next/link';
 
 export default function Header() {
     return (
@@ -27,8 +27,7 @@ export default function Header() {
                             whileHover={{ scale: 1.015 }}
                         >
                             <Link
-                                // @ts-ignore
-                                href={link.url}
+                                href={link.url as LinkProps['href']}
                                 className='flex items-center justify-center w-full px-3 py-3 transition hover:text-gray-950'
                             >
                                 {link.name}
