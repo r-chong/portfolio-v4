@@ -12,7 +12,7 @@ export default function Footere() {
         <div className='w-full py-4 bg-gray-100 border-t-2 lg:flex'>
             <div className='flex justify-center lg:justify-left'>
                 <p className='text-m mx-8 items-center text-[#888] hidden md:block'>
-                    Reese Chong 2024
+                    Reese Chong 2025
                 </p>
                 <div className='flex space-x-4'>
                     {/* <a

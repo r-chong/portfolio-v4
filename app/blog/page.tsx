@@ -9,19 +9,6 @@ import { allPosts, Post } from 'contentlayer/generated';
 import Link, { LinkProps } from 'next/link';
 import Image from 'next/image';
 import { Route, StaticRoute } from 'nextjs-routes';
-import type AyushCool from './index.d.ts';
-
-// type StaticRoute<Path extends string> = {
-//     pathname: Path; // Represents a specific route like "/blog"
-// };
-
-// type AyushCool = Route | StaticRoute<"/"> | Omit<Route, 'pathname'>
-
-// Allowed route types
-// Look into how type keyword works
-// type AllowedRoutes =
-//     | '/' // Root route
-//     | StaticRoute<'/'>; // A specific static route
 
 type PostLinkModified = {
     type: string;
@@ -35,8 +22,7 @@ type PostLinkModified = {
 function PostCard({ post }: { post: PostLinkModified }) {
     return (
         <Link
-            // href={post.url as LinkProps['href']}
-            href={post.url as AyushCool}
+            href={post.url as LinkProps['href']}
             // Also works:
             // href={post.url as Route | StaticRoute<"/"> | Omit<Route, 'pathname'>}
             className='flex justify-between gap-4 p-2 pb-8 pt-6 border-b-2 hover:bg-gray-100 cursor-pointer'

@@ -17,20 +17,17 @@ export default function About() {
             <SectionHeading>About me</SectionHeading>
             <div>
                 <p className='mb-4'>
-                    Hello! I&apos;m Reese, a Computer Science and Business
-                    Double Degree student at UWaterloo.
+                    I&apos;m a Computer Science and Business Double Degree
+                    student at UWaterloo.
                 </p>
                 <p className='mb-4'>
-                    My two beliefs: <strong>getting started early</strong> and{' '}
-                    <strong>making an impact</strong>.
+                    My two beliefs are <strong>getting started early</strong>{' '}
+                    and <strong>making an impact</strong>.
                 </p>
                 <ul className='list-disc pl-6 mb-4'>
                     <li>
-                        Getting started early: I did{' '}
-                        <strong className='text-orange-500 underline'>
-                            2 software internships
-                        </strong>{' '}
-                        in high school.
+                        Getting started early: I did 2 software internships in
+                        high school.
                     </li>
                     <li>
                         Making an impact: I ran a{' '}
@@ -38,7 +35,7 @@ export default function About() {
                             href='https://jamhacks.ca'
                             target='_blank'
                             rel='nofollow'
-                            className='text-orange-500 font-bold underline'
+                            className='text-blue-500 font-bold underline'
                         >
                             hackathon
                         </a>{' '}
@@ -51,7 +48,7 @@ export default function About() {
                     watching Avatar: The Last Airbender for the 1000th time, and
                     doing random sidequests in Waterloo.
                 </p>
-                <p>Thanks for visiting my blog!</p>
+                <p>Thanks for visiting!</p>
             </div>
         </motion.section>
     );

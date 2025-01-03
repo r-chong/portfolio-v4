@@ -34,7 +34,7 @@ export default function ProjectDefault({
                 scale: scaleProgress,
                 opacity: opacityProgress,
             }}
-            className='mb-3 group sm:mb-8 last:mb-0'
+            className='mb-3 group sm:mb-8 max-w-[60%] last:mb-0'
         >
             <section className='hover:bg-gray-200 group pb-3 bg-gray-100 group-even:pl-8 rounded-lg border border-black/5 overflow-hidden sm:pr-8 relative sm:h-[20rem] sm:mb-8 mb-3 last:mb-0'>
                 <div className='px-5 py-4 mt-4 pb-7 sm:pl-10 group-even:ml-[21rem] even:pl-8 sm:pr-2 sm-pt-10 sm:max-w-[50%] flex flex-col h-full'>
