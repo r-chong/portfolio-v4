@@ -1,14 +1,7 @@
-const withMDX = require('@next/mdx')({
-    extension: /\.mdx?$/,
-    options: {
-        remarkPlugins: [],
-        rehypePlugins: [],
-    },
-});
+// next.config.js
+const { withContentlayer } = require('next-contentlayer');
 
-module.exports = withMDX({
-    pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
-    experimental: {
-        typedRoutes: true,
-    },
-});
+/** @type {import('next').NextConfig} */
+const nextConfig = { reactStrictMode: true, swcMinify: true };
+
+module.exports = withContentlayer(nextConfig);

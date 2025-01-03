@@ -8,7 +8,8 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
     title: 'Reese Chong | Portfolio',
-    description: 'Reese Chong is a software engineer based in Toronto.',
+    description:
+        'Reese Chong - Software Developer Studying at the University of Waterloo.',
 };
 
 export default function RootLayout({
@@ -35,12 +36,10 @@ export default function RootLayout({
             </head>
             <body
                 className={`${inter.className}
-bg-stone-50 relative text-gray-950 pt-28 sm:pt-36 flex flex-col items-center`}
+bg-stone-50 relative text-gray-950 pt-28 sm:pt-36 flex flex-col`}
             >
                 <Header />
-                <div className='z-10 flex justify-center min-h-screen lg:w-[30em] xl:w-[45em] w-[15em]'>
-                    {children}
-                </div>
+                <div className='z-10 min-h-screen'>{children}</div>
                 <div className='h-10'></div>
                 <Footer />
             </body>

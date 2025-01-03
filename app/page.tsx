@@ -18,7 +18,7 @@ export default function Home() {
             <ToastContainer delay={3000} position={'bottom-center'} />
 
             <div className='flex justify-center'>
-                <div className='w-4/7 mt-10'>
+                <div className='w-[3/7] mt-10'>
                     <Button1 url={'/projects'}>See More Projects</Button1>
                 </div>
             </div>

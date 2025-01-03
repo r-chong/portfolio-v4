@@ -12,7 +12,7 @@ export default function Intro() {
     const [isCopied, setIsCopied] = useState(false);
 
     const copyEmailAddress = () => {
-        navigator.clipboard.writeText('reesechong72@gmail.com');
+        navigator.clipboard.writeText(`${process.env.EMAIL_ADDRESS}`);
 
         setIsCopied(true);
         setTimeout(() => setIsCopied(false), 2000);
@@ -78,18 +78,16 @@ export default function Intro() {
                 initial={{ opacity: 0, y: 100 }}
                 animate={{ opacity: 1, y: 0 }}
             >
-                <div className=''>
-                    <span className='font-bold'>Hello, I&apos;m Reese.</span>{' '}
-                    I&apos;m a full-stack developer from
-                    <span className='font-bold'> Toronto</span>!{' '}
-                    <p className='block xl:hidden'>🇨🇦</p>
+                <div className='flex mb-4'>
+                    <span className='font-bold'>Hi, I&apos;m Reese! </span>{' '}
+                    {/* <span className=''>Waterloo</span>!{' '} */}
                     <Image
                         draggable='false'
                         alt='🇨🇦'
                         width={10}
                         height={10}
                         src='/twemoji/flag_ca.svg'
-                        className='w-12 relative left-[80%] top-[-50px] xl:block hidden'
+                        className='w-12'
                     />
                 </div>
             </motion.h1>
@@ -121,28 +119,30 @@ export default function Intro() {
                 </button>
 
                 <a
-                    className='flex items-center gap-2 py-3 transition bg-white rounded-full outline-none group px-7 focus:scale-110 hover:scale-110 active:scale-105 border-black/10'
-                    href='/Reese_Chong_Resume.pdf'
-                    download
+                    className='flex items-center justify-around gap-2 py-3 px-7 transition w-full sm:w-auto bg-white rounded-full outline-none group focus:scale-110 hover:scale-110 active:scale-105 border-black/10'
+                    href={process.env.NEXT_PUBLIC_RESUME_LINK}
+                    target='_blank'
                 >
-                    Download CV{' '}
-                    <HiDownload className='transition opacity-60 group group-hover:translate-y-1' />{' '}
+                    <p className=''>Resume </p>
+                    <HiDownload className='transition opacity-60 group m:w-auto group-hover:translate-y-1' />{' '}
                     {''}
                 </a>
 
                 <a
-                    className='flex items-center p-4 text-gray-700 bg-white rounded-full focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950 active:scale-[1.15] border-black/10 transition'
+                    className='flex items-center justify-around p-4 text-gray-700 w-full sm:w-auto bg-white rounded-full focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950 active:scale-[1.15] border-black/10 transition'
                     href='https://linkedin.com/in/reesechong/'
                     target='_blank'
                 >
+                    <p className='sm:hidden visible'>LinkedIn </p>
                     <BsLinkedin />
                 </a>
 
                 <a
-                    className='flex items-center p-4 text-[1.3rem] text-gray-700 bg-white rounded-full focus:scale-[1.15] hover:text-gray-950 hover:scale-[1.15] active:scale-105 border-black/10 transition'
+                    className='flex justify-around   *:items-center p-4 text-[1.3rem] w-full sm:w-auto text-gray-700 bg-white rounded-full focus:scale-[1.15] hover:text-gray-950 hover:scale-[1.15] active:scale-105 border-black/10 transition'
                     href='https://github.com/r-chong/'
                     target='_blank'
                 >
+                    <p className='sm:hidden visible'>GitHub </p>
                     <BsGithub />
                 </a>
             </motion.div>
