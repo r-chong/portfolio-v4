@@ -12,7 +12,7 @@ export default function Intro() {
     const [isCopied, setIsCopied] = useState(false);
 
     const copyEmailAddress = () => {
-        navigator.clipboard.writeText('r25chong@uwaterloo.ca');
+        navigator.clipboard.writeText(process.env.EMAIL_ADDRESS);
 
         setIsCopied(true);
         setTimeout(() => setIsCopied(false), 2000);
@@ -120,8 +120,8 @@ export default function Intro() {
 
                 <a
                     className='flex items-center justify-around gap-2 py-3 px-7 transition w-full sm:w-auto bg-white rounded-full outline-none group focus:scale-110 hover:scale-110 active:scale-105 border-black/10'
-                    href='/Reese_Chong_Resume.pdf'
-                    download
+                    href={process.env.NEXT_PUBLIC_RESUME_LINK}
+                    target='_blank'
                 >
                     <p className=''>Resume </p>
                     <HiDownload className='transition opacity-60 group m:w-auto group-hover:translate-y-1' />{' '}

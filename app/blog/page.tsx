@@ -17,6 +17,7 @@ type PostLinkModified = {
     /** MDX file body */
     body: MDX;
     url: string;
+    imageUrl: string;
 };
 
 function PostCard({ post }: { post: PostLinkModified }) {
@@ -41,11 +42,11 @@ function PostCard({ post }: { post: PostLinkModified }) {
                 </time>
             </div>
             <Image
-                src='/space.png'
+                src={post.imageUrl}
                 width={200}
                 height={150}
                 alt='test'
-                className='rounded-xl'
+                className='rounded-xl max-h-[150px] object-cover object-center'
             />
         </Link>
     );

@@ -27,7 +27,7 @@ export default function About() {
                 <ul className='list-disc pl-6 mb-4'>
                     <li>
                         Getting started early: I did 2 software internships in
-                        high school.
+                        high school. I&apos;m currently looking for my third.
                     </li>
                     <li>
                         Making an impact: I ran a{' '}

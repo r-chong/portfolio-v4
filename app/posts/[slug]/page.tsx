@@ -3,6 +3,7 @@ import { format, parseISO } from 'date-fns';
 import { allPosts } from 'contentlayer/generated';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import { notFound } from 'next/navigation';
+import Image from 'next/image';
 
 export const generateStaticParams = async () =>
     allPosts.map((post) => ({ slug: post._raw.flattenedPath }));
@@ -28,6 +29,15 @@ const PostLayout = ({ params }: { params: { slug: string } }) => {
     return (
         <article className='mx-auto max-w-xl py-8'>
             <div className='mb-8 text-center'>
+                <div className='relative w-full h-[12rem] mb-8 overflow-hidden rounded-2xl'>
+                    <Image
+                        src={post.imageUrl}
+                        width={500}
+                        height={250}
+                        className='w-full h-full object-cover object-center'
+                    />
+                </div>
+
                 <time
                     dateTime={post.date}
                     className='mb-1 text-xs text-gray-600'
