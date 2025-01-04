@@ -38,8 +38,8 @@ export default function About() {
                     </li>
                     <li>Next.js full-stack at SlaySchool</li>
                     <li>
-                        Drone research project under masters' students at UofT
-                        Aerospace (UTIAS)
+                        Drone research project under masters&apos; students at
+                        UofT Aerospace (UTIAS)
                     </li>
                 </ul>
                 <p className='mb-4'>
