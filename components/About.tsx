@@ -20,17 +20,11 @@ export default function About() {
                     I&apos;m a Computer Science and Business Double Degree
                     student at UWaterloo.
                 </p>
-                <p className='mb-4'>
-                    My two beliefs are <strong>getting started early</strong>{' '}
-                    and <strong>making an impact</strong>.
-                </p>
+                <p className='mb-4'>Recent ventures:</p>
                 <ul className='list-disc pl-6 mb-4'>
+                    <li>Developing a RAG solution for a small-sized company</li>
                     <li>
-                        Getting started early: I did 2 software internships in
-                        high school. I&apos;m currently looking for my third.
-                    </li>
-                    <li>
-                        Making an impact: I ran a{' '}
+                        Running a{' '}
                         <a
                             href='https://jamhacks.ca'
                             target='_blank'
@@ -41,6 +35,11 @@ export default function About() {
                         </a>{' '}
                         with 200+ attendees to get underrepresented youths into
                         tech.
+                    </li>
+                    <li>Next.js full-stack at SlaySchool</li>
+                    <li>
+                        Drone research project under masters' students at UofT
+                        Aerospace (UTIAS)
                     </li>
                 </ul>
                 <p className='mb-4'>
