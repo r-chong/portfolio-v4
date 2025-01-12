@@ -8,6 +8,11 @@ export const Post = defineDocumentType(() => ({
         title: { type: 'string', required: true },
         date: { type: 'date', required: true },
         imageUrl: { type: 'string', required: true },
+        tags: {
+            type: 'list',
+            of: { type: 'string' },
+            required: false, // Set to true if you want this field to be mandatory
+        },
     },
     contentType: 'mdx',
     computedFields: {

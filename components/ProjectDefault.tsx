@@ -40,20 +40,23 @@ export default function ProjectDefault({
                     className='cursor-pointer'
                     href={blogLink as LinkProps['href']}
                 >
-                    <section className='hover:bg-gray-200 group pb-3 bg-gray-100 group-even:pl-8 rounded-lg border border-black/5 overflow-hidden sm:pr-8 relative sm:h-[20rem] sm:mb-8 mb-3 last:mb-0'>
+                    <div className='hover:bg-gray-200 group pb-3 bg-gray-100 group-even:pl-8 rounded-lg border border-black/5 overflow-hidden sm:pr-8 relative sm:h-[20rem] sm:mb-8 mb-3 last:mb-0'>
                         {/* 2025-01-04: added SM breakpoint to the even/odd stuff. Ideally on mobile it shows image only but I don't have time rn */}
                         {/* TODO: Add desktop vs mobile differentiation */}
                         <div className='px-5 py-4 mt-4 pb-7 sm:pl-10 sm:group-even:ml-[21rem] sm:even:pl-8 sm:pr-2 sm-pt-10 sm:max-w-[50%] flex flex-col h-full'>
-                            <h3 className='text-2xl font-semibold'>{title}</h3>
-                            <p className='mt-2 leading-relaxed text-gray-700'>
+                            <div className='text-2xl font-semibold'>
+                                {title}
+                            </div>
+                            <div className='mt-2 leading-relaxed text-gray-700'>
                                 {description} <br />
-                                <Link
+                                {/* TODO: Figure out why this link throws hydration error */}
+                                {/* <Link
                                     className=' text-gray-400 pb-3 font-semibold hover:underline cursor-pointer'
                                     href={blogLink as LinkProps['href']}
                                 >
                                     Read more
-                                </Link>
-                            </p>
+                                </Link> */}
+                            </div>
                             <ul className='flex flex-wrap gap-2 mt-4 sm:mt-auto'>
                                 {tags.map((tag, index) => (
                                     <li
@@ -90,7 +93,7 @@ export default function ProjectDefault({
                     max-sm:hidden
                     '
                         />
-                    </section>
+                    </div>
                 </Link>
             </motion.div>
         </>
