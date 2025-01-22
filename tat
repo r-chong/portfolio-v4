@@ -1,0 +1,46 @@
+[1mdiff --git a/app/posts/[slug]/page.tsx b/app/posts/[slug]/page.tsx[m
+[1mindex b39b3ef..9b9963c 100644[m
+[1m--- a/app/posts/[slug]/page.tsx[m
+[1m+++ b/app/posts/[slug]/page.tsx[m
+[36m@@ -1,17 +1,21 @@[m
+ // app/posts/[slug]/page.tsx[m
+ import { format, parseISO } from 'date-fns';[m
+[31m-import { allPosts } from 'contentlayer/generated';[m
+[32m+[m[32mimport { allPosts, allDocuments, isType } from 'contentlayer/generated';[m
+ import { useMDXComponent } from 'next-contentlayer/hooks';[m
+ import { notFound } from 'next/navigation';[m
+ import Image from 'next/image';[m
+ [m
+ export const generateStaticParams = async () =>[m
+[31m-    allPosts.map((post) => ({ slug: post._raw.flattenedPath }));[m
+[32m+[m[32m    allDocuments[m
+[32m+[m[32m        .filter((doc) => doc.type === 'Post')[m
+[32m+[m[32m        .map((doc) => ({[m
+[32m+[m[32m            slug: doc._raw.flattenedPath,[m
+[32m+[m[32m        }));[m
+ [m
+ export const generateMetadata = ({ params }: { params: { slug: string } }) => {[m
+[31m-    const post = allPosts.find([m
+[31m-        (post) => post._raw.flattenedPath === params.slug[m
+[31m-    );[m
+[32m+[m[32m    const post = allDocuments[m
+[32m+[m[32m        .filter(isType(['Post']))[m
+[32m+[m[32m        .find((post) => post._raw.flattenedPath === `${params.slug}`);[m
+ [m
+     if (!post) return notFound();[m
+ [m
+[36m@@ -19,10 +23,11 @@[m [mexport const generateMetadata = ({ params }: { params: { slug: string } }) => {[m
+ };[m
+ [m
+ const PostLayout = ({ params }: { params: { slug: string } }) => {[m
+[31m-    const post = allPosts.find([m
+[31m-        (post) => post._raw.flattenedPath === params.slug[m
+[32m+[m[32m    const post = allDocuments.find([m
+[32m+[m[32m        (doc) =>[m
+[32m+[m[32m            doc.type === 'Post' && doc._raw.flattenedPath === `${params.slug}`[m
+     );[m
+[31m-    if (!post) throw new Error(`Post not found for slug: ${params.slug}`);[m
+[32m+[m[32m    if (!post) throw new Error(`Post not found for slug: posts/${params.slug}`);[m
+ [m
+     // Parse the MDX file via the useMDXComponent hook.[m
+     const MDXContent = useMDXComponent(post.body.code);[m

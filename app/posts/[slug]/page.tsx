@@ -1,30 +1,34 @@
-// app/posts/[slug]/page.tsx
 import { format, parseISO } from 'date-fns';
-import { allPosts } from 'contentlayer/generated';
+import { allPosts, allDocuments, isType } from 'contentlayer/generated';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 
 export const generateStaticParams = async () =>
-    allPosts.map((post) => ({ slug: post._raw.flattenedPath }));
+    allDocuments
+        .filter((doc) => doc.type === 'Post')
+        .map((doc) => ({
+            slug: doc._raw.flattenedPath.replace('posts/', ''),
+        }));
 
 export const generateMetadata = ({ params }: { params: { slug: string } }) => {
-    const post = allPosts.find(
-        (post) => post._raw.flattenedPath === params.slug
-    );
+    const post = allDocuments
+        .filter(isType(['Post']))
+        .find((post) => post._raw.flattenedPath === `posts/${params.slug}`);
 
     if (!post) return notFound();
-
     return { title: post.title };
 };
 
 const PostLayout = ({ params }: { params: { slug: string } }) => {
-    const post = allPosts.find(
-        (post) => post._raw.flattenedPath === params.slug
+    const post = allDocuments.find(
+        (doc) =>
+            doc.type === 'Post' &&
+            doc._raw.flattenedPath === `posts/${params.slug}`
     );
+
     if (!post) throw new Error(`Post not found for slug: ${params.slug}`);
 
-    // Parse the MDX file via the useMDXComponent hook.
     const MDXContent = useMDXComponent(post.body.code);
 
     return (

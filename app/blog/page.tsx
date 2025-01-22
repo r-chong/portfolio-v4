@@ -21,6 +21,7 @@ type PostLinkModified = {
 };
 
 function PostCard({ post }: { post: PostLinkModified }) {
+    post.url = `${post.url.replace('posts/', '')}`;
     return (
         <Link
             href={post.url as LinkProps['href']}

@@ -31,7 +31,7 @@ export function BlogPage({ posts }: BlogPageProps) {
     const sortedPosts = sortPosts(posts);
     const processedPosts = sortedPosts.map((post) => {
         const slug = post.slug;
-        const path = `/blog/${slug}`;
+        const path = `/posts/${slug.replace('posts/', '')}`;
         const content = coreContent(post);
         return {
             title: content.title,
