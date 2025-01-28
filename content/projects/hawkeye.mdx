@@ -1,25 +1,48 @@
 ---
 title: 'HawkEye Vision Assistance'
-date: '2025-01-10'
+date: '2023-09-18'
 imageUrl: '/projects/HackTheNorth2023.png'
-projectLink: https://example.com/my-awesome-project
+projectLink: https://devpost.com/software/hawkeye-amc4n7
 ---
 
-## Overview
+When my Hack the North team received access to the AdHawk MindLink smart glasses, I thought of one of my classmates who is blind.
 
-My Awesome Project is a web application built using **React** and **Node.js**. It aims to solve problem X by providing feature Y and feature Z.
+I've witnessed firsthand the difficulties he encounters during lectures, particularly when lecturers do work on the board.
 
-## Features
+What if glasses existed that can read a stream of video, and could dictate text and equations to his earbuds?
 
--   **Feature Y:** Description of feature Y.
--   **Feature Z:** Description of feature Z.
--   **Responsive Design:** Ensures the application works seamlessly on all devices.
+We created [HawkEye](https://devpost.com/software/hawkeye-amc4n7), smart glasses software created to assist visually impaired individuals by describing lecture whiteboards with AI and OCR technology.
 
-## Installation
+### The AdHawk MindLink
 
-```bash
-git clone https://github.com/username/my-awesome-project.git
-cd my-awesome-project
-npm install
-npm start
-```
+The main feature of the AdHawk MindLink is to detect eye movements by reflecting infrared light off the cornea and pupil. This is really cool, but since we were making a project for the visually impaired/blind, all of this data wasn't helpful.
+
+Another limitation was that the SDK was not perfectly documented, which made customization challenging.
+
+With that being said, the hardware provides a 1080p, 30fps outwards-facing scene camera, which was pretty good since alternatives like the Meta RayBans didn't exist yet.
+
+The last point is the most important and what made the project possible.
+
+### The Solution
+
+We process voice commands by transcribing audio and determining the appropriate action using the OpenAI API. HawkEye can activate its camera for OCR, answer questions directly, or ignore non-commands.
+
+Visual input is handled with Google Cloud Vision, while general queries bypass the camera.
+
+![](/projects/HawkEye_Pipeline.png)
+
+### Explanation of each Individual Part
+
+I give full credit to my teammate [Moulik Budhiraja](https://moulikbudhiraja.com/) for building the hardest parts of our system. I can explain how each part works but I wasn't at the level where I could build all of it at the time.
+
+### Intaking Voice Commands
+
+### Real Time Video Feed
+
+### Speech Recognition
+
+### OpenAI Function Calling
+
+This was my main responsibility: Bridging the three functions of OCR, raw AI answers, and null actions.
+
+I'm sure the API has changed by the time you read this

@@ -132,7 +132,7 @@ export const projectsData = [
             'CSYA teaches computer science to 950+ youth around the world! I transitioned their website from Wix to a modern React-Next platform, optimizing page load.',
         tags: ['REACT.js', 'Next.js', 'TypeScript'],
         imageUrl: csyaWebsiteImg,
-        blogLink: '/projects/computer-science-youth-of-america',
+        blogLink: '/projects/csya',
     },
     {
         title: 'Coffee Coach',
