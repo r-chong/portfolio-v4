@@ -17,20 +17,15 @@ export default function About() {
             <SectionHeading>About me</SectionHeading>
             <div>
                 <p className='mb-4'>
-                    I&apos;m a Computer Science and Business Double Degree
-                    student at UWaterloo.
+                    I&apos;m a CS and Business Double Degree student at
+                    UWaterloo. Looking for s25 internships.
                 </p>
-                <p className='mb-4'>
-                    My two beliefs are <strong>getting started early</strong>{' '}
-                    and <strong>making an impact</strong>.
-                </p>
+                <p className='mb-4'>Recent ventures:</p>
                 <ul className='list-disc pl-6 mb-4'>
+                    <li>Campus Ambassador at Warp.dev</li>
+                    <li>Developing a RAG solution for a small-sized company</li>
                     <li>
-                        Getting started early: I did 2 software internships in
-                        high school. I&apos;m currently looking for my third.
-                    </li>
-                    <li>
-                        Making an impact: I ran a{' '}
+                        Running a{' '}
                         <a
                             href='https://jamhacks.ca'
                             target='_blank'
@@ -41,6 +36,11 @@ export default function About() {
                         </a>{' '}
                         with 200+ attendees to get underrepresented youths into
                         tech.
+                    </li>
+                    <li>Next.js full-stack at SlaySchool</li>
+                    <li>
+                        Drone research project under masters&apos; students at
+                        UofT Aerospace (UTIAS)
                     </li>
                 </ul>
                 <p className='mb-4'>

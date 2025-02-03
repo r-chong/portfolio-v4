@@ -1,0 +1,71 @@
+---
+title: 'HawkEye Vision Assistance'
+date: '2023-09-18'
+imageUrl: '/projects/HackTheNorth2023_Demo.png'
+projectLink: https://devpost.com/software/hawkeye-amc4n7
+---
+
+When my Hack the North team received access to the AdHawk MindLink smart glasses, I thought of one of my classmates who is blind.
+
+I've witnessed firsthand the difficulties he encounters during lectures, particularly when lecturers do work on the board.
+
+What if glasses existed that can read a stream of video, and could dictate text and equations to his earbuds?
+
+We created [HawkEye](https://devpost.com/software/hawkeye-amc4n7), smart glasses software created to assist visually impaired individuals by describing lecture whiteboards with AI and OCR technology.
+
+### The AdHawk MindLink
+
+The main feature of the AdHawk MindLink is to detect eye movements by reflecting infrared light off the cornea and pupil. This is really cool, but since we were making a project for the visually impaired/blind, all of this data wasn't helpful.
+
+Another limitation was that the SDK was not perfectly documented, which made customization challenging.
+
+With that being said, the hardware provides a 1080p, 30fps outwards-facing scene camera, which was pretty good since alternatives like the Meta RayBans didn't exist yet.
+
+The last point is the most important and what made the project possible.
+
+### The Solution
+
+We process voice commands by transcribing audio and determining the appropriate action using the OpenAI API. HawkEye can activate its camera for OCR, answer questions directly, or ignore non-commands.
+
+Visual input is handled with Google Cloud Vision, while general queries bypass the camera.
+
+![](/projects/HawkEye_Pipeline.png)
+
+### Technical Specifications
+
+-   **Programming Language**: Python
+-   **Voice Processing**: PyAudio, Google Speech-to-Text, Whisper API
+-   **AI & NLP**: OpenAI GPT-3.5 API, Google Cloud Vision OCR
+
+---
+
+-   **Intaking Voice Commands**
+
+    -   Used real-time audio processing to detect wake words and commands.
+    -   Leveraged Google Cloud Speech-to-Text API for accurate transcription.
+    -   Implemented noise filtering with PyAudio to improve recognition in classroom environments.
+
+-   **Real-Time Video Feed**
+
+    -   1080p, 30fps video was processed from the AdHawk MindLink scene camera.
+    -   We applied the Google Cloud Vision OCR feature to extract text and equations from whiteboards/blackboards.
+    -   Frame sampling was optimized to balance performance and accuracy.
+
+-   **Speech Recognition**
+
+    -   Integrated real-time transcription using Whisper API for improved accuracy.
+    -   Designed a command vs. query detection system to differentiate between control commands and general questions.
+    -   Used NLTK and spaCy for natural language processing and intent recognition.
+
+-   **OpenAI Function Calling**
+    -   This was my main responsibility: Bridging the three functions of OCR, raw AI answers, and null actions.
+    -   Developed a function-calling layer using OpenAI GPT-3.5 API for structured responses. I'm sure the API has changed by the time you read this.
+    -   Allowed HawkEye to distinguish between OCR requests, AI-based answers, or non-actionable queries.
+
+### Reflecting on Setbacks, and the Road Ahead
+
+During this project, there were definitely challenges. Working around the SDK limitations and optimizing performance were difficult, but seeing it all come together made it worth it. There’s still a lot of potential for improvement, like making the system faster, better at reading complex equations, and maybe even switching to Meta Raybans.
+
+Edit: I never expected to win Best Use of Syro or Best Use of Google Cloud, but it was incredible to see our idea recognized. More than anything, this project showed us the power of technology in making education more accessible. Definitely going to try to come back to this space in the future.
+
+AdHawk Microsystems co-op when?

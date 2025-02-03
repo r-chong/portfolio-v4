@@ -1,0 +1,44 @@
+---
+title: 'Coffee Coach'
+date: '2023-09-18'
+imageUrl: '/projects/CoffeeCoach.png'
+projectLink: https://devpost.com/software/coffee-coach
+---
+
+The COVID-19 pandemic drastically reduced in-person interactions. Many struggle with conveying confidence and engagement during networking opportunities like coffee chats.
+
+**[Coffee Coach](https://devpost.com/software/coffee-coach)** helps users hone their non-verbal communication skills\*\* by analyzing facial expressions in real time and providing feedback to ensure a confident and engaging presence during conversations.
+
+### **How It Works**
+
+-   **Pre-Chat Preparation**
+
+    -   Users input meeting details (who they’re meeting, duration, etc.).
+    -   AI chatbot (GPT-3.5 API) generates a structured conversation plan with suggested topics.
+    -   Provides sample questions to guide the discussion.
+
+-   **Real-Time Sentiment & Expression Analysis**
+    -   Uses MediaPipe Face Detection & Face API to track facial expressions.
+    -   Performs sentiment analysis to detect mood changes (e.g., disengaged, irritated, neutral).
+    -   Sends real-time feedback prompts to encourage a more engaging presence.
+
+### **Tech Stack & Implementation**
+
+-   **Frontend:** React, JavaScript
+-   **Authentication:** Auth0
+-   **Computer Vision:**
+    -   **MediaPipe** for face tracking & expression detection
+    -   **Face API** for real-time sentiment analysis
+-   **AI & NLP:**
+    -   **GPT-4 API** to generate structured prompts and conversation plans
+    -   **Sentiment Analysis** to evaluate user engagement
+-   **Cloud Services:**
+    -   We initially planned to use **Microsoft Azure Content Moderation & Speech-to-Text APIs**, but we were high schoolers with no credit card.
+
+### **Challenges & Key Takeaways**
+
+At times, we doubted the feasibility of our project. This was our second pivot and had the potential to be our third. Each of real-time sentiment analysis, AI-driven prompts, and computer vision—each component brought its own complexities. But through team collaboration, persistence, and ultimately sticking with our idea, we pushed through obstacles.
+
+This was my first experience working with computer vision libraries. I was also new to the OpenAI API, and so implementing a functional AI-driven feedback system took a bit of time.
+
+Ultimately Coffee Coach is just the beginning. We're excited to keep improving it and helping students refine their communication skills to succeed in coffee chats!

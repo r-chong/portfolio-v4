@@ -21,6 +21,7 @@ type PostLinkModified = {
 };
 
 function PostCard({ post }: { post: PostLinkModified }) {
+    post.url = `${post.url.replace('posts/', '')}`;
     return (
         <Link
             href={post.url as LinkProps['href']}
@@ -41,12 +42,19 @@ function PostCard({ post }: { post: PostLinkModified }) {
                     {format(parseISO(post.date), 'LLLL d, yyyy')}
                 </time>
             </div>
-            <Image
+            {/* <Image
                 src={post.imageUrl}
                 width={200}
                 height={150}
                 alt='test'
                 className='rounded-xl max-h-[150px] object-cover object-center'
+            /> */}
+            <Image
+                src={post.imageUrl}
+                width={200}
+                height={150}
+                alt='test'
+                className='rounded-xl object-cover object-center'
             />
         </Link>
     );

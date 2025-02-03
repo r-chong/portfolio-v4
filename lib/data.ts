@@ -7,8 +7,9 @@ import htnImg from '@/public/projects/HackTheNorth2023.png';
 import spottyImg from '@/public/projects/Spotty.png';
 import interviewGPTImg from '@/public/projects/InterviewGPT.png';
 import coffeeCoachImg from '@/public/projects/CoffeeCoach.png';
-import geniusChatImg from '@/public/projects/AccessibleChat.png';
+import geniusChatImg from '@/public/projects/Accessible_Chat2.png';
 import csyaWebsiteImg from '@/public/projects/CSYAWebsite.png';
+import chatgpmeImg from '@/public/projects/ChatGPME.png';
 
 // will change these to external links
 type LinkType = {
@@ -104,6 +105,14 @@ type projectData = [
 
 export const projectsData = [
     {
+        title: 'ChatGPMe',
+        description:
+            'A playful game where YOU are the AI, and you have to respond to prompts while sounding like AI as much as possible.',
+        tags: ['Unity', 'Cohere AI', 'Google Cloud Platform', 'C#'],
+        imageUrl: chatgpmeImg,
+        blogLink: '/projects/chatgpme',
+    },
+    {
         title: 'Lexplora',
         description:
             "Lexplora is a 'duolingo for anything' app that helps you learn any subject by providing a prompt. I was the front-end developer in charge of creating the UI and lesson components.",
@@ -132,7 +141,7 @@ export const projectsData = [
             'CSYA teaches computer science to 950+ youth around the world! I transitioned their website from Wix to a modern React-Next platform, optimizing page load.',
         tags: ['REACT.js', 'Next.js', 'TypeScript'],
         imageUrl: csyaWebsiteImg,
-        blogLink: '/projects/computer-science-youth-of-america',
+        blogLink: '/projects/csya',
     },
     {
         title: 'Coffee Coach',

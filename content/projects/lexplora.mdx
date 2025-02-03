@@ -1,0 +1,69 @@
+---
+title: 'Lexplora'
+date: '2023-09-18'
+imageUrl: '/projects/Lexplora.png'
+projectLink: https://devpost.com/software/hawkeye-amc4n7
+---
+
+## Project Debrief
+
+Have you ever had a random urge to learn something new? Maybe you’ve wanted to master stargazing techniques, or dive into gourmet cooking. Motivation is powerful, but it’s fleeting. What if you could transform that initial spark into a structured plan?
+
+Lexplora is a course generation platform that makes custom learning paths for anything you're curious about.
+
+I worked on this project in my grade 11 summer, alongside two brilliant developers I had just met: Bashir and Franklin. Together, we built one of the most technical OpenAI-based projects I’ve worked on to date.
+
+## So, a GPT-Wrapper?
+
+Yes, but it does more than base GPT. Here's the flow:
+
+1. **Create a course.** Whether it’s learning French or building an Arduino robot, Lexplora designs a learning path that will take you where you want to go.
+2. **Structure your practice.** Every day, the app provides you with bite-sized tasks to keep you on track.
+3. **Track your progress.** With visual milestones and reminders, Lexplora makes sure that your efforts don’t go unnoticed.
+
+## Project Specifications
+
+We needed a scalable, AI-integrated, and responsive system, so we built it with:
+
+-   Frontend: Next.js – Providing a fast, interactive user experience.
+-   Backend: Flask – A lightweight, high-performance API for handling AI requests.
+-   AI Integration: OpenAI API – Powers the course generation engine.
+-   Database: Neo4j – Optimized for managing complex relationships between courses, users, and learning progress.
+
+### Key Features:
+
+-   **Course Generation Engine**
+
+    -   Implemented a cumulative learning model to ensure structured progression.
+    -   Uses OpenAI’s API for generating content but augments it with a logic layer to avoid purely random exercises.
+    -   Stores course dependencies in Neo4j, allowing topics to build on previous concepts dynamically.
+
+-   **Duolingo-Inspired UI**
+
+    -   Built with Next.js & React for a responsive, high-performance frontend.
+    -   UI/UX designed around gamification principles (streaks, milestones, interactive exercises).
+    -   Used Framer Motion for smooth animations and feedback loops.
+
+-   **Community-Powered Learning**
+    -   Courses are persisted in a database instead of being regenerated every session.
+    -   Users can enroll in existing courses, reducing API calls and making the system more scalable.
+    -   Leveraged server-side caching to optimize repeated course retrieval.
+
+## Is Lexplora Still Alive?
+
+While we were able to onboard 600+ users from the waitlist, we unfortunately did not have the funds (as high schoolers typically don't) to bankroll the app after the summer. Freemium monetization is an initial investment, and that we did not have.
+
+But the dream is still alive. Bashir, Franklin, and I are still heads-down, learning, studying, and building. The time may not have been right before, but eventually we'll surface and Lexplora may be reborn.
+
+## What I Learned From Building Lexplora
+
+Looking back, creating Lexplora taught me a few things.
+
+1. **Respond to peoples' cool projects!** When Bashir first shared his original idea in a mutual discord server we were in, I responded, which led to him inviting me to the project.
+
+2. **It's neat to have friends in other states**. I'm really happy I met these two, and I feel that we made a real connection despite never meeting in person and barely ever doing video calls.
+3. **Small Steps Add Up.** Whether it’s building an app or learning a new skill, consistency truly is key. This was my first time using the Next.js framework, so I was mostly relying on my React skills and doing frontend until I got up to speed.
+
+4. **Going Tiktok Viral is Easier Said Than Done**. Marketing theoretically isn't that hard, but I truly realized how much of its own grind it is when I took on the challenge of posting across our social media platforms.
+
+I'll always remember this summer-long whirlwind of creativity, collaboration, and late-night breakthroughs—and the result is an app I’m proud of to this date.

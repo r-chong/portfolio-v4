@@ -1,0 +1,29 @@
+---
+title: 'ChatGPMe'
+date: '2024-09-17'
+imageUrl: '/projects/ChatGPME_Gameplay.png'
+projectLink: https://devpost.com/software/chatgpme
+---
+
+This is definitely my most playful project. My team and I were wanting to make a cool project at Hack the North 2024, but we didn't want it to just be another cliche, unoriginal GPT wrapper. But one way to convert stale ideas into fresh ones is to be self-aware. What if we made a game where **you** are the GPT Wrapper?
+
+### Inspired by games like Overcooked...
+
+ChatGPMe challenges you to write responses to prompts while sounding like an LLM. Each round brings a series of questions ranging from requests for life advice, to calls for emotional support. Did I mention that we're grading how much you sound like an AI?
+
+### Tech Specifications
+
+To bring the game to life, we built it in Unity (C#) with a Flask-based backend for grading user responses. The game follows a 2.5D top-down perspective, blending 2D sprites with 3D gameplay.
+
+Core Technical Features:
+
+-   Map & Physics: I started by setting up the map. The vision was to make the game in top-down perspective, in 2.5 dimensions. What that means is that the assets are all two-dimensional but the gameplay is three dimensions. I then added player-object collision and interactivity between the player and triggers (i.e., the typewriter where you write your prompts.)
+-   Typing System: Joshua integrated TextMeshPro to create a smooth, reactive typing experience.
+-   AI Scoring: We built a Flask API to evaluate responses, using LLM embeddings to analyze syntax, sentiment, and coherence.
+-   UI/UX & Assets: Justin designed the visual experience, ensuring clarity while keeping the game’s chaotic nature fun. Yes, that includes all of the assets!
+
+### Lessons Learned and the Road Ahead
+
+One of our biggest takeaways was the challenge of balancing gameplay with AI-driven mechanics—grading human text in real-time isn’t trivial. Moving forward, we plan to refine the scoring algorithm, explore multiplayer modes, and optimize response latency.
+
+I think this project is going to sit on the shelf, because I have so many ideas to create in Unity. I really appreciated having this as my first foray into Unity game worlds.

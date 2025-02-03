@@ -1,0 +1,44 @@
+---
+title: 'InterviewGPT'
+date: '2023-05-20'
+imageUrl: '/projects/InterviewGPT_motion.gif'
+projectLink: https://devpost.com/software/hawkeye-amc4n7
+---
+
+This is **InterviewGPT**, automated Leetcode interviews right in the CLI.
+It’s built to make coding interviews simple, effective, and recruiter-friendly.
+
+I was challenged to make this project by Akshat Prakash. Challenge accepted.
+
+### Features
+
+There are two main question types: **code-based** and **concept questions**.
+But it doesn’t stop there. InterviewGPT asks follow-up questions and gets you to explain your answers when needed.
+
+The CLI gives helpful prompts like:
+
+-   "Please enter a valid file path"
+-   "You can type in the chat for this question"
+
+Other key features:
+
+-   **AI interviewer**: Asks one question at a time, follows up to ensure full comprehension, and stays structured throughout the interview.
+-   **Transcript recording**: Keeps a full log of your answers and your code so recruiters can see how you think and solve problems.
+-   **Variable interview length**: Typically ~45 minutes, but adjusts depending on the flow.
+-   Built using GPT-3.5 (but will upgrade to better APIs soon!).
+
+### Backend
+
+The backend is where the magic happens.
+
+Firestore handles security, validating keys so only registered candidates can access the platform.  
+It can also generate new keys and link them to candidate emails for tracking.
+
+After the interview, results are emailed in a MIM-formatted summary.
+This makes it super easy for recruiters to read:
+
+-   A summarized transcript (thanks to LangChain).
+-   Scores, stats, and a verdict on the candidate.
+
+I even added timestamps to track how long candidates spend on each question.  
+This helps flag anything suspicious, like answers that are too fast.
