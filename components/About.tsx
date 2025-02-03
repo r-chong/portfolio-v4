@@ -17,11 +17,12 @@ export default function About() {
             <SectionHeading>About me</SectionHeading>
             <div>
                 <p className='mb-4'>
-                    I&apos;m a Computer Science and Business Double Degree
-                    student at UWaterloo.
+                    I&apos;m a CS and Business Double Degree student at
+                    UWaterloo. Looking for s25 internships.
                 </p>
                 <p className='mb-4'>Recent ventures:</p>
                 <ul className='list-disc pl-6 mb-4'>
+                    <li>Campus Ambassador at Warp.dev</li>
                     <li>Developing a RAG solution for a small-sized company</li>
                     <li>
                         Running a{' '}

@@ -5,51 +5,49 @@ imageUrl: '/projects/Lexplora.png'
 projectLink: https://devpost.com/software/hawkeye-amc4n7
 ---
 
-IMAGE
-DEMO LINK
-PROJECT DEBRIEF (tldr for recruiters)
-
 ## Project Debrief
 
-Have you ever had a random urge to learn something new? Maybe you’ve wanted to master stargazing techniques, or dive into gourmet cooking.
+Have you ever had a random urge to learn something new? Maybe you’ve wanted to master stargazing techniques, or dive into gourmet cooking. Motivation is powerful, but it’s fleeting. What if you could transform that initial spark into a structured plan?
 
-Motivation is powerful, but it’s fleeting. What if you could transform that initial spark into a structured plan?
+Lexplora is a course generation platform that makes custom learning paths for anything you're curious about.
 
-Lexplora is a learning app that generates courses for anything you’re curious about.
-
-I worked on this project during my grade 11 summer, along with two friends I had just met, Bashir and Franklin.
+I worked on this project in my grade 11 summer, alongside two brilliant developers I had just met: Bashir and Franklin. Together, we built one of the most technical OpenAI-based projects I’ve worked on to date.
 
 ## So, a GPT-Wrapper?
 
-Yes, but it does more than base GPT.
-
-Procedural Course Generation Steps
+Yes, but it does more than base GPT. Here's the flow:
 
 1. **Create a course.** Whether it’s learning French or building an Arduino robot, Lexplora designs a learning path that will take you where you want to go.
 2. **Structure your practice.** Every day, the app provides you with bite-sized tasks to keep you on track.
 3. **Track your progress.** With visual milestones and reminders, Lexplora makes sure that your efforts don’t go unnoticed.
 
-I would say this is the most technical OpenAI-based project I've worked on.
-
 ## Project Specifications
 
-Lexplora was developed with a robust tech stack. Key components:
+We needed a scalable, AI-integrated, and responsive system, so we built it with:
 
--   **Technologies Used:**
-    -   Frontend: Next.js for a seamless and responsive user interface.
-    -   Backend: Flask for a lightweight yet powerful API.
-    -   AI Integration: OpenAI API for dynamic content generation.
-    -   Database: Neo4j for managing complex relationships between courses and users.
+-   Frontend: Next.js – Providing a fast, interactive user experience.
+-   Backend: Flask – A lightweight, high-performance API for handling AI requests.
+-   AI Integration: OpenAI API – Powers the course generation engine.
+-   Database: Neo4j – Optimized for managing complex relationships between courses, users, and learning progress.
 
-## Course Generation
+### Key Features:
 
-I think we did course generation in a pretty smart way. We approached it so that courses are cumulative and it's not just the GPT API choosing from a giant pool of exercises every time.
+-   **Course Generation Engine**
 
-## Duolingo-inspired UI
+    -   Implemented a cumulative learning model to ensure structured progression.
+    -   Uses OpenAI’s API for generating content but augments it with a logic layer to avoid purely random exercises.
+    -   Stores course dependencies in Neo4j, allowing topics to build on previous concepts dynamically.
 
-## Enroll in Other Peoples' Courses
+-   **Duolingo-Inspired UI**
 
-Since data generation only needs to happen once, we decided, why not let others use each others' courses?
+    -   Built with Next.js & React for a responsive, high-performance frontend.
+    -   UI/UX designed around gamification principles (streaks, milestones, interactive exercises).
+    -   Used Framer Motion for smooth animations and feedback loops.
+
+-   **Community-Powered Learning**
+    -   Courses are persisted in a database instead of being regenerated every session.
+    -   Users can enroll in existing courses, reducing API calls and making the system more scalable.
+    -   Leveraged server-side caching to optimize repeated course retrieval.
 
 ## Is Lexplora Still Alive?
 
@@ -69,7 +67,3 @@ Looking back, creating Lexplora taught me a few things.
 4. **Going Tiktok Viral is Easier Said Than Done**. Marketing theoretically isn't that hard, but I truly realized how much of its own grind it is when I took on the challenge of posting across our social media platforms.
 
 I'll always remember this summer-long whirlwind of creativity, collaboration, and late-night breakthroughs—and the result is an app I’m proud of to this date.
-
-## Co-Founders
-
-https://www.linkedin.com/in/franklin-griffin-347232287/
