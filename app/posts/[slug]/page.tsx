@@ -1,5 +1,11 @@
+<<<<<<< HEAD
 import { format, parseISO } from 'date-fns';
 import { allPosts, allDocuments, isType } from 'contentlayer/generated';
+=======
+// app/posts/[slug]/page.tsx
+import { format, parseISO } from 'date-fns';
+import { allPosts } from 'contentlayer/generated';
+>>>>>>> main
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
