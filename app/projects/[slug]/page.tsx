@@ -51,15 +51,16 @@ const ProjectWriteupLayout = ({ params }: { params: { slug: string } }) => {
     const MDXContent = useMDXComponent(post.body.code);
 
     return (
-        <article className='mx-auto max-w-xl py-8'>
-            <div className='mb-8 text-center'>
-                <div className='relative w-full h-[12rem] mb-8 overflow-hidden rounded-2xl'>
+        <article className='flex flex-col items-center'>
+            <div className='mb-8 text-center pointer-events-none select-none'>
+                <div className='relative w-full mb-8 overflow-hidden'>
                     <Image
                         src={post.imageUrl}
-                        width={500}
-                        height={250}
-                        className='w-full h-full object-cover object-center'
+                        width={1080}
+                        height={720}
+                        className='object-cover object-center rounded-xl shadow-md'
                         alt={`Image for ${post.title}`}
+                        unoptimized
                     />
                 </div>
 

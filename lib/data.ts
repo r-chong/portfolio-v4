@@ -7,8 +7,9 @@ import htnImg from '@/public/projects/HackTheNorth2023.png';
 import spottyImg from '@/public/projects/Spotty.png';
 import interviewGPTImg from '@/public/projects/InterviewGPT.png';
 import coffeeCoachImg from '@/public/projects/CoffeeCoach.png';
-import geniusChatImg from '@/public/projects/AccessibleChat.png';
+import geniusChatImg from '@/public/projects/Accessible_Chat2.png';
 import csyaWebsiteImg from '@/public/projects/CSYAWebsite.png';
+import chatgpmeImg from '@/public/projects/ChatGPME.png';
 
 // will change these to external links
 type LinkType = {
@@ -103,6 +104,14 @@ type projectData = [
 ];
 
 export const projectsData = [
+    {
+        title: 'ChatGPMe',
+        description:
+            'A playful game where YOU are the AI, and you have to respond to prompts while sounding like AI as much as possible.',
+        tags: ['Unity', 'Cohere AI', 'Google Cloud Platform', 'C#'],
+        imageUrl: chatgpmeImg,
+        blogLink: '/projects/chatgpme',
+    },
     {
         title: 'Lexplora',
         description:
