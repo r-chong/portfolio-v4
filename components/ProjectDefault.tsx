@@ -61,7 +61,7 @@ export default function ProjectDefault({
                                 {tags.map((tag, index) => (
                                     <li
                                         key={index}
-                                        className='bg-black/0.7 px-3 py-1 text-[0.7rem] uppercase tracking-wider bg-gray-700 text-white rounded-full'
+                                        className='bg-black/70 px-3 py-1 text-[0.7rem] uppercase tracking-wider bg-gray-700 text-white rounded-full'
                                     >
                                         {tag}
                                     </li>

@@ -3,6 +3,7 @@ import Header from '@/components/Header';
 import { Inter } from 'next/font/google';
 import Footer from '@/components/Footer';
 import Script from 'next/script';
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,21 +20,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang='en'>
-            <head>
-                <Script
-                    async
-                    src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
-                />
-
-                <Script id='google-analytics'>
-                    {`
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', ${`${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`});
-  `}
-                </Script>
-            </head>
+            <head></head>
             <body
                 className={`${inter.className}
 bg-stone-50 relative text-gray-950 pt-28 sm:pt-36 flex flex-col`}
@@ -43,6 +30,9 @@ bg-stone-50 relative text-gray-950 pt-28 sm:pt-36 flex flex-col`}
                 <div className='h-10'></div>
                 <Footer />
             </body>
+            <GoogleAnalytics
+                gaId={`${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+            />
         </html>
     );
 }
