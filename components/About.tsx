@@ -34,8 +34,7 @@ export default function About() {
                         >
                             hackathon
                         </a>{' '}
-                        with 200+ attendees to get underrepresented youths into
-                        tech.
+                        getting 200+ underrepresented youths into tech.
                     </li>
                     <li>Next.js full-stack at SlaySchool</li>
                     <li>
