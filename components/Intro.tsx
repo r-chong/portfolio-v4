@@ -37,7 +37,7 @@ export default function Intro() {
                         }}
                     >
                         <Image
-                            src='/Reese_C.jpg'
+                            src='/xmas_247.jpeg'
                             alt='Image of Reese Chong'
                             width={192}
                             height={192}
