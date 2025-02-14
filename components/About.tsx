@@ -3,6 +3,7 @@
 import React from 'react';
 import SectionHeading from './Section-heading';
 import { motion } from 'framer-motion';
+import Link, { LinkProps } from 'next/link';
 
 export default function About() {
     return (
@@ -43,9 +44,24 @@ export default function About() {
                     </li>
                 </ul>
                 <p className='mb-4'>
-                    In my free time, you&apos;ll find me hanging out in E7,
-                    watching Avatar: The Last Airbender for the 1000th time, and
-                    doing random sidequests in Waterloo.
+                    In my free time, you&apos;ll find me rock climbing, staying
+                    up in E7 until 4am, and doing random sidequests in Waterloo.
+                    I also{' '}
+                    <a
+                        href='https://x.com/_reesechong'
+                        target='_blank'
+                        rel='nofollow'
+                        className='text-blue-500 font-bold underline'
+                    >
+                        tweet
+                    </a>{' '}
+                    +{' '}
+                    <Link
+                        href={'/blog' as LinkProps['href']}
+                        className='text-blue-500 font-bold underline'
+                    >
+                        blog
+                    </Link>
                 </p>
                 <p>Thanks for visiting!</p>
             </div>

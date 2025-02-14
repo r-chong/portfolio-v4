@@ -1,6 +1,11 @@
 import React from 'react';
 import { HiDownload } from 'react-icons/hi';
 
+export const metadata = {
+    title: 'Resume', // This should trigger the template.
+    description: 'Curriculum vitae.',
+};
+
 export default function ResumePage() {
     return (
         <div className='flex flex-col items-center justify-center min-h-screen p-4'>

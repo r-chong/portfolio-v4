@@ -10,6 +10,11 @@ import Link, { LinkProps } from 'next/link';
 import Image from 'next/image';
 import { Route, StaticRoute } from 'nextjs-routes';
 
+export const metadata = {
+    title: 'Blog', // This should trigger the template.
+    description: 'A series of blog posts.',
+};
+
 type PostLinkModified = {
     type: string;
     title: string;
