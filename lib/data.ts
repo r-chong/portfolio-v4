@@ -36,8 +36,8 @@ export const links: LinkType[] = [
     },
     {
         name: 'Resume',
-        url: '/experience',
-        hash: '#experience',
+        url: '/resume',
+        hash: '#resume',
     },
     {
         name: 'Blog',

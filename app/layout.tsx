@@ -27,7 +27,6 @@ bg-stone-50 relative text-gray-950 pt-28 sm:pt-36 flex flex-col`}
             >
                 <Header />
                 <div className='z-10 min-h-screen'>{children}</div>
-                <div className='h-10'></div>
                 <Footer />
             </body>
             <GoogleAnalytics
