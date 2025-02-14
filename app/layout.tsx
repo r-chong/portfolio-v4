@@ -23,7 +23,7 @@ export default function RootLayout({
             <head></head>
             <body
                 className={`${inter.className}
-bg-stone-50 relative text-gray-950 pt-28 sm:pt-36 flex flex-col`}
+bg-stone-50 relative text-gray-950 pt-28 sm:pt-36 flex flex-col overflow-x-hidden`}
             >
                 <Header />
                 <div className='z-10 min-h-screen'>{children}</div>
