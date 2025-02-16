@@ -19,48 +19,37 @@ export default function ThemeContextProvider({
     children,
 }: ThemeContextProviderProps) {
     const [theme, setTheme] = useState<Theme>('light');
-    const [mounted, setMounted] = useState(false);
+
+    // Initialize theme
+    useEffect(() => {
+        // On mount, read from localStorage or system preference
+        if (
+            localStorage.theme === 'dark' ||
+            (!localStorage.theme &&
+                window.matchMedia('(prefers-color-scheme: dark)').matches)
+        ) {
+            setTheme('dark');
+            document.documentElement.classList.add('dark');
+        } else {
+            setTheme('light');
+            document.documentElement.classList.remove('dark');
+        }
+    }, []);
 
     const toggleTheme = () => {
         if (theme === 'light') {
             setTheme('dark');
-            window.localStorage.setItem('theme', 'dark');
+            localStorage.theme = 'dark';
             document.documentElement.classList.add('dark');
         } else {
             setTheme('light');
-            window.localStorage.setItem('theme', 'light');
+            localStorage.theme = 'light';
             document.documentElement.classList.remove('dark');
         }
     };
 
-    useEffect(() => {
-        setMounted(true);
-        const localTheme = window.localStorage.getItem('theme') as Theme | null;
-
-        if (localTheme) {
-            setTheme(localTheme);
-            if (localTheme === 'dark') {
-                document.documentElement.classList.add('dark');
-            }
-        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            setTheme('dark');
-            document.documentElement.classList.add('dark');
-            window.localStorage.setItem('theme', 'dark');
-        }
-    }, []);
-
-    // Prevent hydration mismatch
-    if (!mounted) {
-        return null;
-    }
-
     return (
-        <ThemeContext.Provider
-            value={{
-                theme,
-                toggleTheme,
-            }}
-        >
+        <ThemeContext.Provider value={{ theme, toggleTheme }}>
             {children}
         </ThemeContext.Provider>
     );
@@ -68,10 +57,8 @@ export default function ThemeContextProvider({
 
 export function useTheme() {
     const context = useContext(ThemeContext);
-
-    if (context === null) {
-        throw new Error('useTheme must be used within a ThemeContextProvider');
+    if (!context) {
+        throw new Error('useTheme must be used within ThemeContextProvider');
     }
-
     return context;
 }

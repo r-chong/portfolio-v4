@@ -2,29 +2,11 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { BsGithub, BsLinkedin } from 'react-icons/bs';
-import { MdOutlineMail } from 'react-icons/md';
-import { HiDownload } from 'react-icons/hi';
 import Link from 'next/link';
 import { ToastContainer, toast } from 'react-toast';
 import LinkButton from './LinkButton';
 
 export default function Intro() {
-    const [isCopied, setIsCopied] = useState(false);
-
-    const copyEmailAddress = () => {
-        navigator.clipboard.writeText(
-            `${process.env.NEXT_PUBLIC_EMAIL_ADDRESS}`
-        );
-
-        setIsCopied(true);
-        setTimeout(() => setIsCopied(false), 2000);
-        // toast('Copied Email Address! ✅', {
-        //     backgroundColor: '#41a047',
-        //     color: '#ffffff',
-        // });
-    };
-
     return (
         <section className='flex flex-col items-center mb-8 md:mb-12 text-center scroll-mt-28 px-4'>
             <div className='flex items-center justify-center'>
@@ -101,33 +83,7 @@ export default function Intro() {
                 transition={{
                     delay: 0.1,
                 }}
-            >
-                <LinkButton onClick={copyEmailAddress}>
-                    {isCopied ? (
-                        <span>Copied Email Address! ✅</span>
-                    ) : (
-                        <>
-                            <span>Copy email address</span>
-                            <MdOutlineMail className='text-xl' />
-                        </>
-                    )}
-                </LinkButton>
-
-                <LinkButton href={process.env.NEXT_PUBLIC_RESUME_LINK}>
-                    <span>Resume</span>
-                    <HiDownload className='text-xl' />
-                </LinkButton>
-
-                <LinkButton href='https://linkedin.com/in/reesechong/'>
-                    <span>LinkedIn</span>
-                    <BsLinkedin className='text-xl' />
-                </LinkButton>
-
-                <LinkButton href='https://github.com/r-chong/'>
-                    <span>GitHub</span>
-                    <BsGithub className='text-xl' />
-                </LinkButton>
-            </motion.div>
+            ></motion.div>
         </section>
     );
 }
