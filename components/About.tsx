@@ -16,7 +16,7 @@ export default function About() {
             id='about'
         >
             <SectionHeading>About me</SectionHeading>
-            <div className='space-y-4 text-base sm:text-lg'>
+            <div className='space-y-4 text-base sm:text-md'>
                 <p>
                     I&apos;m a CS and Business Double Degree student at
                     UWaterloo. Looking for s25 internships.

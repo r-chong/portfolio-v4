@@ -14,7 +14,9 @@ export default function Home() {
             <SectionDivider />
             <About />
             <SectionHeading>Featured Projects</SectionHeading>
-            <Projects displayType={'linear'} maxIndex={3} />
+            <div className='max-w-2xl mx-auto'>
+                <Projects displayType={'linear'} maxIndex={3} />
+            </div>
             <ToastContainer delay={3000} position={'bottom-center'} />
 
             <div className='flex justify-center'>
