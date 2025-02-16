@@ -1,83 +1,91 @@
-import type {
-    Markdown,
-    MDX,
-    ImageFieldData,
-    IsoDateTimeString,
-} from 'contentlayer/core';
-import { compareDesc, format, parseISO } from 'date-fns'; // date imports
+'use client';
+
+import { compareDesc, format, parseISO } from 'date-fns';
 import { allPosts, Post } from 'contentlayer/generated';
 import Link, { LinkProps } from 'next/link';
 import Image from 'next/image';
-import { Route, StaticRoute } from 'nextjs-routes';
+import { motion } from 'framer-motion';
 
-export const metadata = {
-    title: 'Blog', // This should trigger the template.
-    description: 'A series of blog posts.',
-};
+// export const metadata = {
+//     title: 'Blog',
+//     description: 'A series of blog posts.',
+// };
 
-type PostLinkModified = {
-    type: string;
-    title: string;
-    date: IsoDateTimeString;
-    /** MDX file body */
-    body: MDX;
-    url: string;
-    imageUrl: string;
-};
-
-function PostCard({ post }: { post: PostLinkModified }) {
-    post.url = `${post.url.replace('posts/', '')}`;
+function PostCard({ post }: { post: Post }) {
     return (
-        <Link
-            href={post.url as LinkProps['href']}
-            // Also works:
-            // href={post.url as Route | StaticRoute<"/"> | Omit<Route, 'pathname'>}
-            className='flex justify-between gap-4 p-2 pb-8 pt-6 border-b-2 hover:bg-gray-100 cursor-pointer'
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className='group'
         >
-            <div className='mb-8'>
-                <h2 className='mb-1 text-xl'>
-                    <div className='text-gray-800 font-semibold hover:text-blue-900'>
+            <Link
+                href={`/posts/${post._raw.flattenedPath.replace('posts/', '')}`}
+                className='flex justify-between gap-4 p-4 rounded-xl border border-transparent hover:border-gray-200 dark:hover:border-gray-800 hover:bg-gray-100/50 dark:hover:bg-gray-800/50 transition-all duration-300'
+            >
+                <div className='space-y-2'>
+                    <h2 className='text-xl font-semibold group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300'>
                         {post.title}
+                    </h2>
+                    <time className='text-sm text-gray-600 dark:text-gray-400'>
+                        {format(parseISO(post.date), 'LLLL d, yyyy')}
+                    </time>
+                    {post.description && (
+                        <p className='text-gray-600 dark:text-gray-400 line-clamp-2'>
+                            {post.description}
+                        </p>
+                    )}
+                    {post.tags && (
+                        <div className='flex flex-wrap gap-2 pt-2'>
+                            {post.tags.map((tag, idx) => (
+                                <span
+                                    key={idx}
+                                    className='px-2 py-1 text-xs rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
+                                >
+                                    {tag}
+                                </span>
+                            ))}
+                        </div>
+                    )}
+                </div>
+                {post.imageUrl && (
+                    <div className='relative hidden sm:block flex-shrink-0'>
+                        <Image
+                            src={post.imageUrl}
+                            alt={`Cover image for ${post.title}`}
+                            width={160}
+                            height={120}
+                            className='rounded-lg object-cover transition-transform duration-300'
+                        />
                     </div>
-                </h2>
-                <time
-                    dateTime={post.date}
-                    className='mb-2 block text-xs text-gray-600'
-                >
-                    {format(parseISO(post.date), 'LLLL d, yyyy')}
-                </time>
-            </div>
-            {/* <Image
-                src={post.imageUrl}
-                width={200}
-                height={150}
-                alt='test'
-                className='rounded-xl max-h-[150px] object-cover object-center'
-            /> */}
-            <Image
-                src={post.imageUrl}
-                width={200}
-                height={150}
-                alt='test'
-                className='rounded-xl object-cover object-center'
-            />
-        </Link>
+                )}
+            </Link>
+        </motion.div>
     );
 }
 
-export default function BlogHome() {
+export default function BlogPage() {
     const posts = allPosts.sort((a, b) =>
         compareDesc(new Date(a.date), new Date(b.date))
     );
 
     return (
-        <div className='mx-auto max-w-xl py-8'>
-            <h1 className='mb-8 text-center text-2xl font-black'>
-                Reese&apos;s Blog
-            </h1>
-            {posts.map((post, idx) => (
-                <PostCard key={idx} post={post} />
-            ))}
+        <div className='mx-auto max-w-4xl px-6 py-12'>
+            <div className='space-y-8'>
+                <div className='space-y-4'>
+                    <h1 className='text-3xl font-bold text-center dark:text-gray-100'>
+                        Blog
+                    </h1>
+                    <p className='text-gray-600 dark:text-gray-400 text-center max-w-2xl mx-auto'>
+                        Some thoughts of mine.
+                    </p>
+                </div>
+                <div className='space-y-4'>
+                    {posts.map((post, idx) => (
+                        <PostCard key={idx} post={post} />
+                    ))}
+                </div>
+            </div>
         </div>
     );
 }
