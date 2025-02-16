@@ -25,7 +25,7 @@ export default function Intro() {
     };
 
     return (
-        <section className='flex flex-col items-center mb-20 md:mb-28 text-center sm:mb-0 scroll-mt-[100rem] px-4'>
+        <section className='flex flex-col items-center mb-8 md:mb-12 text-center scroll-mt-28 px-4'>
             <div className='flex items-center justify-center'>
                 <div className='relative'>
                     <motion.div

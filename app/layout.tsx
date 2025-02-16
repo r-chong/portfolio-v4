@@ -25,14 +25,12 @@ export default function RootLayout({
     }, [isMenuOpen]);
 
     return (
-        <html lang='en'>
-            <head></head>
+        <html lang='en' className='!scroll-smooth'>
             <body
-                className={`${inter.className}
-                bg-stone-50 relative text-gray-950 pt-28 sm:pt-36 flex flex-col overflow-x-hidden`}
+                className={`${inter.className} bg-stone-50 relative text-gray-950 pt-28 sm:pt-36 overflow-x-hidden`}
             >
                 <Header />
-                <div className='z-10 min-h-screen'>{children}</div>
+                <div>{children}</div>
                 <Footer />
                 <GoogleAnalytics
                     gaId={`${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}

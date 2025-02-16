@@ -34,13 +34,13 @@ export default function ProjectDefault({
                     scale: scaleProgress,
                     opacity: opacityProgress,
                 }}
-                className='group'
+                className='group w-full'
             >
                 <Link
                     className='cursor-pointer block'
                     href={blogLink as LinkProps['href']}
                 >
-                    <div className='hover:bg-gray-200 bg-gray-100 rounded-lg border border-black/5 overflow-hidden transition-all duration-300 h-full'>
+                    <div className='hover:bg-gray-200 bg-gray-100 rounded-lg border border-black/5 overflow-hidden transition-all duration-300'>
                         <div className='relative aspect-video w-full overflow-hidden'>
                             <Image
                                 src={imageUrl}
@@ -51,14 +51,14 @@ export default function ProjectDefault({
                             />
                         </div>
 
-                        <div className='p-4 space-y-4'>
+                        <div className='p-4 space-y-3'>
                             <h3 className='text-xl font-semibold'>{title}</h3>
 
-                            <p className='text-gray-700 line-clamp-3'>
+                            <p className='text-gray-700 line-clamp-3 text-sm sm:text-base'>
                                 {description}
                             </p>
 
-                            <ul className='flex flex-wrap gap-2 pt-2'>
+                            <ul className='flex flex-wrap gap-2'>
                                 {tags.map((tag, index) => (
                                     <li
                                         key={index}
