@@ -12,7 +12,7 @@ export default function Button1<T extends string>({
     return (
         <Link
             href={url as LinkProps['href']}
-            className='flex justify-center items-center gap-2 py-3 text-white transition bg-gray-900 rounded-full outline-none group px-7 focus:scale-110 hover:scale-110 active:scale-105 border-black/10'
+            className='flex justify-center items-center gap-2 py-3 text-white transition bg-gray-900 dark:bg-gray-50 dark:text-gray-900 rounded-full outline-none group px-7 focus:scale-110 hover:scale-110 hover:bg-gray-800 dark:hover:bg-gray-200 active:scale-105 border-black/10'
         >
             {children}
         </Link>

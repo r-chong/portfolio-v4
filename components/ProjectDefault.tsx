@@ -40,7 +40,7 @@ export default function ProjectDefault({
                     className='cursor-pointer block'
                     href={blogLink as LinkProps['href']}
                 >
-                    <div className='hover:bg-gray-200 bg-gray-100 rounded-lg border border-black/5 overflow-hidden transition-all duration-300'>
+                    <div className='hover:bg-gray-200 dark:hover:bg-gray-800 bg-gray-100 dark:bg-gray-900 rounded-lg border border-black/5 dark:border-white/5 overflow-hidden transition-all duration-300'>
                         <div className='relative aspect-video w-full overflow-hidden'>
                             <Image
                                 src={imageUrl}
@@ -52,9 +52,11 @@ export default function ProjectDefault({
                         </div>
 
                         <div className='p-4 space-y-3'>
-                            <h3 className='text-xl font-semibold'>{title}</h3>
+                            <h3 className='text-xl font-semibold dark:text-gray-100'>
+                                {title}
+                            </h3>
 
-                            <p className='text-gray-700 line-clamp-3 text-sm sm:text-base'>
+                            <p className='text-gray-700 dark:text-gray-300 line-clamp-3 text-sm sm:text-base'>
                                 {description}
                             </p>
 
@@ -62,7 +64,7 @@ export default function ProjectDefault({
                                 {tags.map((tag, index) => (
                                     <li
                                         key={index}
-                                        className='bg-black/70 px-3 py-1 text-[0.7rem] uppercase tracking-wider text-white rounded-full'
+                                        className='bg-black/70 dark:bg-white/10 px-3 py-1 text-[0.7rem] uppercase tracking-wider text-white rounded-full'
                                     >
                                         {tag}
                                     </li>

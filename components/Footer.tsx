@@ -7,11 +7,11 @@ import {
     FaRandom,
 } from 'react-icons/fa';
 
-export default function Footere() {
+export default function Footer() {
     return (
-        <div className='w-full py-4 bg-gray-100 border-t-2 lg:flex'>
+        <div className='w-full py-4 bg-gray-100 dark:bg-gray-900 border-t-2 border-gray-200 dark:border-gray-800 lg:flex'>
             <div className='flex justify-center lg:justify-left'>
-                <p className='text-m mx-8 items-center text-[#888] hidden md:block'>
+                <p className='text-m mx-8 items-center text-[#888] dark:text-gray-400 hidden md:block'>
                     Reese Chong 2025
                 </p>
                 <div className='flex space-x-4'>
@@ -42,7 +42,7 @@ export default function Footere() {
                         rel='noopener noreferrer'
                     >
                         <FaLinkedin
-                            className='text-blue-700 hover:text-blue-900'
+                            className='text-blue-700 hover:text-blue-900 dark:text-blue-500 dark:hover:text-blue-400'
                             size={30}
                         />
                     </a>
@@ -52,7 +52,7 @@ export default function Footere() {
                         rel='noopener noreferrer'
                     >
                         <FaGithub
-                            className='text-gray-900 hover:text-gray-700'
+                            className='text-gray-900 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'
                             size={30}
                         />
                     </a>
