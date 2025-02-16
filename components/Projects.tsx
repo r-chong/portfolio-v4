@@ -13,11 +13,10 @@ export default function Projects({ displayType, maxIndex }: ProjectsProps) {
         <>
             <section>
                 <div
-                    // TODO: Add grid logic
                     className={`${
                         displayType === 'grid'
-                            ? 'flex flex-wrap -m-2 justify-center'
-                            : 'flex flex-wrap -m-2 justify-center'
+                            ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4 sm:px-6 max-w-7xl mx-auto'
+                            : 'flex flex-col space-y-8 px-4 sm:px-6 max-w-3xl mx-auto'
                     }`}
                 >
                     {projectsData.slice(0, maxIndex).map((project, index) => (

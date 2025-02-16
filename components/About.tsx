@@ -9,20 +9,20 @@ export default function About() {
     return (
         <motion.section
             // ref={ref}
-            className='max-w-3xl mx-auto leading-relaxed mb-28 sm:mb-40 scroll-mt-28 text-left px-4'
+            className='max-w-3xl mx-auto leading-relaxed mb-20 md:mb-28 scroll-mt-28 text-left px-6 sm:px-4'
             initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.175 }}
             id='about'
         >
             <SectionHeading>About me</SectionHeading>
-            <div>
-                <p className='mb-4'>
+            <div className='space-y-4 text-base sm:text-lg'>
+                <p>
                     I&apos;m a CS and Business Double Degree student at
                     UWaterloo. Looking for s25 internships.
                 </p>
-                <p className='mb-4'>Recent ventures:</p>
-                <ul className='list-disc pl-6 mb-4'>
+                <p>Recent ventures:</p>
+                <ul className='list-disc pl-6 space-y-2'>
                     <li>Campus Ambassador at Warp.dev</li>
                     <li>Developing a RAG solution for a small-sized company</li>
                     <li>
@@ -43,7 +43,7 @@ export default function About() {
                         UofT Aerospace (UTIAS)
                     </li>
                 </ul>
-                <p className='mb-4'>
+                <p>
                     In my free time, you&apos;ll find me rock climbing, staying
                     up in E7 until 4am, and doing random sidequests in Waterloo.
                     I also{' '}

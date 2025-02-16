@@ -25,7 +25,7 @@ export default function Intro() {
     };
 
     return (
-        <section className='flex flex-col items-center mb-28 text-center sm:mb-0 scroll-mt-[100rem]'>
+        <section className='flex flex-col items-center mb-20 md:mb-28 text-center sm:mb-0 scroll-mt-[100rem] px-4'>
             <div className='flex items-center justify-center'>
                 <div className='relative'>
                     <motion.div
@@ -76,7 +76,7 @@ export default function Intro() {
 
             {/* overriding the line height rule*/}
             <motion.h1
-                className='mt-4 text-2xl font-medium !leading-[1.5] sm:text-4xl'
+                className='mt-4 px-4 text-xl font-medium !leading-[1.5] sm:text-4xl'
                 initial={{ opacity: 0, y: 100 }}
                 animate={{ opacity: 1, y: 0 }}
             >
@@ -95,7 +95,7 @@ export default function Intro() {
             </motion.h1>
 
             <motion.div
-                className='flex flex-col items-center justify-center gap-4 px-4 text-lg font-medium sm:flex-row'
+                className='flex flex-col w-full items-center justify-center gap-3 px-4 text-base sm:text-lg font-medium sm:flex-row max-w-[500px] sm:max-w-none'
                 initial={{ opacity: 0, y: 100 }}
                 animate={{ opacity: 1, y: 1 }}
                 transition={{
@@ -104,7 +104,7 @@ export default function Intro() {
             >
                 <button
                     onClick={copyEmailAddress}
-                    className='flex gap-2 px-4 py-2 text-lg font-medium text-white transition-all bg-black rounded-full shadow-md outline-none hover:bg-gray-900 focus:scale-110 hover:scale-110 active:scale-105 cursor:pointer'
+                    className='flex gap-2 w-full sm:w-auto px-4 py-2 text-base sm:text-lg font-medium text-white transition-all bg-black rounded-full shadow-md outline-none hover:bg-gray-900 focus:scale-110 hover:scale-110 active:scale-105 cursor:pointer'
                 >
                     <span className='flex items-center gap-2 group'>
                         {isCopied ? (
