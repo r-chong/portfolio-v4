@@ -95,7 +95,7 @@ export default function Intro() {
             </motion.h1>
 
             <motion.div
-                className='flex flex-col w-full items-center justify-center gap-3 px-4 text-base sm:text-lg font-medium sm:flex-row max-w-[500px] sm:max-w-none'
+                className='flex flex-col w-full items-center justify-center gap-3 px-4 text-sm sm:text-base font-medium sm:flex-row sm:max-w-3xl'
                 initial={{ opacity: 0, y: 100 }}
                 animate={{ opacity: 1, y: 1 }}
                 transition={{
@@ -104,48 +104,49 @@ export default function Intro() {
             >
                 <button
                     onClick={copyEmailAddress}
-                    className='flex gap-2 w-full sm:w-auto px-4 py-2 text-base sm:text-lg font-medium text-white transition-all bg-black rounded-full shadow-md outline-none hover:bg-gray-900 focus:scale-110 hover:scale-110 active:scale-105 cursor:pointer'
+                    className='flex items-center justify-center gap-2 h-12 w-full sm:w-auto px-5 font-medium text-white dark:text-gray-950 transition-all bg-gray-900 dark:bg-white rounded-full shadow-md outline-none hover:bg-gray-800 dark:hover:bg-gray-200 focus:scale-105 hover:scale-105 active:scale-100'
                 >
-                    <span className='flex items-center gap-2 group'>
-                        {isCopied ? (
-                            <>
-                                <span>Copied Email Address! ✅</span>
-                            </>
-                        ) : (
-                            <>
-                                <span>Copy email address</span>
-                                <MdOutlineMail className='transition opacity-70 group-hover:translate-x-1' />
-                            </>
-                        )}
-                    </span>
+                    {isCopied ? (
+                        <span>Copied Email Address! ✅</span>
+                    ) : (
+                        <>
+                            <span>Copy email address</span>
+                            <MdOutlineMail className='text-lg opacity-70 group-hover:translate-x-1 transition' />
+                        </>
+                    )}
                 </button>
 
                 <a
-                    className='flex items-center justify-around gap-2 py-3 px-7 transition w-full sm:w-auto bg-white rounded-full outline-none group focus:scale-110 hover:scale-110 active:scale-105 border-black/10'
+                    className='flex items-center justify-center gap-2 h-12 w-full sm:w-auto px-5 transition bg-white dark:bg-gray-950 rounded-full outline-none focus:scale-105 hover:scale-105 active:scale-100 border border-black/10 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-gray-900'
                     href={process.env.NEXT_PUBLIC_RESUME_LINK}
                     target='_blank'
                 >
-                    <p className=''>Resume </p>
-                    <HiDownload className='transition opacity-60 group m:w-auto group-hover:translate-y-1' />{' '}
-                    {''}
+                    <span className='text-gray-900 dark:text-white'>
+                        Resume
+                    </span>
+                    <HiDownload className='text-lg opacity-60 group-hover:translate-y-1 transition text-gray-900 dark:text-white' />
                 </a>
 
                 <a
-                    className='flex items-center justify-around p-4 text-gray-700 w-full sm:w-auto bg-white rounded-full focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950 active:scale-[1.15] border-black/10 transition'
+                    className='flex items-center justify-center gap-2 h-12 w-full sm:w-auto px-5 bg-white dark:bg-gray-950 rounded-full focus:scale-105 hover:scale-105 active:scale-100 border border-black/10 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-gray-900 transition'
                     href='https://linkedin.com/in/reesechong/'
                     target='_blank'
                 >
-                    <p className='sm:hidden visible'>LinkedIn </p>
-                    <BsLinkedin />
+                    <span className='text-gray-900 dark:text-white'>
+                        LinkedIn
+                    </span>
+                    <BsLinkedin className='text-lg text-gray-700 dark:text-gray-200' />
                 </a>
 
                 <a
-                    className='flex justify-around   *:items-center p-4 text-[1.3rem] w-full sm:w-auto text-gray-700 bg-white rounded-full focus:scale-[1.15] hover:text-gray-950 hover:scale-[1.15] active:scale-105 border-black/10 transition'
+                    className='flex items-center justify-center gap-2 h-12 w-full sm:w-auto px-5 bg-white dark:bg-gray-950 rounded-full focus:scale-105 hover:scale-105 active:scale-100 border border-black/10 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-gray-900 transition'
                     href='https://github.com/r-chong/'
                     target='_blank'
                 >
-                    <p className='sm:hidden visible'>GitHub </p>
-                    <BsGithub />
+                    <span className='text-gray-900 dark:text-white'>
+                        GitHub
+                    </span>
+                    <BsGithub className='text-lg text-gray-700 dark:text-gray-200' />
                 </a>
             </motion.div>
         </section>
