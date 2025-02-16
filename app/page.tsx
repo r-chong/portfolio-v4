@@ -11,7 +11,7 @@ export default function Home() {
     return (
         <main className=''>
             <Intro />
-            <SectionDivider />
+            {/* <SectionDivider /> */}
             <About />
             <SectionHeading>Featured Projects</SectionHeading>
             <div className='max-w-2xl mx-auto'>

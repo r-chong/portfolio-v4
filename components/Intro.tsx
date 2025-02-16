@@ -7,6 +7,7 @@ import { MdOutlineMail } from 'react-icons/md';
 import { HiDownload } from 'react-icons/hi';
 import Link from 'next/link';
 import { ToastContainer, toast } from 'react-toast';
+import LinkButton from './LinkButton';
 
 export default function Intro() {
     const [isCopied, setIsCopied] = useState(false);
@@ -80,74 +81,52 @@ export default function Intro() {
                 initial={{ opacity: 0, y: 100 }}
                 animate={{ opacity: 1, y: 0 }}
             >
-                <div className='flex mb-4'>
-                    <span className='font-bold'>Hi, I&apos;m Reese! </span>{' '}
-                    {/* <span className=''>Waterloo</span>!{' '} */}
+                <div className='flex items-center justify-center gap-2 mb-4 sm:gap-4'>
+                    <span className='font-bold'>Hi, I&apos;m Reese!</span>
                     <Image
                         draggable='false'
                         alt='🇨🇦'
-                        width={10}
-                        height={10}
+                        width={32}
+                        height={32}
                         src='/twemoji/flag_ca.svg'
-                        className='w-12'
+                        className='w-8 sm:w-10 h-auto'
                     />
                 </div>
             </motion.h1>
 
             <motion.div
-                className='flex flex-col w-full items-center justify-center gap-3 px-4 text-sm sm:text-base font-medium sm:flex-row sm:max-w-3xl'
+                className='flex flex-col w-full items-center justify-center gap-3 px-4 text-[15px] font-medium sm:max-w-[24rem]'
                 initial={{ opacity: 0, y: 100 }}
                 animate={{ opacity: 1, y: 1 }}
                 transition={{
                     delay: 0.1,
                 }}
             >
-                <button
-                    onClick={copyEmailAddress}
-                    className='flex items-center justify-center gap-2 h-12 w-full sm:w-auto px-5 font-medium text-white dark:text-gray-950 transition-all bg-gray-900 dark:bg-white rounded-full shadow-md outline-none hover:bg-gray-800 dark:hover:bg-gray-200 focus:scale-105 hover:scale-105 active:scale-100'
-                >
+                <LinkButton onClick={copyEmailAddress}>
                     {isCopied ? (
                         <span>Copied Email Address! ✅</span>
                     ) : (
                         <>
                             <span>Copy email address</span>
-                            <MdOutlineMail className='text-lg opacity-70 group-hover:translate-x-1 transition' />
+                            <MdOutlineMail className='text-xl' />
                         </>
                     )}
-                </button>
+                </LinkButton>
 
-                <a
-                    className='flex items-center justify-center gap-2 h-12 w-full sm:w-auto px-5 transition bg-white dark:bg-gray-950 rounded-full outline-none focus:scale-105 hover:scale-105 active:scale-100 border border-black/10 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-gray-900'
-                    href={process.env.NEXT_PUBLIC_RESUME_LINK}
-                    target='_blank'
-                >
-                    <span className='text-gray-900 dark:text-white'>
-                        Resume
-                    </span>
-                    <HiDownload className='text-lg opacity-60 group-hover:translate-y-1 transition text-gray-900 dark:text-white' />
-                </a>
+                <LinkButton href={process.env.NEXT_PUBLIC_RESUME_LINK}>
+                    <span>Resume</span>
+                    <HiDownload className='text-xl' />
+                </LinkButton>
 
-                <a
-                    className='flex items-center justify-center gap-2 h-12 w-full sm:w-auto px-5 bg-white dark:bg-gray-950 rounded-full focus:scale-105 hover:scale-105 active:scale-100 border border-black/10 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-gray-900 transition'
-                    href='https://linkedin.com/in/reesechong/'
-                    target='_blank'
-                >
-                    <span className='text-gray-900 dark:text-white'>
-                        LinkedIn
-                    </span>
-                    <BsLinkedin className='text-lg text-gray-700 dark:text-gray-200' />
-                </a>
+                <LinkButton href='https://linkedin.com/in/reesechong/'>
+                    <span>LinkedIn</span>
+                    <BsLinkedin className='text-xl' />
+                </LinkButton>
 
-                <a
-                    className='flex items-center justify-center gap-2 h-12 w-full sm:w-auto px-5 bg-white dark:bg-gray-950 rounded-full focus:scale-105 hover:scale-105 active:scale-100 border border-black/10 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-gray-900 transition'
-                    href='https://github.com/r-chong/'
-                    target='_blank'
-                >
-                    <span className='text-gray-900 dark:text-white'>
-                        GitHub
-                    </span>
-                    <BsGithub className='text-lg text-gray-700 dark:text-gray-200' />
-                </a>
+                <LinkButton href='https://github.com/r-chong/'>
+                    <span>GitHub</span>
+                    <BsGithub className='text-xl' />
+                </LinkButton>
             </motion.div>
         </section>
     );
