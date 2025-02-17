@@ -96,33 +96,37 @@ function BlogContent({ initialPosts = [], allTags = [] }: BlogClientProps) {
         return initialPosts.filter((post) => {
             if (!post) return false;
 
-            // ensure that we catch everything
+            // Handle search term
             const normalizedSearch = searchTerm.trim().toLowerCase();
-            if (!normalizedSearch && selectedTags.length === 0) return true;
+            if (normalizedSearch) {
+                const titleMatch =
+                    post.title?.toLowerCase().includes(normalizedSearch) ??
+                    false;
+                const descriptionMatch =
+                    post.description
+                        ?.toLowerCase()
+                        .includes(normalizedSearch) ?? false;
+                const tagsMatch =
+                    post.tags?.some((tag) =>
+                        tag.toLowerCase().includes(normalizedSearch)
+                    ) ?? false;
 
-            const titleMatch =
-                post.title?.toLowerCase().includes(normalizedSearch) ?? false;
-            const descriptionMatch =
-                post.description?.toLowerCase().includes(normalizedSearch) ??
-                false;
-            const tagsMatch =
-                post.tags?.some((tag) =>
-                    tag.toLowerCase().includes(normalizedSearch)
-                ) ?? false;
+                if (!(titleMatch || descriptionMatch || tagsMatch)) {
+                    return false;
+                }
+            }
 
-            // frontend search is so weird and not great for scaling idk why I'm doing this
-            const matchesSearch =
-                !normalizedSearch ||
-                titleMatch ||
-                descriptionMatch ||
-                tagsMatch;
+            // Handle tag filtering
+            if (selectedTags.length > 0) {
+                if (
+                    !post.tags ||
+                    !selectedTags.every((tag) => post.tags.includes(tag))
+                ) {
+                    return false;
+                }
+            }
 
-            const matchesTags =
-                selectedTags.length === 0 ||
-                (post.tags &&
-                    selectedTags.every((tag) => post.tags.includes(tag)));
-
-            return matchesSearch && matchesTags;
+            return true;
         });
     }, [searchTerm, selectedTags, initialPosts]);
 
