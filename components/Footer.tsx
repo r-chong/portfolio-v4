@@ -52,13 +52,13 @@ export default function Footer() {
 
                     <div className='flex items-center gap-2'>
                         <a
-                            href='https://cs.uwatering.com/#your-site-here?nav=prev'
+                            href='https://cs.uwatering.com/#reesechong.com?nav=prev'
                             className='text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
                         >
                             ←
                         </a>
                         <a
-                            href='https://cs.uwatering.com/#your-site-here'
+                            href='https://cs.uwatering.com/#reesechong.com'
                             target='_blank'
                             rel='noopener noreferrer'
                         >
@@ -69,7 +69,7 @@ export default function Footer() {
                             />
                         </a>
                         <a
-                            href='https://cs.uwatering.com/#your-site-here?nav=next'
+                            href='https://cs.uwatering.com/#reesechong.com?nav=next'
                             className='text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
                         >
                             →
