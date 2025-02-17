@@ -4,6 +4,7 @@ import React from 'react';
 import SectionHeading from './Section-heading';
 import { motion } from 'framer-motion';
 import Link, { LinkProps } from 'next/link';
+import InlineLink from './InlineLink';
 
 export default function About() {
     return (
