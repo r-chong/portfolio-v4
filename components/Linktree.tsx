@@ -33,7 +33,7 @@ export default function Linktree() {
                 )}
             </LinkButton>
 
-            <LinkButton href={process.env.NEXT_PUBLIC_RESUME_LINK}>
+            <LinkButton href='/resume'>
                 <span>Resume</span>
                 <HiDownload className='text-xl' />
             </LinkButton>

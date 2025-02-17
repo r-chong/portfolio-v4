@@ -33,10 +33,10 @@ export default function Header() {
                 } h-12 py-2`}
             >
                 <ul
-                    className={`flex items-center justify-center gap-y-1 text-[0.9rem] font-medium text-gray-500 dark:text-gray-400 sm:flex-nowrap ${
+                    className={`flex items-center text-[0.9rem] font-medium text-gray-500 dark:text-gray-400 sm:flex-nowrap ${
                         isResumePage
                             ? 'w-full justify-between px-20'
-                            : 'w-[22rem] gap-5'
+                            : 'w-[22rem] justify-around'
                     }`}
                 >
                     <div className='flex items-center gap-3'>
@@ -68,6 +68,25 @@ export default function Header() {
                             );
                         })}
                     </div>
+
+                    {!isResumePage && (
+                        <>
+                            {/* Option 1: Vertical line */}
+                            <span className='text-gray-300 dark:text-gray-700 text-sm font-light'>
+                                |
+                            </span>
+
+                            {/* Option 2: Three dots */}
+                            {/* <span className='text-gray-300 dark:text-gray-700 tracking-wider'>
+                                ···
+                            </span> */}
+
+                            {/* Option 3: Diamond */}
+                            {/* <span className='text-gray-300 dark:text-gray-700 text-[0.7rem]'>
+                                ◆
+                            </span> */}
+                        </>
+                    )}
 
                     <div className='flex items-center gap-3'>
                         {links.slice(2).map((link) => {
