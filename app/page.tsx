@@ -6,19 +6,28 @@ import About from '@/components/About';
 import Projects from '@/components/Projects';
 import { ToastContainer } from 'react-toast';
 import Button1 from '@/components/Button1';
+import Linktree from '@/components/Linktree';
 
 export default function Home() {
     return (
         <main className=''>
             <Intro />
-            <SectionDivider />
+            {/* <SectionDivider /> */}
             <About />
+
+            <div className='flex justify-center mb-8'>
+                <Linktree />
+            </div>
+            <SectionDivider />
+
             <SectionHeading>Featured Projects</SectionHeading>
-            <Projects displayType={'linear'} maxIndex={3} />
+            <div className='max-w-2xl mx-auto'>
+                <Projects displayType={'linear'} maxIndex={3} />
+            </div>
             <ToastContainer delay={3000} position={'bottom-center'} />
 
             <div className='flex justify-center'>
-                <div className='w-[3/7] mt-10'>
+                <div className='w-[3/7] my-10'>
                     <Button1 url={'/projects'}>See More Projects</Button1>
                 </div>
             </div>

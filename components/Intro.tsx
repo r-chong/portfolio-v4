@@ -2,30 +2,13 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { BsGithub, BsLinkedin } from 'react-icons/bs';
-import { MdOutlineMail } from 'react-icons/md';
-import { HiDownload } from 'react-icons/hi';
 import Link from 'next/link';
 import { ToastContainer, toast } from 'react-toast';
+import LinkButton from './LinkButton';
 
 export default function Intro() {
-    const [isCopied, setIsCopied] = useState(false);
-
-    const copyEmailAddress = () => {
-        navigator.clipboard.writeText(
-            `${process.env.NEXT_PUBLIC_EMAIL_ADDRESS}`
-        );
-
-        setIsCopied(true);
-        setTimeout(() => setIsCopied(false), 2000);
-        // toast('Copied Email Address! ✅', {
-        //     backgroundColor: '#41a047',
-        //     color: '#ffffff',
-        // });
-    };
-
     return (
-        <section className='flex flex-col items-center mb-28 text-center sm:mb-0 scroll-mt-[100rem]'>
+        <section className='flex flex-col items-center mb-8 md:mb-12 text-center scroll-mt-28 px-4'>
             <div className='flex items-center justify-center'>
                 <div className='relative'>
                     <motion.div
@@ -76,78 +59,31 @@ export default function Intro() {
 
             {/* overriding the line height rule*/}
             <motion.h1
-                className='mt-4 text-2xl font-medium !leading-[1.5] sm:text-4xl'
+                className='mt-4 px-4 text-xl font-medium !leading-[1.5] sm:text-4xl'
                 initial={{ opacity: 0, y: 100 }}
                 animate={{ opacity: 1, y: 0 }}
             >
-                <div className='flex mb-4'>
-                    <span className='font-bold'>Hi, I&apos;m Reese! </span>{' '}
-                    {/* <span className=''>Waterloo</span>!{' '} */}
+                <div className='flex items-center justify-center gap-2 mb-4 sm:gap-4'>
+                    <span className='font-bold'>Hi, I&apos;m Reese!</span>
                     <Image
                         draggable='false'
                         alt='🇨🇦'
-                        width={10}
-                        height={10}
+                        width={32}
+                        height={32}
                         src='/twemoji/flag_ca.svg'
-                        className='w-12'
+                        className='w-8 sm:w-10 h-auto'
                     />
                 </div>
             </motion.h1>
 
             <motion.div
-                className='flex flex-col items-center justify-center gap-4 px-4 text-lg font-medium sm:flex-row'
+                className='flex flex-col w-full items-center justify-center gap-3 px-4 text-[15px] font-medium sm:max-w-[24rem]'
                 initial={{ opacity: 0, y: 100 }}
                 animate={{ opacity: 1, y: 1 }}
                 transition={{
                     delay: 0.1,
                 }}
-            >
-                <button
-                    onClick={copyEmailAddress}
-                    className='flex gap-2 px-4 py-2 text-lg font-medium text-white transition-all bg-black rounded-full shadow-md outline-none hover:bg-gray-900 focus:scale-110 hover:scale-110 active:scale-105 cursor:pointer'
-                >
-                    <span className='flex items-center gap-2 group'>
-                        {isCopied ? (
-                            <>
-                                <span>Copied Email Address! ✅</span>
-                            </>
-                        ) : (
-                            <>
-                                <span>Copy email address</span>
-                                <MdOutlineMail className='transition opacity-70 group-hover:translate-x-1' />
-                            </>
-                        )}
-                    </span>
-                </button>
-
-                <a
-                    className='flex items-center justify-around gap-2 py-3 px-7 transition w-full sm:w-auto bg-white rounded-full outline-none group focus:scale-110 hover:scale-110 active:scale-105 border-black/10'
-                    href={process.env.NEXT_PUBLIC_RESUME_LINK}
-                    target='_blank'
-                >
-                    <p className=''>Resume </p>
-                    <HiDownload className='transition opacity-60 group m:w-auto group-hover:translate-y-1' />{' '}
-                    {''}
-                </a>
-
-                <a
-                    className='flex items-center justify-around p-4 text-gray-700 w-full sm:w-auto bg-white rounded-full focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950 active:scale-[1.15] border-black/10 transition'
-                    href='https://linkedin.com/in/reesechong/'
-                    target='_blank'
-                >
-                    <p className='sm:hidden visible'>LinkedIn </p>
-                    <BsLinkedin />
-                </a>
-
-                <a
-                    className='flex justify-around   *:items-center p-4 text-[1.3rem] w-full sm:w-auto text-gray-700 bg-white rounded-full focus:scale-[1.15] hover:text-gray-950 hover:scale-[1.15] active:scale-105 border-black/10 transition'
-                    href='https://github.com/r-chong/'
-                    target='_blank'
-                >
-                    <p className='sm:hidden visible'>GitHub </p>
-                    <BsGithub />
-                </a>
-            </motion.div>
+            ></motion.div>
         </section>
     );
 }

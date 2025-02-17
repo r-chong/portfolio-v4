@@ -10,6 +10,7 @@ import coffeeCoachImg from '@/public/projects/CoffeeCoach.png';
 import geniusChatImg from '@/public/projects/Accessible_Chat2.png';
 import csyaWebsiteImg from '@/public/projects/CSYAWebsite.png';
 import chatgpmeImg from '@/public/projects/ChatGPME.png';
+import { StaticImageData } from 'next/image';
 
 // will change these to external links
 type LinkType = {
@@ -34,15 +35,21 @@ export const links: LinkType[] = [
         url: '/projects',
         hash: '#projects',
     },
-    {
-        name: 'Resume',
-        url: '/resume',
-        hash: '#resume',
-    },
+
+    // {
+    //     name: 'Resume',
+    //     url: '/resume',
+    //     hash: '#resume',
+    // },
     {
         name: 'Blog',
         url: '/blog',
         hash: '#blog',
+    },
+    {
+        name: 'Now',
+        url: '/now',
+        hash: '#now',
     },
     // {
     //     name: 'Contact',
@@ -95,15 +102,15 @@ interface TagProps {
     index: number;
 }
 
-type projectData = [
-    title: string,
-    description: string,
-    tags: string[],
-    imageUrl: string,
-    blogLink: string
-];
+interface ProjectData {
+    title: string;
+    description: string;
+    tags: string[];
+    imageUrl: StaticImageData;
+    blogLink: string;
+}
 
-export const projectsData = [
+export const projectsData: ProjectData[] = [
     {
         title: 'ChatGPMe',
         description:

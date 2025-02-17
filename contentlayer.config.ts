@@ -7,11 +7,13 @@ export const Post = defineDocumentType(() => ({
     fields: {
         title: { type: 'string', required: true },
         date: { type: 'date', required: true },
+        description: { type: 'string', required: true },
         imageUrl: { type: 'string', required: true },
         tags: {
             type: 'list',
             of: { type: 'string' },
-            required: false, // Set to true if you want this field to be mandatory
+            required: false,
+            default: [],
         },
     },
     contentType: 'mdx',
@@ -29,12 +31,17 @@ export const ProjectWriteup = defineDocumentType(() => ({
     fields: {
         title: { type: 'string', required: true },
         date: { type: 'date', required: true },
-        imageUrl: { type: 'string', required: true },
+        imageUrl: { type: 'string', required: false }, // Keep for backward compatibility
+        images: {
+            type: 'list',
+            of: { type: 'string' },
+            required: false, // Changed to false for backward compatibility
+        },
         projectLink: { type: 'string', required: false },
         tags: {
             type: 'list',
             of: { type: 'string' },
-            required: false, // Set to true if you want this field to be mandatory
+            required: false,
         },
     },
     contentType: 'mdx',
@@ -43,6 +50,20 @@ export const ProjectWriteup = defineDocumentType(() => ({
             type: 'string',
             resolve: (projectWriteup) =>
                 `/projects/${projectWriteup._raw.flattenedPath}`,
+        },
+        // Add a computed field to handle both single and multiple images
+        processedImages: {
+            type: 'list',
+            resolve: (doc) => {
+                if (doc.images && doc.images.length > 0) {
+                    return doc.images;
+                }
+                // If no images array but has imageUrl, use that
+                if (doc.imageUrl) {
+                    return [doc.imageUrl];
+                }
+                return [];
+            },
         },
     },
 }));
