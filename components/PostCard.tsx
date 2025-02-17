@@ -5,6 +5,7 @@ import Link, { LinkProps } from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { format, parseISO } from 'date-fns';
+import { useCompactMode } from '@/lib/CompactModeContext';
 
 interface PostCardProps {
     post: Post;
@@ -12,6 +13,29 @@ interface PostCardProps {
 }
 
 export default function PostCard({ post, onTagClick }: PostCardProps) {
+    const { isCompact } = useCompactMode();
+
+    if (isCompact) {
+        return (
+            <div className='flex items-center gap-3 py-1'>
+                <Link
+                    href={
+                        `/posts/${post._raw.flattenedPath.replace(
+                            'posts/',
+                            ''
+                        )}` as LinkProps['href']
+                    }
+                    className='text-blue-600 font-bold underline dark:text-blue-400 hover:underline'
+                >
+                    {post.title}
+                </Link>
+                <time className='text-sm text-gray-400 dark:text-gray-400'>
+                    {format(parseISO(post.date), 'MMMM d, yyyy')}
+                </time>
+            </div>
+        );
+    }
+
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}

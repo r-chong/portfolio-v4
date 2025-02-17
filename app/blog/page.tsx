@@ -6,11 +6,40 @@ import { motion } from 'framer-motion';
 import { useState, useMemo, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import PostCard from '@/components/PostCard';
+import { CompactModeProvider, useCompactMode } from '@/lib/CompactModeContext';
 
 // export const metadata = {
 //     title: 'Blog',
 //     description: 'A series of blog posts.',
 // };
+
+function CompactModeToggle() {
+    const { isCompact, toggleCompactMode } = useCompactMode();
+
+    return (
+        <div className='flex items-center gap-2'>
+            <span className='text-sm text-gray-600 dark:text-gray-400'>
+                {isCompact ? 'Compact' : 'Compact'}
+            </span>
+            <button
+                onClick={toggleCompactMode}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-300 ${
+                    isCompact
+                        ? 'bg-green-500 dark:bg-green-600'
+                        : 'bg-gray-200 dark:bg-gray-700'
+                }`}
+                role='switch'
+                aria-checked={isCompact}
+            >
+                <span
+                    className={`${
+                        isCompact ? 'translate-x-6' : 'translate-x-1'
+                    } inline-block h-4 w-4 transform rounded-full bg-white transition-transform duration-300`}
+                />
+            </button>
+        </div>
+    );
+}
 
 function BlogContent() {
     const router = useRouter();
@@ -102,6 +131,9 @@ function BlogContent() {
                     <p className='text-gray-600 dark:text-gray-400 text-center max-w-2xl mx-auto'>
                         Some thoughts of mine.
                     </p>
+                    <div className='flex justify-center'>
+                        <CompactModeToggle />
+                    </div>
                 </div>
 
                 <div className='max-w-3xl mx-auto space-y-4'>
@@ -182,12 +214,14 @@ function BlogContent() {
 
 export default function BlogPage() {
     return (
-        <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-        >
-            <BlogContent />
-        </motion.div>
+        <CompactModeProvider>
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
+            >
+                <BlogContent />
+            </motion.div>
+        </CompactModeProvider>
     );
 }
