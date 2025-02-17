@@ -35,11 +35,7 @@ export const links: LinkType[] = [
         url: '/projects',
         hash: '#projects',
     },
-    {
-        name: 'Now',
-        url: '/now',
-        hash: '#now',
-    },
+
     // {
     //     name: 'Resume',
     //     url: '/resume',
@@ -49,6 +45,11 @@ export const links: LinkType[] = [
         name: 'Blog',
         url: '/blog',
         hash: '#blog',
+    },
+    {
+        name: 'Now',
+        url: '/now',
+        hash: '#now',
     },
     // {
     //     name: 'Contact',
