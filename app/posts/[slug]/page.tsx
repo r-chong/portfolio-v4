@@ -46,13 +46,25 @@ const PostLayout = ({ params }: { params: { slug: string } }) => {
 
                 <time
                     dateTime={post.date}
-                    className='mb-1 text-xs text-gray-600'
+                    className='mb-1 text-xs text-gray-600 dark:text-gray-400'
                 >
                     {format(parseISO(post.date), 'LLLL d, yyyy')}
                 </time>
                 <h1 className='text-3xl font-bold'>{post.title}</h1>
             </div>
-            <div className='prose'>
+            <div
+                className='prose dark:prose-invert prose-quoteless prose-neutral dark:prose-neutral max-w-none 
+                           prose-h2:text-xl prose-h2:font-semibold
+                           prose-h3:text-lg prose-h3:font-semibold
+                           prose-p:text-gray-700 dark:prose-p:text-gray-300
+                           prose-li:text-gray-700 dark:prose-li:text-gray-300
+                           prose-strong:text-gray-900 dark:prose-strong:text-gray-100
+                           prose-img:rounded-lg prose-img:shadow-md
+                           prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline
+                           prose-code:text-gray-800 dark:prose-code:text-gray-200 prose-code:bg-gray-100 dark:prose-code:bg-gray-800 prose-code:px-1 prose-code:py-0.5 prose-code:rounded
+                           prose-pre:bg-gray-100 dark:prose-pre:bg-gray-800 prose-pre:rounded-lg
+                           px-4 sm:px-0'
+            >
                 <MDXContent />
             </div>
         </article>

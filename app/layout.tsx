@@ -13,7 +13,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang='en'>
+        <html lang='en' className='light'>
             <head>
                 <Script
                     async
@@ -29,7 +29,7 @@ export default function RootLayout({
                 </Script>
             </head>
             <body
-                className={`${inter.className} bg-stone-50 relative text-gray-950`}
+                className={`${inter.className} bg-stone-50 dark:bg-gray-900 relative text-gray-950 dark:text-gray-50`}
             >
                 <ClientLayout>{children}</ClientLayout>
             </body>
