@@ -93,11 +93,11 @@ function ProjectsContent({ displayType, maxIndex }: ProjectsProps) {
     }, [searchTerm, selectedTags, projectsData]);
 
     // For debugging
-    useEffect(() => {
-        console.log('Current search term:', searchTerm);
-        console.log('Selected tags:', selectedTags);
-        console.log('Filtered projects:', filteredProjects);
-    }, [searchTerm, selectedTags, filteredProjects]);
+    // useEffect(() => {
+    //     console.log('Current search term:', searchTerm);
+    //     console.log('Selected tags:', selectedTags);
+    //     console.log('Filtered projects:', filteredProjects);
+    // }, [searchTerm, selectedTags, filteredProjects]);
 
     return (
         <section className='container mx-auto px-4 space-y-8'>
