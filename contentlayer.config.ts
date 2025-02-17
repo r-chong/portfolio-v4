@@ -12,7 +12,8 @@ export const Post = defineDocumentType(() => ({
         tags: {
             type: 'list',
             of: { type: 'string' },
-            required: false, // Set to true if you want this field to be mandatory
+            required: false,
+            default: [],
         },
     },
     contentType: 'mdx',

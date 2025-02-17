@@ -1,78 +1,96 @@
 'use client';
 
-import { compareDesc, format, parseISO } from 'date-fns';
-import { allPosts, Post } from 'contentlayer/generated';
-import Link, { LinkProps } from 'next/link';
-import Image from 'next/image';
+import { compareDesc } from 'date-fns';
+import { allPosts } from 'contentlayer/generated';
 import { motion } from 'framer-motion';
+import { useState, useMemo, useEffect } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import PostCard from '@/components/PostCard';
 
 // export const metadata = {
 //     title: 'Blog',
 //     description: 'A series of blog posts.',
 // };
 
-function PostCard({ post }: { post: Post }) {
-    return (
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className='group'
-        >
-            <Link
-                href={
-                    `/posts/${post._raw.flattenedPath.replace(
-                        'posts/',
-                        ''
-                    )}` as LinkProps['href']
-                }
-                className='flex justify-between gap-4 p-4 rounded-xl border border-transparent hover:border-gray-200 dark:hover:border-gray-800 hover:bg-gray-100/50 dark:hover:bg-gray-800/50 transition-all duration-300'
-            >
-                <div className='space-y-2'>
-                    <h2 className='text-xl font-semibold group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300'>
-                        {post.title}
-                    </h2>
-                    <time className='text-sm text-gray-600 dark:text-gray-400'>
-                        {format(parseISO(post.date), 'LLLL d, yyyy')}
-                    </time>
-                    {post.description && (
-                        <p className='text-gray-600 dark:text-gray-400 line-clamp-2'>
-                            {post.description}
-                        </p>
-                    )}
-                    {post.tags && (
-                        <div className='flex flex-wrap gap-2 pt-2'>
-                            {post.tags.map((tag, idx) => (
-                                <span
-                                    key={idx}
-                                    className='px-2 py-1 text-xs rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
-                                >
-                                    {tag}
-                                </span>
-                            ))}
-                        </div>
-                    )}
-                </div>
-                {post.imageUrl && (
-                    <div className='relative hidden sm:block flex-shrink-0'>
-                        <Image
-                            src={post.imageUrl}
-                            alt={`Cover image for ${post.title}`}
-                            width={160}
-                            height={120}
-                            className='rounded-lg object-cover transition-transform duration-300'
-                        />
-                    </div>
-                )}
-            </Link>
-        </motion.div>
-    );
-}
+function BlogContent() {
+    const router = useRouter();
+    const searchParams = useSearchParams();
 
-export default function BlogPage() {
-    const posts = allPosts.sort((a, b) =>
-        compareDesc(new Date(a.date), new Date(b.date))
+    const [searchTerm, setSearchTerm] = useState(
+        searchParams.get('search') || ''
     );
+    const [selectedTags, setSelectedTags] = useState<string[]>(
+        searchParams.get('tags')?.split(',').filter(Boolean) || []
+    );
+
+    // Get unique tags from all posts and sort by frequency
+    const allTags = useMemo(() => {
+        const tagFrequency = new Map<string, number>();
+        allPosts.forEach((post) => {
+            post.tags?.forEach((tag) => {
+                tagFrequency.set(tag, (tagFrequency.get(tag) || 0) + 1);
+            });
+        });
+        return Array.from(tagFrequency.entries())
+            .sort((a, b) => b[1] - a[1])
+            .map(([tag]) => tag);
+    }, []);
+
+    const [showAllTags, setShowAllTags] = useState(false);
+    const visibleTags = showAllTags ? allTags : allTags.slice(0, 5);
+
+    // Update URL when filters change
+    useEffect(() => {
+        const params = new URLSearchParams();
+        if (searchTerm) params.set('search', searchTerm);
+        if (selectedTags.length > 0) params.set('tags', selectedTags.join(','));
+
+        const newUrl = `${window.location.pathname}${
+            params.toString() ? '?' + params.toString() : ''
+        }`;
+        router.push(newUrl, { scroll: false });
+    }, [searchTerm, selectedTags, router]);
+
+    // Handle tag selection
+    const toggleTag = (tag: string) => {
+        setSelectedTags((prev) =>
+            prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
+        );
+    };
+
+    // Filter and sort posts
+    const filteredPosts = useMemo(() => {
+        return allPosts
+            .filter((post) => {
+                const normalizedSearch = searchTerm.trim().toLowerCase();
+
+                if (!normalizedSearch && selectedTags.length === 0) return true;
+
+                const titleMatch = post.title
+                    .toLowerCase()
+                    .includes(normalizedSearch);
+                const descriptionMatch = post.description
+                    .toLowerCase()
+                    .includes(normalizedSearch);
+                const tagsMatch = post.tags?.some((tag) =>
+                    tag.toLowerCase().includes(normalizedSearch)
+                );
+
+                const matchesSearch =
+                    !normalizedSearch ||
+                    titleMatch ||
+                    descriptionMatch ||
+                    tagsMatch;
+
+                const matchesTags =
+                    selectedTags.length === 0 ||
+                    (post.tags &&
+                        selectedTags.every((tag) => post.tags.includes(tag)));
+
+                return matchesSearch && matchesTags;
+            })
+            .sort((a, b) => compareDesc(new Date(a.date), new Date(b.date)));
+    }, [searchTerm, selectedTags]);
 
     return (
         <div className='mx-auto max-w-4xl px-6 py-12'>
@@ -85,12 +103,91 @@ export default function BlogPage() {
                         Some thoughts of mine.
                     </p>
                 </div>
+
+                <div className='max-w-3xl mx-auto space-y-4'>
+                    <div className='relative'>
+                        <input
+                            type='text'
+                            placeholder='Search posts by title, description, or tags...'
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            className='w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500'
+                        />
+                        {searchTerm && (
+                            <button
+                                onClick={() => setSearchTerm('')}
+                                className='absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300'
+                            >
+                                ×
+                            </button>
+                        )}
+                    </div>
+
+                    {allTags.length > 0 && (
+                        <div className='flex flex-wrap gap-2'>
+                            {visibleTags.map((tag) => (
+                                <button
+                                    key={tag}
+                                    onClick={() => toggleTag(tag)}
+                                    className={`px-3 py-1 rounded-full text-sm ${
+                                        selectedTags.includes(tag)
+                                            ? 'bg-blue-500 text-white'
+                                            : 'bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300'
+                                    } hover:opacity-80 transition-opacity`}
+                                >
+                                    #{tag}
+                                    {selectedTags.includes(tag) && ' ×'}
+                                </button>
+                            ))}
+                            {allTags.length > 5 && (
+                                <button
+                                    onClick={() => setShowAllTags(!showAllTags)}
+                                    className='px-3 py-1 rounded-full text-sm bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:opacity-80 transition-opacity'
+                                >
+                                    {showAllTags
+                                        ? 'Show Less'
+                                        : `+${allTags.length - 5} More`}
+                                </button>
+                            )}
+                            {selectedTags.length > 0 && (
+                                <button
+                                    onClick={() => setSelectedTags([])}
+                                    className='px-3 py-1 rounded-full text-sm bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:opacity-80 transition-opacity'
+                                >
+                                    Clear filters
+                                </button>
+                            )}
+                        </div>
+                    )}
+                </div>
+
                 <div className='space-y-4'>
-                    {posts.map((post, idx) => (
-                        <PostCard key={idx} post={post} />
+                    {filteredPosts.map((post, idx) => (
+                        <PostCard
+                            key={idx}
+                            post={post}
+                            onTagClick={(tag) => toggleTag(tag)}
+                        />
                     ))}
+                    {filteredPosts.length === 0 && (
+                        <p className='text-center text-gray-500 dark:text-gray-400'>
+                            No posts found matching your search criteria.
+                        </p>
+                    )}
                 </div>
             </div>
         </div>
+    );
+}
+
+export default function BlogPage() {
+    return (
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+        >
+            <BlogContent />
+        </motion.div>
     );
 }
