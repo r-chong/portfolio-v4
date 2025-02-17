@@ -35,13 +35,16 @@ const PostLayout = ({ params }: { params: { slug: string } }) => {
         <article className='mx-auto max-w-xl py-8'>
             <div className='mb-8 text-center'>
                 <div className='relative w-full h-[12rem] mb-8 overflow-hidden rounded-2xl'>
-                    <Image
-                        src={post.imageUrl}
-                        width={500}
-                        height={250}
-                        className='w-full h-full object-cover object-center'
-                        alt={`Image for ${post.title}`}
-                    />
+                    {post.imageUrl && (
+                        <Image
+                            src={post.imageUrl}
+                            width={500}
+                            height={250}
+                            className='w-full h-full object-cover object-center'
+                            alt={`Cover image for ${post.title}`}
+                            unoptimized
+                        />
+                    )}
                 </div>
 
                 <time

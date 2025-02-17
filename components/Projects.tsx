@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, Suspense } from 'react';
 import { projectsData } from '@/lib/data';
 import ProjectDefault from './ProjectDefault';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -9,7 +9,7 @@ type ProjectsProps = {
     maxIndex: number;
 };
 
-export default function Projects({ displayType, maxIndex }: ProjectsProps) {
+function ProjectsContent({ displayType, maxIndex }: ProjectsProps) {
     const router = useRouter();
     const searchParams = useSearchParams();
 
@@ -75,7 +75,8 @@ export default function Projects({ displayType, maxIndex }: ProjectsProps) {
 
             const matchesTags =
                 selectedTags.length === 0 ||
-                selectedTags.every((tag) => project.tags.includes(tag));
+                (project.tags &&
+                    selectedTags.every((tag) => project.tags.includes(tag)));
 
             return matchesSearch && matchesTags;
         });
@@ -174,5 +175,13 @@ export default function Projects({ displayType, maxIndex }: ProjectsProps) {
                 </p>
             )}
         </section>
+    );
+}
+
+export default function Projects(props: ProjectsProps) {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <ProjectsContent {...props} />
+        </Suspense>
     );
 }

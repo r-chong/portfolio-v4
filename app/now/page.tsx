@@ -7,7 +7,7 @@ export default function NowPage() {
                 <h1 className='mb-8 text-3xl font-bold'>Now</h1>
                 <div className='prose dark:prose-invert prose-quoteless prose-neutral'>
                     <p className='text-gray-700 dark:text-gray-300'>
-                        This is what I'm currently focused on.{' '}
+                        I&apos;m currently working on{' '}
                         <a
                             href='https://nownownow.com/'
                             target='_blank'

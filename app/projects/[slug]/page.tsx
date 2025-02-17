@@ -1,10 +1,9 @@
 // app/projects/[slug]/page.tsx
 import { format, parseISO } from 'date-fns';
 import { allDocuments, isType } from 'contentlayer/generated';
-import { useMDXComponent } from 'next-contentlayer/hooks';
 import { notFound } from 'next/navigation';
-import Image from 'next/image';
-import { ProjectWriteup } from '@/contentlayer.config';
+import { ProjectCarousel } from './ProjectCarousel';
+import { useMDXComponent } from 'next-contentlayer/hooks';
 
 // Key Fix: MDX file paths include 'projects/' prefix but URL slugs don't
 // Example: File path is 'projects/hawkeye' but URL slug is just 'hawkeye'
@@ -52,17 +51,8 @@ const ProjectWriteupLayout = ({ params }: { params: { slug: string } }) => {
 
     return (
         <article className='flex flex-col items-center w-full'>
-            <div className='container max-w-5xl mb-8 text-center pointer-events-none select-none px-4 sm:px-6'>
-                <div className='relative w-full mb-6 sm:mb-8 overflow-hidden'>
-                    <Image
-                        src={post.imageUrl}
-                        width={1080}
-                        height={720}
-                        className='object-cover object-center rounded-xl shadow-md'
-                        alt={`Image for ${post.title}`}
-                        unoptimized
-                    />
-                </div>
+            <div className='container max-w-5xl mb-8 text-center px-4 sm:px-6'>
+                <ProjectCarousel post={post} />
 
                 <time
                     dateTime={post.date}
