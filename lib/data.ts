@@ -35,10 +35,15 @@ export const links: LinkType[] = [
         hash: '#projects',
     },
     {
-        name: 'Resume',
-        url: '/resume',
-        hash: '#resume',
+        name: 'Now',
+        url: '/now',
+        hash: '#now',
     },
+    // {
+    //     name: 'Resume',
+    //     url: '/resume',
+    //     hash: '#resume',
+    // },
     {
         name: 'Blog',
         url: '/blog',
