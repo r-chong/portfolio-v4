@@ -1,7 +1,6 @@
 .embla {
     --slide-spacing: 1rem;
     --slide-size: 100%;
-    --slide-height: 66.666%;
 }
 
 .embla__container {
@@ -20,7 +19,6 @@
 
 .embla__slide__img {
     display: block;
-    height: var(--slide-height);
     width: 100%;
-    object-fit: cover;
+    height: auto;
 }

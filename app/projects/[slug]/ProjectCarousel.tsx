@@ -30,15 +30,14 @@ export function ProjectCarousel({ post }: ProjectCarouselProps) {
     if (!post.images && post.imageUrl) {
         return (
             <div className='relative w-full mb-6 sm:mb-8'>
-                <div className='relative w-full pt-[66.666%]'>
-                    <Image
-                        src={post.imageUrl}
-                        fill
-                        className='absolute inset-0 object-cover rounded-xl'
-                        alt={`Image for ${post.title}`}
-                        unoptimized
-                    />
-                </div>
+                <Image
+                    src={post.imageUrl}
+                    width={1920}
+                    height={1080}
+                    className='w-full h-auto rounded-xl'
+                    alt={`Image for ${post.title}`}
+                    unoptimized
+                />
             </div>
         );
     }
@@ -57,15 +56,14 @@ export function ProjectCarousel({ post }: ProjectCarouselProps) {
                 <div className={styles.embla__container}>
                     {images.map((image, index) => (
                         <div key={index} className={styles.embla__slide}>
-                            <div className='relative w-full pt-[66.666%]'>
-                                <Image
-                                    src={image}
-                                    fill
-                                    className={`absolute inset-0 ${styles.embla__slide__img}`}
-                                    alt={`${post.title} - Image ${index + 1}`}
-                                    unoptimized
-                                />
-                            </div>
+                            <Image
+                                src={image}
+                                width={1920}
+                                height={1080}
+                                className={styles.embla__slide__img}
+                                alt={`${post.title} - Image ${index + 1}`}
+                                unoptimized
+                            />
                         </div>
                     ))}
                 </div>
