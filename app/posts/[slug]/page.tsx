@@ -1,8 +1,9 @@
-import { format, parseISO } from 'date-fns';
+import { format, parseISO, compareDesc } from 'date-fns';
 import { allPosts, allDocuments, isType } from 'contentlayer/generated';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export const generateStaticParams = async () =>
     allDocuments
@@ -28,6 +29,23 @@ const PostLayout = ({ params }: { params: { slug: string } }) => {
     );
 
     if (!post) throw new Error(`Post not found for slug: ${params.slug}`);
+
+    // Sort all posts by date
+    const sortedPosts = allDocuments
+        .filter((doc) => doc.type === 'Post')
+        .sort((a, b) => compareDesc(new Date(a.date), new Date(b.date)));
+
+    // Find current post index
+    const currentIndex = sortedPosts.findIndex(
+        (p) => p._raw.flattenedPath === `posts/${params.slug}`
+    );
+
+    // Get next and previous posts
+    const nextPost = currentIndex > 0 ? sortedPosts[currentIndex - 1] : null;
+    const prevPost =
+        currentIndex < sortedPosts.length - 1
+            ? sortedPosts[currentIndex + 1]
+            : null;
 
     const MDXContent = useMDXComponent(post.body.code);
 
@@ -69,6 +87,37 @@ const PostLayout = ({ params }: { params: { slug: string } }) => {
                            px-4 sm:px-0'
             >
                 <MDXContent />
+            </div>
+
+            <div className='mt-8 flex justify-between items-center'>
+                {prevPost ? (
+                    <Link
+                        href={`/posts/${prevPost._raw.flattenedPath.replace(
+                            'posts/',
+                            ''
+                        )}`}
+                        className='flex items-center text-gray-400 dark:text-blue-400 hover:underline'
+                    >
+                        <span className='mr-2'>←</span>
+                        <span>Previous Post</span>
+                    </Link>
+                ) : (
+                    <div></div>
+                )}
+                {nextPost ? (
+                    <Link
+                        href={`/posts/${nextPost._raw.flattenedPath.replace(
+                            'posts/',
+                            ''
+                        )}`}
+                        className='flex items-center text-gray-400 dark:text-blue-400 hover:underline'
+                    >
+                        <span>Next Post</span>
+                        <span className='ml-2'>→</span>
+                    </Link>
+                ) : (
+                    <div></div>
+                )}
             </div>
         </article>
     );
