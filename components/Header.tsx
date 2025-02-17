@@ -6,6 +6,7 @@ import { links } from '@/lib/data';
 import Link, { LinkProps } from 'next/link';
 import { usePathname } from 'next/navigation';
 
+// header is cooked
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const pathname = usePathname();
@@ -71,20 +72,9 @@ export default function Header() {
 
                     {!isResumePage && (
                         <>
-                            {/* Option 1: Vertical line */}
                             <span className='text-gray-300 dark:text-gray-700 text-sm font-light'>
                                 |
                             </span>
-
-                            {/* Option 2: Three dots */}
-                            {/* <span className='text-gray-300 dark:text-gray-700 tracking-wider'>
-                                ···
-                            </span> */}
-
-                            {/* Option 3: Diamond */}
-                            {/* <span className='text-gray-300 dark:text-gray-700 text-[0.7rem]'>
-                                ◆
-                            </span> */}
                         </>
                     )}
 

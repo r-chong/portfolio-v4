@@ -1,5 +1,7 @@
 import React from 'react';
 
+// formatting is not great
+// TODO: streamline formatting for nownownow
 export default function NowPage() {
     return (
         <article className='flex flex-col items-center w-full font-mono'>

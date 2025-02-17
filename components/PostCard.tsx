@@ -69,6 +69,7 @@ export default function PostCard({ post, onTagClick }: PostCardProps) {
                             className='flex flex-wrap gap-2 pt-2'
                             onClick={(e) => e.preventDefault()}
                         >
+                            {/* TODO: figure out what to do with tags */}
                             {/* {post.tags.map((tag, idx) => (
                                 <button
                                     key={idx}

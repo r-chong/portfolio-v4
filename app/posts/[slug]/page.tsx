@@ -53,6 +53,7 @@ const PostLayout = ({ params }: { params: { slug: string } }) => {
         <article className='mx-auto max-w-xl py-8'>
             <div className='mb-8 text-center'>
                 <div className='relative w-full h-[12rem] mb-8 overflow-hidden rounded-2xl'>
+                    {/* TODO: add CDN */}
                     {post.imageUrl && (
                         <Image
                             src={post.imageUrl}

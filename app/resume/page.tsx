@@ -8,6 +8,7 @@ import { HiDownload } from 'react-icons/hi';
 //     description: 'Curriculum vitae.',
 // };
 
+// not sure why I made a custom resume page vs. linking the file directly
 export default function ResumePage() {
     const resumePath = process.env.NEXT_PUBLIC_RESUME_PATH || '';
 

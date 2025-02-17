@@ -23,6 +23,7 @@ export default function About() {
                     UWaterloo. Looking for s25 internships.
                 </p>
                 <p>Recent ventures:</p>
+                {/* TODO: add highlights behind keywords like Warp */}
                 <ul className='list-disc pl-6 space-y-2'>
                     <li>Campus Ambassador at Warp.dev</li>
                     <li>Developing a RAG solution for a small-sized company</li>

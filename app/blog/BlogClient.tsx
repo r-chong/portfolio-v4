@@ -1,5 +1,6 @@
 'use client';
 
+// memoization in real life??
 import { useState, useMemo, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
@@ -25,7 +26,7 @@ function CompactModeToggle() {
     return (
         <div className='flex items-center gap-2'>
             <span className='text-sm text-gray-600 dark:text-gray-400'>
-                {isCompact ? 'Compact' : 'Compact'}
+                Compact
             </span>
             <button
                 onClick={toggleCompactMode}
@@ -74,6 +75,7 @@ function BlogContent({ initialPosts = [], allTags = [] }: BlogClientProps) {
         if (searchTerm) params.set('search', searchTerm);
         if (selectedTags.length > 0) params.set('tags', selectedTags.join(','));
 
+        // reesechong.com/blog?search=test&tags=test1,test2
         const newUrl = `${window.location.pathname}${
             params.toString() ? '?' + params.toString() : ''
         }`;
@@ -94,6 +96,7 @@ function BlogContent({ initialPosts = [], allTags = [] }: BlogClientProps) {
         return initialPosts.filter((post) => {
             if (!post) return false;
 
+            // ensure that we catch everything
             const normalizedSearch = searchTerm.trim().toLowerCase();
             if (!normalizedSearch && selectedTags.length === 0) return true;
 
@@ -107,6 +110,7 @@ function BlogContent({ initialPosts = [], allTags = [] }: BlogClientProps) {
                     tag.toLowerCase().includes(normalizedSearch)
                 ) ?? false;
 
+            // frontend search is so weird and not great for scaling idk why I'm doing this
             const matchesSearch =
                 !normalizedSearch ||
                 titleMatch ||

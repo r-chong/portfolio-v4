@@ -15,6 +15,7 @@ interface ProjectCarouselProps {
 
 export function ProjectCarousel({ post }: ProjectCarouselProps) {
     // Initialize Embla Carousel
+    // https://www.embla-carousel.com/get-started/react/
     const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
 
     // Optional: Add navigation buttons
@@ -68,6 +69,7 @@ export function ProjectCarousel({ post }: ProjectCarouselProps) {
                     ))}
                 </div>
             </div>
+            {/* UW CS webring */}
             {images.length > 1 && (
                 <>
                     <button

@@ -2,6 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
+// note: hidden on mobile
 export default function SectionDivider() {
     return (
         <div className='flex justify-center'>
