@@ -41,9 +41,13 @@ export default function NowPage() {
                             </li>
                         </ul>
                         <p>
-                            "the world needs more players, it has enough fans"
+                            &#34;the world needs more players, it has enough
+                            fans&#34;
                         </p>
-                        <p>I've been kind of a fan ngl, time to change that</p>
+                        <p>
+                            I&apos;ve been kind of a fan ngl, time to change
+                            that
+                        </p>
                         <a
                             href='https://nownownow.com/'
                             target='_blank'

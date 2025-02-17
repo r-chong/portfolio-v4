@@ -3,7 +3,7 @@ import { allPosts, allDocuments, isType } from 'contentlayer/generated';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
-import Link from 'next/link';
+import Link, { LinkProps } from 'next/link';
 
 export const generateStaticParams = async () =>
     allDocuments
@@ -92,10 +92,12 @@ const PostLayout = ({ params }: { params: { slug: string } }) => {
             <div className='mt-8 flex justify-between items-center'>
                 {prevPost ? (
                     <Link
-                        href={`/posts/${prevPost._raw.flattenedPath.replace(
-                            'posts/',
-                            ''
-                        )}`}
+                        href={
+                            `/posts/${prevPost._raw.flattenedPath.replace(
+                                'posts/',
+                                ''
+                            )}` as LinkProps['href']
+                        }
                         className='flex items-center text-gray-400 dark:text-blue-400 hover:underline'
                     >
                         <span className='mr-2'>←</span>
@@ -106,10 +108,12 @@ const PostLayout = ({ params }: { params: { slug: string } }) => {
                 )}
                 {nextPost ? (
                     <Link
-                        href={`/posts/${nextPost._raw.flattenedPath.replace(
-                            'posts/',
-                            ''
-                        )}`}
+                        href={
+                            `/posts/${nextPost._raw.flattenedPath.replace(
+                                'posts/',
+                                ''
+                            )}` as LinkProps['href']
+                        }
                         className='flex items-center text-gray-400 dark:text-blue-400 hover:underline'
                     >
                         <span>Next Post</span>

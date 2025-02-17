@@ -79,7 +79,7 @@ export default function PostCard({ post, onTagClick }: PostCardProps) {
                                     }}
                                     className='px-2 py-1 text-xs rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-600 dark:hover:text-blue-400 transition-all'
                                 >
-                                    #{tag}
+                                    {/* #{tag} */}
                                 </button>
                             ))}
                         </div>
