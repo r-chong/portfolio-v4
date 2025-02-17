@@ -20,7 +20,12 @@ function PostCard({ post }: { post: Post }) {
             className='group'
         >
             <Link
-                href={`/posts/${post._raw.flattenedPath.replace('posts/', '')}`}
+                href={
+                    `/posts/${post._raw.flattenedPath.replace(
+                        'posts/',
+                        ''
+                    )}` as LinkProps['href']
+                }
                 className='flex justify-between gap-4 p-4 rounded-xl border border-transparent hover:border-gray-200 dark:hover:border-gray-800 hover:bg-gray-100/50 dark:hover:bg-gray-800/50 transition-all duration-300'
             >
                 <div className='space-y-2'>
