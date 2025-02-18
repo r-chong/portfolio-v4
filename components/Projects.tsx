@@ -57,48 +57,47 @@ function ProjectsContent({ displayType, maxIndex }: ProjectsProps) {
 
     // Filter projects based on search term and selected tags
     const filteredProjects = useMemo(() => {
-        const filtered = projectsData.filter((project) => {
-            // Trim and normalize search term
+        return projectsData.filter((project) => {
+            // Handle search term
             const normalizedSearch = searchTerm.trim().toLowerCase();
+            if (normalizedSearch) {
+                const titleMatch = project.title
+                    .toLowerCase()
+                    .includes(normalizedSearch);
+                const descriptionMatch = project.description
+                    .toLowerCase()
+                    .includes(normalizedSearch);
+                const tagsMatch = project.tags?.some((tag) =>
+                    tag.toLowerCase().includes(normalizedSearch)
+                );
 
-            // Skip search filtering if search is empty
-            if (!normalizedSearch) return true;
+                if (!(titleMatch || descriptionMatch || tagsMatch)) {
+                    return false;
+                }
+            }
 
-            const titleMatch = project.title
-                .toLowerCase()
-                .includes(normalizedSearch);
-            const descriptionMatch = project.description
-                .toLowerCase()
-                .includes(normalizedSearch);
+            // Handle tag filtering
+            if (selectedTags.length > 0) {
+                if (
+                    !project.tags ||
+                    !selectedTags.every((tag) => project.tags.includes(tag))
+                ) {
+                    return false;
+                }
+            }
 
-            const matchesSearch = titleMatch || descriptionMatch;
-
-            const matchesTags =
-                selectedTags.length === 0 ||
-                (project.tags &&
-                    selectedTags.every((tag) => project.tags.includes(tag)));
-
-            return matchesSearch && matchesTags;
+            return true;
         });
 
-        // For debugging
-        console.log(
-            'All matching projects before slice:',
-            filtered.map((p) => p.title)
-        );
-
         // Only apply maxIndex if it's positive and we're not searching/filtering
-        return !searchTerm && selectedTags.length === 0 && maxIndex > 0
-            ? filtered.slice(0, maxIndex)
-            : filtered;
-    }, [searchTerm, selectedTags, maxIndex]);
+    }, [searchTerm, selectedTags, projectsData]);
 
     // For debugging
-    useEffect(() => {
-        console.log('Current search term:', searchTerm);
-        console.log('Selected tags:', selectedTags);
-        console.log('Filtered projects:', filteredProjects);
-    }, [searchTerm, selectedTags, filteredProjects]);
+    // useEffect(() => {
+    //     console.log('Current search term:', searchTerm);
+    //     console.log('Selected tags:', selectedTags);
+    //     console.log('Filtered projects:', filteredProjects);
+    // }, [searchTerm, selectedTags, filteredProjects]);
 
     return (
         <section className='container mx-auto px-4 space-y-8'>
