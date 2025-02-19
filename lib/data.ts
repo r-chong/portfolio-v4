@@ -2,7 +2,7 @@ import React from 'react';
 import { CgWorkAlt } from 'react-icons/cg';
 import { FaReact } from 'react-icons/fa';
 import { LuGraduationCap } from 'react-icons/lu';
-import lexploraImg from '@/public/projects/Lexplora.png';
+import lexploraImg from '@/public/projects/Lexplora0.png';
 import htnImg from '@/public/projects/HackTheNorth2023.png';
 import spottyImg from '@/public/projects/Spotty.png';
 import interviewGPTImg from '@/public/projects/InterviewGPT.png';
