@@ -8,8 +8,15 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
     return (
-        <div>
+        <div className='flex flex-col justify-center items-center'>
             <About />
+            <div className='select-none pointer-events-none'>
+                <img
+                    src='/puffs.gif' // Put your GIF in the public folder
+                    alt='404 - Page Not Found'
+                    className='rounded-lg'
+                />
+            </div>
         </div>
     );
 }
