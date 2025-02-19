@@ -32,10 +32,10 @@ export default function NotFound() {
 
     return (
         <main className='w-full flex flex-col items-center justify-start bg-slate-900'>
-            <h1 className='text-xl font-bold p-4'>It seems like you're</h1>
+            <h1 className='text-xl font-bold p-4'>It seems like you&apos;re</h1>
             <SpotifyMiniEmbed />
             <h1 className='text-md font-light p-4'>
-                Let's connect on{' '}
+                Let&apos;s connect on{' '}
                 <a
                     href='https://linkedin.com/in/reesechong'
                     rel='noopener noreferrer'

@@ -1,5 +1,6 @@
 import React from 'react';
 import VideoPitch from '@/components/Video';
+import { Metadata } from 'next';
 
 export const metadata: Metadata = {
     title: 'Pitch',

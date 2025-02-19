@@ -4,7 +4,7 @@ interface VideoPitchProps {
     videoId: string;
 }
 
-const VideoPitch: React.FC<PitchVideoProps> = ({ videoId }) => {
+const VideoPitch = ({ videoId }: VideoPitchProps): JSX.Element => {
     return (
         <main className='min-h-screen w-full flex items-center justify-center bg-gradient-to-b from-slate-900 to-slate-800 p-4'>
             <div className='w-full max-w-4xl'>
