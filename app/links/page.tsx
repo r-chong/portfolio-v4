@@ -2,6 +2,11 @@
 import React from 'react';
 import Linktree from '@/components/Linktree';
 
+export const metadata: Metadata = {
+    title: 'Links',
+    description: 'Where you can find Reese.',
+};
+
 // not linked anywhere for now
 // just going to use this as a linktree
 export default function ContactPage() {
