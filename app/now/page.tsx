@@ -1,4 +1,10 @@
 import React from 'react';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: 'Now',
+    description: 'Current state of mind.',
+};
 
 // formatting is not great
 // TODO: streamline formatting for nownownow

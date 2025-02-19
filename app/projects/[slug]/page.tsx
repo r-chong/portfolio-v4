@@ -1,9 +1,23 @@
 // app/projects/[slug]/page.tsx
 import { format, parseISO } from 'date-fns';
-import { allDocuments, isType } from 'contentlayer/generated';
+import { allProjectWriteups } from 'contentlayer/generated';
 import { notFound } from 'next/navigation';
 import { ProjectCarousel } from './ProjectCarousel';
 import { useMDXComponent } from 'next-contentlayer/hooks';
+import LinkButton from '@/components/LinkButton';
+
+// Debug logging to help identify the issue
+console.log(
+    'All project writeups:',
+    allProjectWriteups.map((doc) => ({
+        type: doc.type,
+        path: doc._raw.flattenedPath,
+    }))
+);
+console.log(
+    'ProjectWriteup documents:',
+    allProjectWriteups.map((doc) => ({ path: doc._raw.flattenedPath }))
+);
 
 // Key Fix: MDX file paths include 'projects/' prefix but URL slugs don't
 // Example: File path is 'projects/hawkeye' but URL slug is just 'hawkeye'
@@ -12,25 +26,23 @@ import { useMDXComponent } from 'next-contentlayer/hooks';
 // Key command to use in future
 // console.log(
 //     'allProjectWriteups',
-//     allDocuments.filter(isType(['ProjectWriteup']))
+//     allProjectWriteups
 // ); // Check if this array has the expected data
 
 // console.log(
 //     'posta',
-//     allDocuments.filter((doc) => doc.type === 'ProjectWriteup')
+//     allProjectWriteups.filter((doc) => doc.type === 'ProjectWriteup')
 // );
 
 export const generateStaticParams = async () =>
-    allDocuments
-        .filter((doc) => doc.type === 'ProjectWriteup')
-        .map((doc) => ({
-            slug: doc._raw.flattenedPath.replace('projects/', ''),
-        }));
+    allProjectWriteups.map((doc) => ({
+        slug: doc._raw.flattenedPath.replace('projects/', ''),
+    }));
 
 export const generateMetadata = ({ params }: { params: { slug: string } }) => {
-    const post = allDocuments
-        .filter(isType(['ProjectWriteup']))
-        .find((post) => post._raw.flattenedPath === `projects/${params.slug}`);
+    const post = allProjectWriteups.find(
+        (post) => post._raw.flattenedPath === `projects/${params.slug}`
+    );
 
     if (!post) return notFound();
 
@@ -38,10 +50,8 @@ export const generateMetadata = ({ params }: { params: { slug: string } }) => {
 };
 
 const ProjectWriteupLayout = ({ params }: { params: { slug: string } }) => {
-    const post = allDocuments.find(
-        (doc) =>
-            doc.type === 'ProjectWriteup' &&
-            doc._raw.flattenedPath === `projects/${params.slug}`
+    const post = allProjectWriteups.find(
+        (post) => post._raw.flattenedPath === `projects/${params.slug}`
     );
 
     if (!post) throw new Error(`Post not found for slug: ${params.slug}`);
@@ -53,14 +63,13 @@ const ProjectWriteupLayout = ({ params }: { params: { slug: string } }) => {
         <article className='flex flex-col items-center w-full'>
             <div className='container max-w-5xl mb-8 text-center px-4 sm:px-6'>
                 <ProjectCarousel post={post} />
-
+                <h1 className='text-3xl font-bold'>{post.title}</h1>
                 <time
                     dateTime={post.date}
-                    className='mb-1 text-xs text-gray-600 dark:text-gray-400'
+                    className='mb-4 text-xs text-gray-600 dark:text-gray-400'
                 >
                     {format(parseISO(post.date), 'LLLL d, yyyy')}
                 </time>
-                <h1 className='text-3xl font-bold'>{post.title}</h1>
             </div>
             <div
                 className='prose dark:prose-invert prose-quoteless prose-neutral dark:prose-neutral max-w-xl w-full
@@ -75,6 +84,13 @@ const ProjectWriteupLayout = ({ params }: { params: { slug: string } }) => {
                            prose-pre:bg-gray-100 dark:prose-pre:bg-gray-800 prose-pre:rounded-lg
                            px-4 sm:px-0 mx-auto'
             >
+                {post.projectLink ? (
+                    <LinkButton href={post.projectLink}>
+                        Project Link
+                    </LinkButton>
+                ) : (
+                    <></>
+                )}
                 <MDXContent />
             </div>
         </article>

@@ -1,0 +1,147 @@
+---
+title: Linear Algebra
+date: 2025-02-18
+imageUrl: /space.png
+description: My understanding of things
+tags:
+    - course-notes
+---
+
+"If you cannot explain something in simple terms, you don't understand it"
+
+note: everything I'm saying is probably wishy washy and vague so take it with a grain of salt.
+This is a WIP that will be complete by the time I finish the course.
+
+intended audience: people in first year who completed high school math just fine, but haven't studied for lin alg yet. perhaps it's the weekend before the midterm
+
+# Linear Algebra
+
+What is Linear Algebra?
+
+-   let's break it down
+-   Linear. lines. just lines?
+-   we're talking about lines but generalized to all dimensions
+-   what are these dimensions? planes, hyperplanes, and vector spaces
+
+-   remember substitution, elimination, where you solved for a variable in high school?
+    what if we had 100 variables? we can use linear algebra to solve those.
+
+# early concepts
+
+## vectors
+
+-   it's the meta. represented in a few different ways depending on your industry
+-   in physics they're arrows... lines with directions
+-   in math they're abstract elements of a vector space (will explain) but also shown as arrows
+-   in cs they're an array/list of numbers
+    -   at one point I was confused how a lot of LLM work is based on "vectors" as in arrows, like physics, but then I watched the first episode of 3blue1brown's essence of linear algebra
+
+## matrices
+
+-   matrices are a syntax we use to put multiple linear equations together
+
+INSERT IMAGE OF: matrix that is 3 equations, 3 long
+we would say we have a matrix of 3 equation in 3 variables
+
+-   we take all the **coefficients** of equation 1 and put them in a little array
+-   same for equation 2
+-   same for equation 3
+
+what does this look like outside of a matrix?
+looks like this
+a1x + b1y + c1z + constant
+a2x + b2y + c2z + constant
+a3x + b3y + c3z + constant
+
+so looking down the columns, you can see that the first column finds us x,
+the second column finds us y,
+the third column finds us z.
+
+it's at this point you might say, well where's the constant in the matrix? we kinda need that
+
+so the one above is actually called the coefficient matrix, because, it has just the coefficients
+they have a different form of the matrix called the augmented matrix which includes the constants and a little line dividing the variables from the constants.
+
+## let's solve the matrix
+
+so we're stumbling onto some natural rules for solving linear equations... we can't get past these
+
+> When solving linear systems, we are trying to isolate each variable. We can't do so if:
+> a) the coefficients are more than 1
+> b) there are still other variables present
+
+-   it turns out there's a specific state of matrices that we like to go to and it's called REF
+
+### what is REF?
+
+actually, it's a tier-system
+
+(insert image of REF and REF+)
+
+row echelon form
+
+1. Leading entry is 1 and to the right of the ones before it
+2. Everything below a leading entry is zero
+3. All rows w/ only zeros are at the bottom
+
+I'm gonna explain why we follow each of these rules
+and also how it forms a staircase pattern
+
+### what is RREF (REF+)
+
+bonus rule 4) Leading 1 is the only non-zero in the column
+
+### free variables
+
+for free??
+
+### 1) why does the leading entry have to be 1
+
+why can't it be the number 2 or 3
+
+it's hard to isolate stuff when your coefficient is like 2 or something right
+and it's even harder when there are multiple versions like
+
+2x + 3y + 5z = 12  
+ 4y + 6z = 8  
+ 3z = 9
+
+so you can probably start solving this matrix as it stands
+you'd sub z = 3 into the first and second equations
+but keep in mind that we have a 2 in front of the x
+we're gonna have to remember to "divide" that two out eventually or else we'll have an answer that's double our x value.
+
+so why don't we just "divide" everything by two from the start?
+\*the reason I'm writing "divides" in air quotes is because division doesn't always exist in linear algebra; I mean it works in real numbers, but when we turn it into our matrix they don't allow that. so just think about it as multiplying by the inverse (1/2 in this case)
+
+that's why we want all of our coefficients to be one.
+
+### 2) Everything below a leading entry is zero
+
+consider this
+x + 2y = 6  
+2x + 5y = 11
+
+notice that both equations have an x in it
+we don't know what x OR y are equal to
+
+well how do we find them?
+let's multiply (x +2y = 6) by 2
+
+do
+2x + 5y -(2x + 4y) = 11 - 12
+y = -1
+
+nice, x is gone and we found y. now just substitute. I'm not gonna do that but we just solved the system of equations.
+
+now, this is what it looks like in matrix form
+we zeroed out x in the second row
+that's all that REF is saying we should do here
+
+### 3) All rows w/ only zeros are at the bottom
+
+this just reinforces our staircase pattern
+otherwise you might stick a 0 row in the middle somewhere
+
+you may say, what's the harm with mixing the zeros in?
+zero rows don't contribute new information (rank, we'll talk about it later) so it's just a convenient habit

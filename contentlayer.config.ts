@@ -54,6 +54,7 @@ export const ProjectWriteup = defineDocumentType(() => ({
         // Add a computed field to handle both single and multiple images
         processedImages: {
             type: 'list',
+            of: { type: 'string' },
             resolve: (doc) => {
                 if (doc.images && doc.images.length > 0) {
                     return doc.images;
