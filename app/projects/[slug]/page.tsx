@@ -4,6 +4,7 @@ import { allDocuments, isType } from 'contentlayer/generated';
 import { notFound } from 'next/navigation';
 import { ProjectCarousel } from './ProjectCarousel';
 import { useMDXComponent } from 'next-contentlayer/hooks';
+import LinkButton from '@/components/LinkButton';
 
 // Key Fix: MDX file paths include 'projects/' prefix but URL slugs don't
 // Example: File path is 'projects/hawkeye' but URL slug is just 'hawkeye'
@@ -53,14 +54,13 @@ const ProjectWriteupLayout = ({ params }: { params: { slug: string } }) => {
         <article className='flex flex-col items-center w-full'>
             <div className='container max-w-5xl mb-8 text-center px-4 sm:px-6'>
                 <ProjectCarousel post={post} />
-
+                <h1 className='text-3xl font-bold'>{post.title}</h1>
                 <time
                     dateTime={post.date}
-                    className='mb-1 text-xs text-gray-600 dark:text-gray-400'
+                    className='mb-4 text-xs text-gray-600 dark:text-gray-400'
                 >
                     {format(parseISO(post.date), 'LLLL d, yyyy')}
                 </time>
-                <h1 className='text-3xl font-bold'>{post.title}</h1>
             </div>
             <div
                 className='prose dark:prose-invert prose-quoteless prose-neutral dark:prose-neutral max-w-xl w-full
@@ -75,6 +75,13 @@ const ProjectWriteupLayout = ({ params }: { params: { slug: string } }) => {
                            prose-pre:bg-gray-100 dark:prose-pre:bg-gray-800 prose-pre:rounded-lg
                            px-4 sm:px-0 mx-auto'
             >
+                {post.projectLink ? (
+                    <LinkButton href={post.projectLink}>
+                        Project Link
+                    </LinkButton>
+                ) : (
+                    <></>
+                )}
                 <MDXContent />
             </div>
         </article>
