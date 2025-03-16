@@ -1,37 +1,44 @@
 'use client';
 
-import { Post } from 'contentlayer/generated';
-import Link, { LinkProps } from 'next/link';
+import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { format, parseISO } from 'date-fns';
 import { useCompactMode } from '@/lib/CompactModeContext';
+import type { PostFrontMatter } from '@/lib/mdx';
+
+interface BlogPost extends PostFrontMatter {
+    slug: string;
+    readingTime: string;
+}
 
 interface PostCardProps {
-    post: Post;
+    post: BlogPost;
     onTagClick?: (tag: string) => void;
 }
 
 export default function PostCard({ post, onTagClick }: PostCardProps) {
     const { isCompact } = useCompactMode();
 
+    // Format date with fallback
+    const formattedDate = post.date
+        ? format(parseISO(post.date), 'LLLL d, yyyy')
+        : '';
+
     if (isCompact) {
         return (
             <div className='flex items-center gap-3 py-1'>
                 <Link
-                    href={
-                        `/posts/${post._raw.flattenedPath.replace(
-                            'posts/',
-                            ''
-                        )}` as LinkProps['href']
-                    }
+                    href={`/posts/${post.slug}`}
                     className='text-blue-600 font-bold underline dark:text-blue-400 hover:underline'
                 >
                     {post.title}
                 </Link>
-                <time className='text-sm text-gray-400 dark:text-gray-400'>
-                    {format(parseISO(post.date), 'MMMM d, yyyy')}
-                </time>
+                {formattedDate && (
+                    <time className='text-sm text-gray-400 dark:text-gray-400'>
+                        {formattedDate}
+                    </time>
+                )}
             </div>
         );
     }
@@ -44,21 +51,18 @@ export default function PostCard({ post, onTagClick }: PostCardProps) {
             className='group'
         >
             <Link
-                href={
-                    `/posts/${post._raw.flattenedPath.replace(
-                        'posts/',
-                        ''
-                    )}` as LinkProps['href']
-                }
+                href={`/posts/${post.slug}`}
                 className='flex justify-between gap-4 p-4 rounded-xl border border-transparent hover:border-gray-200 dark:hover:border-gray-800 hover:bg-gray-100/50 dark:hover:bg-gray-800/50 transition-all duration-300'
             >
                 <div className='space-y-2 flex-grow'>
                     <h2 className='text-xl font-semibold group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300'>
                         {post.title}
                     </h2>
-                    <time className='text-sm text-gray-600 dark:text-gray-400'>
-                        {format(parseISO(post.date), 'LLLL d, yyyy')}
-                    </time>
+                    {formattedDate && (
+                        <time className='text-sm text-gray-600 dark:text-gray-400'>
+                            {formattedDate}
+                        </time>
+                    )}
                     {post.description && (
                         <p className='text-gray-600 dark:text-gray-400 line-clamp-2'>
                             {post.description}
@@ -69,8 +73,7 @@ export default function PostCard({ post, onTagClick }: PostCardProps) {
                             className='flex flex-wrap gap-2 pt-2'
                             onClick={(e) => e.preventDefault()}
                         >
-                            {/* TODO: figure out what to do with tags */}
-                            {/* {post.tags.map((tag, idx) => (
+                            {post.tags.map((tag, idx) => (
                                 <button
                                     key={idx}
                                     onClick={(e) => {
@@ -82,7 +85,7 @@ export default function PostCard({ post, onTagClick }: PostCardProps) {
                                 >
                                     #{tag}
                                 </button>
-                            ))} */}
+                            ))}
                         </div>
                     )}
                 </div>

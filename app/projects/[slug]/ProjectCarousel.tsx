@@ -4,13 +4,10 @@ import Image from 'next/image';
 import useEmblaCarousel from 'embla-carousel-react';
 import { useCallback } from 'react';
 import styles from './carousel.module.css';
-import { DocumentTypes } from 'contentlayer/generated';
+import type { ProjectFrontMatter } from '@/lib/mdx';
 
 interface ProjectCarouselProps {
-    post: DocumentTypes & {
-        imageUrl?: string;
-        images?: string[];
-    };
+    post: ProjectFrontMatter;
 }
 
 export function ProjectCarousel({ post }: ProjectCarouselProps) {
@@ -37,7 +34,7 @@ export function ProjectCarousel({ post }: ProjectCarouselProps) {
                     height={1080}
                     className='w-full h-auto rounded-xl'
                     alt={`Image for ${post.title}`}
-                    unoptimized
+                    priority
                 />
             </div>
         );
@@ -63,7 +60,7 @@ export function ProjectCarousel({ post }: ProjectCarouselProps) {
                                 height={1080}
                                 className={styles.embla__slide__img}
                                 alt={`${post.title} - Image ${index + 1}`}
-                                unoptimized
+                                priority={index === 0}
                             />
                         </div>
                     ))}

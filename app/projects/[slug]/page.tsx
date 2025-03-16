@@ -1,75 +1,106 @@
 // app/projects/[slug]/page.tsx
 import { format, parseISO } from 'date-fns';
-import { allProjectWriteups } from 'contentlayer/generated';
+import { MDXRemote } from 'next-mdx-remote/rsc';
 import { notFound } from 'next/navigation';
 import { ProjectCarousel } from './ProjectCarousel';
-import { useMDXComponent } from 'next-contentlayer/hooks';
 import LinkButton from '@/components/LinkButton';
+import {
+    getPostBySlug,
+    getAllPosts,
+    type MDXProject,
+    type ProjectFrontMatter,
+} from '@/lib/mdx';
+import type { Metadata } from 'next';
 
-// Debug logging to help identify the issue
-console.log(
-    'All project writeups:',
-    allProjectWriteups.map((doc) => ({
-        type: doc.type,
-        path: doc._raw.flattenedPath,
-    }))
-);
-console.log(
-    'ProjectWriteup documents:',
-    allProjectWriteups.map((doc) => ({ path: doc._raw.flattenedPath }))
-);
-
-// Key Fix: MDX file paths include 'projects/' prefix but URL slugs don't
-// Example: File path is 'projects/hawkeye' but URL slug is just 'hawkeye'
-// Solution: Append 'projects/' when finding posts by slug
-
-// Key command to use in future
-// console.log(
-//     'allProjectWriteups',
-//     allProjectWriteups
-// ); // Check if this array has the expected data
-
-// console.log(
-//     'posta',
-//     allProjectWriteups.filter((doc) => doc.type === 'ProjectWriteup')
-// );
-
-export const generateStaticParams = async () =>
-    allProjectWriteups.map((doc) => ({
-        slug: doc._raw.flattenedPath.replace('projects/', ''),
+export async function generateStaticParams() {
+    const projects = await getAllPosts<ProjectFrontMatter>('projects');
+    return projects.map((project) => ({
+        slug: project.slug,
     }));
+}
 
-export const generateMetadata = ({ params }: { params: { slug: string } }) => {
-    const post = allProjectWriteups.find(
-        (post) => post._raw.flattenedPath === `projects/${params.slug}`
+export async function generateMetadata({
+    params,
+}: {
+    params: { slug: string };
+}): Promise<Metadata> {
+    const project = await getPostBySlug<ProjectFrontMatter>(
+        params.slug,
+        'projects'
     );
 
-    if (!post) return notFound();
+    if (!project) return notFound();
 
-    return { title: post.title };
-};
+    const { frontMatter } = project;
+    const ogImage =
+        frontMatter.imageUrl || frontMatter.images?.[0] || '/og-default.png';
 
-const ProjectWriteupLayout = ({ params }: { params: { slug: string } }) => {
-    const post = allProjectWriteups.find(
-        (post) => post._raw.flattenedPath === `projects/${params.slug}`
+    return {
+        title: frontMatter.title,
+        description:
+            frontMatter.description ||
+            `${frontMatter.title} - A project by Reese`,
+        openGraph: {
+            title: frontMatter.title,
+            description: frontMatter.description,
+            type: 'article',
+            publishedTime: frontMatter.date,
+            authors: ['Reese'],
+            images: [
+                {
+                    url: ogImage,
+                    width: 1200,
+                    height: 630,
+                    alt: frontMatter.title,
+                },
+            ],
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: frontMatter.title,
+            description: frontMatter.description,
+            images: [ogImage],
+        },
+    };
+}
+
+export default async function ProjectPage({
+    params,
+}: {
+    params: { slug: string };
+}) {
+    const project = await getPostBySlug<ProjectFrontMatter>(
+        params.slug,
+        'projects'
     );
 
-    if (!post) throw new Error(`Post not found for slug: ${params.slug}`);
+    if (!project) return notFound();
 
-    // Parse the MDX file via the useMDXComponent hook.
-    const MDXContent = useMDXComponent(post.body.code);
+    const { frontMatter, content } = project;
 
     return (
         <article className='flex flex-col items-center w-full'>
             <div className='container max-w-5xl mb-8 text-center px-4 sm:px-6'>
-                <ProjectCarousel post={post} />
-                <h1 className='text-3xl font-bold'>{post.title}</h1>
+                <ProjectCarousel post={frontMatter} />
+                <h1 className='text-3xl font-bold'>{frontMatter.title}</h1>
                 <time
-                    dateTime={post.date}
+                    dateTime={frontMatter.date}
                     className='mb-4 text-xs text-gray-600 dark:text-gray-400'
                 >
-                    {format(parseISO(post.date), 'LLLL d, yyyy')}
+                    {format(parseISO(frontMatter.date), 'LLLL d, yyyy')}
                 </time>
+                {frontMatter.stack && frontMatter.stack.length > 0 && (
+                    <div className='mt-4 flex flex-wrap justify-center gap-2'>
+                        {frontMatter.stack.map((tech) => (
+                            <span
+                                key={tech}
+                                className='px-2 py-1 text-sm bg-gray-100 dark:bg-gray-800 rounded-md'
+                            >
+                                {tech}
+                            </span>
+                        ))}
+                    </div>
+                )}
             </div>
             <div
                 className='prose dark:prose-invert prose-quoteless prose-neutral dark:prose-neutral max-w-xl w-full
@@ -84,17 +115,13 @@ const ProjectWriteupLayout = ({ params }: { params: { slug: string } }) => {
                            prose-pre:bg-gray-100 dark:prose-pre:bg-gray-800 prose-pre:rounded-lg
                            px-4 sm:px-0 mx-auto'
             >
-                {post.projectLink ? (
-                    <LinkButton href={post.projectLink}>
+                {frontMatter.projectLink && (
+                    <LinkButton href={frontMatter.projectLink}>
                         Project Link
                     </LinkButton>
-                ) : (
-                    <></>
                 )}
-                <MDXContent />
+                <MDXRemote source={content} />
             </div>
         </article>
     );
-};
-
-export default ProjectWriteupLayout;
+}

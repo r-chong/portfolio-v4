@@ -6,8 +6,8 @@ import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import PostCard from '@/components/PostCard';
 import { CompactModeProvider, useCompactMode } from '@/lib/CompactModeContext';
-import { Post } from 'contentlayer/generated';
 import { compareDesc } from 'date-fns';
+import type { PostFrontMatter } from '@/lib/mdx';
 
 // Helper function to get URL parameters
 function getUrlParams() {
@@ -48,8 +48,13 @@ function CompactModeToggle() {
     );
 }
 
+interface BlogPost extends PostFrontMatter {
+    slug: string;
+    readingTime: string;
+}
+
 interface BlogClientProps {
-    initialPosts: Post[];
+    initialPosts: BlogPost[];
     allTags: string[];
 }
 
