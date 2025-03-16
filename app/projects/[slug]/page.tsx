@@ -75,7 +75,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         return (
             <article className='prose prose-center dark:prose-invert max-w-none px-4 sm:px-6'>
                 <div className='mb-8 text-center'>
-                    <h1 className='text-2xl sm:text-3xl md:text-4xl font-bold font-georgia mb-4'>
+                    <h1 className='text-2xl sm:text-3xl md:text-4xl font-bold font-source-sans-pro mb-4'>
                         {project.frontMatter.title}
                     </h1>
 

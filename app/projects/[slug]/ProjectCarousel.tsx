@@ -27,12 +27,12 @@ export function ProjectCarousel({ post }: ProjectCarouselProps) {
     // If there's only one image (from imageUrl), display it without carousel
     if (!post.images && post.imageUrl) {
         return (
-            <div className='relative w-full mb-6 sm:mb-8'>
+            <div className='relative w-full mb-6 sm:mb-8 flex justify-center'>
                 <Image
                     src={post.imageUrl}
                     width={1920}
                     height={1080}
-                    className='w-full h-auto rounded-xl'
+                    className='w-full sm:max-w-2xl h-auto rounded-xl'
                     alt={`Image for ${post.title}`}
                     priority
                 />
@@ -48,7 +48,7 @@ export function ProjectCarousel({ post }: ProjectCarouselProps) {
     return (
         <div className='relative w-full mb-6 sm:mb-8'>
             <div
-                className={`${styles.embla} overflow-hidden rounded-xl`}
+                className={`${styles.embla} overflow-hidden rounded-xl max-w-4xl mx-auto`}
                 ref={emblaRef}
             >
                 <div className={styles.embla__container}>
@@ -58,7 +58,7 @@ export function ProjectCarousel({ post }: ProjectCarouselProps) {
                                 src={image}
                                 width={1920}
                                 height={1080}
-                                className={styles.embla__slide__img}
+                                className={`${styles.embla__slide__img} sm:max-w-2xl`}
                                 alt={`${post.title} - Image ${index + 1}`}
                                 priority={index === 0}
                             />
