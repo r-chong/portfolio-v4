@@ -3,13 +3,21 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import Image from 'next/image';
-import { getPostBySlug } from '@/lib/mdx';
-import type { MDXProject } from '@/lib/mdx';
+import { getPostBySlug, getAllPosts } from '@/lib/mdx';
+import type { MDXProject, ProjectFrontMatter } from '@/lib/mdx';
+import { ProjectCarousel } from './ProjectCarousel';
 
 interface ProjectPageProps {
     params: {
         slug: string;
     };
+}
+
+export async function generateStaticParams() {
+    const projects = await getAllPosts<ProjectFrontMatter>('projects');
+    return projects.map((project) => ({
+        slug: project.slug,
+    }));
 }
 
 export async function generateMetadata({
@@ -61,17 +69,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             <article className='prose dark:prose-invert max-w-none'>
                 <div className='mb-8'>
                     <h1>{project.frontMatter.title}</h1>
-                    {project.frontMatter.imageUrl && (
-                        <div className='relative w-full h-[24rem] mb-8 overflow-hidden rounded-xl'>
-                            <Image
-                                src={project.frontMatter.imageUrl}
-                                alt={project.frontMatter.title}
-                                fill
-                                className='object-cover'
-                                priority
-                            />
-                        </div>
-                    )}
+
+                    {/* Use ProjectCarousel instead of single image */}
+                    <ProjectCarousel post={project.frontMatter} />
+
                     <div className='flex flex-wrap gap-4 mb-4'>
                         {project.frontMatter.stack?.map((tech) => (
                             <span

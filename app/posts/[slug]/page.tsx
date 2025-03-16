@@ -1,13 +1,20 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
-import { getPostBySlug } from '@/lib/mdx';
-import type { MDXPost } from '@/lib/mdx';
+import { getPostBySlug, getAllPosts } from '@/lib/mdx';
+import type { MDXPost, PostFrontMatter } from '@/lib/mdx';
 
 interface PostPageProps {
     params: {
         slug: string;
     };
+}
+
+export async function generateStaticParams() {
+    const posts = await getAllPosts<PostFrontMatter>('posts');
+    return posts.map((post) => ({
+        slug: post.slug,
+    }));
 }
 
 export async function generateMetadata({
