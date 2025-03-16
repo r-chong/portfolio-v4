@@ -18,12 +18,14 @@ body.resume-page > div {
     margin: 0 auto;
     padding: 0 1rem;
     font-size: 1rem;
-    line-height: 1.75;
-    color: #374151;
+    line-height: 1.6;
+    color: #1a202c;
+    font-family: 'Source Sans Pro', 'Source Sans 3', var(--font-source-sans-pro),
+        sans-serif;
 }
 
 .dark .mdx-content {
-    color: #d1d5db;
+    color: #e2e8f0;
 }
 
 .mdx-content img {
@@ -36,51 +38,92 @@ body.resume-page > div {
     height: auto;
 }
 
+/* Common styles for all text elements */
 .mdx-content p,
 .mdx-content h1,
 .mdx-content h2,
 .mdx-content h3,
 .mdx-content h4,
 .mdx-content h5,
-.mdx-content h6 {
-    text-align: center;
-    font-family: Georgia, serif;
-    max-width: 100%;
-}
-
-.mdx-content p {
-    margin-bottom: 1.5rem;
-    letter-spacing: normal;
-    word-spacing: normal;
-    text-align: left;
+.mdx-content h6,
+.mdx-content ul,
+.mdx-content ol,
+.mdx-content blockquote {
+    font-family: 'Source Sans Pro', 'Source Sans 3', var(--font-source-sans-pro),
+        sans-serif;
+    width: 100%;
     max-width: 38em;
     margin-left: auto;
     margin-right: auto;
 }
 
-.mdx-content p + p {
-    margin-top: -0.75rem;
+/* Heading styles */
+.mdx-content h1,
+.mdx-content h2,
+.mdx-content h3,
+.mdx-content h4,
+.mdx-content h5,
+.mdx-content h6 {
+    font-weight: 700;
+    color: #111827;
+}
+
+/* Title heading (first h1) can be centered */
+/* .mdx-content > h1:first-of-type {
+    text-align: center;
+    font-size: 2.25rem;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+} */
+
+/* Content headings should be left-aligned */
+.mdx-content h1,
+.mdx-content h2,
+.mdx-content h3,
+.mdx-content h4,
+.mdx-content h5,
+.mdx-content h6 {
+    text-align: parent;
+}
+
+.dark .mdx-content h1,
+.dark .mdx-content h2,
+.dark .mdx-content h3,
+.dark .mdx-content h4,
+.dark .mdx-content h5,
+.dark .mdx-content h6 {
+    color: #f3f4f6;
+}
+
+.mdx-content p {
+    margin-bottom: 1.25rem;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-align: left;
 }
 
 .mdx-content h1 {
-    font-size: 1.875rem;
-    margin-top: 2.5rem;
-    margin-bottom: 1.5rem;
+    font-size: 1.75rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
     letter-spacing: -0.025em;
+    padding: 0.5rem 0;
 }
 
 .mdx-content h2 {
     font-size: 1.5rem;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
+    margin-top: 1.75rem;
+    margin-bottom: 0.75rem;
     letter-spacing: -0.015em;
+    padding: 0.5rem 0;
 }
 
 .mdx-content h3 {
     font-size: 1.25rem;
-    margin-top: 1.75rem;
-    margin-bottom: 0.75rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
     letter-spacing: -0.01em;
+    padding: 0.5rem 0;
 }
 
 .mdx-content ul,
@@ -89,14 +132,13 @@ body.resume-page > div {
     max-width: 38em;
     margin-left: auto;
     margin-right: auto;
-    font-family: Georgia, serif;
     padding-left: 1.5rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
     text-align: left;
 }
 
 .mdx-content li {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.375rem;
     position: relative;
 }
 
@@ -105,15 +147,41 @@ body.resume-page > div {
     text-decoration-thickness: 1px;
     text-underline-offset: 2px;
     transition: color 0.2s ease;
+    color: #2563eb;
+}
+
+.dark .mdx-content a {
+    color: #3b82f6;
+}
+
+.mdx-content code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        'Liberation Mono', 'Courier New', monospace;
+    background-color: #f3f4f6;
+    color: #db2777;
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.25rem;
+    font-size: 0.875em;
+    white-space: nowrap;
+}
+
+.dark .mdx-content code {
+    background-color: #1f2937;
+    color: #ec4899;
 }
 
 .mdx-content blockquote {
     font-style: italic;
     border-left-width: 4px;
+    border-color: #e5e7eb;
     padding-left: 1rem;
-    margin: 2rem auto;
+    margin: 1.5rem auto;
     max-width: 38em;
     text-align: left;
+}
+
+.dark .mdx-content blockquote {
+    border-color: #374151;
 }
 
 /* Responsive adjustments */
@@ -123,10 +191,6 @@ body.resume-page > div {
         padding: 0 1.5rem;
         font-size: 1.0625rem;
     }
-
-    .mdx-content blockquote {
-        max-width: 85%;
-    }
 }
 
 @media (min-width: 768px) {
@@ -134,11 +198,11 @@ body.resume-page > div {
         max-width: 75%;
         padding: 0 2rem;
         font-size: 1.125rem;
-        line-height: 1.8;
+        line-height: 1.7;
     }
 
     .mdx-content h1 {
-        font-size: 2.25rem;
+        font-size: 2rem;
     }
 
     .mdx-content h2 {
@@ -153,11 +217,6 @@ body.resume-page > div {
 @media (min-width: 1024px) {
     .mdx-content {
         max-width: 65%;
-    }
-
-    .mdx-content ul,
-    .mdx-content ol {
-        max-width: 38em;
     }
 }
 

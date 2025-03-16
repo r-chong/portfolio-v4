@@ -16,6 +16,19 @@ const config: Config = {
             },
             fontFamily: {
                 georgia: ['Georgia', 'serif'],
+                inter: [
+                    'var(--font-inter)',
+                    'Inter',
+                    'system-ui',
+                    'sans-serif',
+                ],
+                'source-sans-pro': [
+                    'var(--font-source-sans-pro)',
+                    'Source Sans Pro',
+                    'Source Sans 3',
+                    'system-ui',
+                    'sans-serif',
+                ],
             },
             typography: {
                 center: {

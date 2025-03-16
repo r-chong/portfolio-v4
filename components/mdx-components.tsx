@@ -9,25 +9,25 @@ const components: MDXComponents = {
     // Override default elements with custom styling
     h1: (props) => (
         <h1
-            className='text-2xl md:text-3xl font-bold mt-8 mb-4 font-georgia text-center'
+            className='text-2xl md:text-3xl font-bold mt-8 mb-4 font-source-sans-pro'
             {...props}
         />
     ),
     h2: (props) => (
         <h2
-            className='text-xl md:text-2xl font-semibold mt-6 mb-3 font-georgia text-center'
+            className='text-xl md:text-2xl font-semibold mt-6 mb-3 font-source-sans-pro'
             {...props}
         />
     ),
     h3: (props) => (
         <h3
-            className='text-lg md:text-xl font-medium mt-4 mb-2 font-georgia text-center'
+            className='text-lg md:text-xl font-medium mt-4 mb-2 font-source-sans-pro'
             {...props}
         />
     ),
     p: (props) => (
         <p
-            className='my-4 text-gray-800 dark:text-gray-200 font-georgia text-left text-base md:text-lg leading-7 max-w-prose mx-auto'
+            className='my-4 text-gray-800 dark:text-gray-200 font-georgia text-base md:text-lg leading-7'
             {...props}
         />
     ),
@@ -42,7 +42,7 @@ const components: MDXComponents = {
             return (
                 <Link
                     href={linkHref as any}
-                    className='text-blue-600 dark:text-blue-400 hover:underline font-georgia transition-colors duration-200'
+                    className='text-blue-600 dark:text-blue-400 hover:underline font-source-sans-pro transition-colors duration-200'
                     {...restProps}
                 />
             );
@@ -52,27 +52,27 @@ const components: MDXComponents = {
             <a
                 target='_blank'
                 rel='noopener noreferrer'
-                className='text-blue-600 dark:text-blue-400 hover:underline font-georgia transition-colors duration-200'
+                className='text-blue-600 dark:text-blue-400 hover:underline font-source-sans-pro transition-colors duration-200'
                 {...props}
             />
         );
     },
     ul: (props) => (
         <ul
-            className='list-disc pl-4 md:pl-6 my-4 font-georgia mx-auto w-full md:max-w-xl text-base md:text-lg'
+            className='list-disc pl-4 md:pl-6 my-4 font-source-sans-pro mx-auto w-full md:max-w-xl text-base md:text-lg'
             {...props}
         />
     ),
     ol: (props) => (
         <ol
-            className='list-decimal pl-4 md:pl-6 my-4 font-georgia mx-auto w-full md:max-w-xl text-base md:text-lg'
+            className='list-decimal pl-4 md:pl-6 my-4 font-source-sans-pro mx-auto w-full md:max-w-xl text-base md:text-lg'
             {...props}
         />
     ),
-    li: (props) => <li className='mb-2 font-georgia' {...props} />,
+    li: (props) => <li className='mb-2 font-source-sans-pro' {...props} />,
     blockquote: (props) => (
         <blockquote
-            className='border-l-4 border-gray-300 dark:border-gray-700 pl-4 italic my-6 font-georgia mx-auto w-full md:max-w-xl text-base md:text-lg'
+            className='border-l-4 border-gray-300 dark:border-gray-700 pl-4 italic my-6 font-source-sans-pro mx-auto w-full md:max-w-xl text-base md:text-lg'
             {...props}
         />
     ),
@@ -91,7 +91,7 @@ const components: MDXComponents = {
     // Add support for code blocks with better styling
     code: (props) => (
         <code
-            className='bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm font-mono'
+            className='bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm font-mono text-pink-600 dark:text-pink-400'
             {...props}
         />
     ),
@@ -107,7 +107,7 @@ const components: MDXComponents = {
     table: (props) => (
         <div className='overflow-x-auto my-6'>
             <table
-                className='w-full border-collapse font-georgia text-base'
+                className='w-full border-collapse font-source-sans-pro text-base'
                 {...props}
             />
         </div>

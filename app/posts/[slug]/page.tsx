@@ -71,10 +71,10 @@ export default async function PostPage({ params }: PostPageProps) {
         return (
             <article className='prose prose-center dark:prose-invert max-w-none px-4 sm:px-6'>
                 <div className='mb-8 text-center'>
-                    <h1 className='text-2xl sm:text-3xl md:text-4xl font-bold font-georgia mb-4'>
+                    <h1 className='text-2xl sm:text-3xl md:text-4xl font-bold font-source-sans-pro mb-4'>
                         {post.frontMatter.title}
                     </h1>
-                    <div className='flex flex-wrap justify-center gap-4 text-sm text-gray-600 dark:text-gray-400 font-georgia'>
+                    <div className='flex flex-wrap justify-center gap-4 text-sm text-gray-600 dark:text-gray-400 font-source-sans-pro'>
                         <time dateTime={post.frontMatter.date}>
                             {new Date(post.frontMatter.date).toLocaleDateString(
                                 'en-US',
@@ -88,7 +88,7 @@ export default async function PostPage({ params }: PostPageProps) {
                         <span>{post.readingTime}</span>
                     </div>
                 </div>
-                <div className='mdx-content font-georgia text-base sm:text-lg'>
+                <div className='mdx-content text-base sm:text-lg'>
                     <MDXRemote
                         source={post.content}
                         components={components}
