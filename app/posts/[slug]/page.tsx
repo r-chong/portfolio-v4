@@ -4,6 +4,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 import { getPostBySlug, getAllPosts } from '@/lib/mdx';
 import type { MDXPost, PostFrontMatter } from '@/lib/mdx';
 import components from '@/components/mdx-components';
+import { mdxOptions } from '@/lib/mdx-utils';
 
 interface PostPageProps {
     params: {
@@ -86,7 +87,11 @@ export default async function PostPage({ params }: PostPageProps) {
                     </div>
                 </div>
                 <div className='mdx-content'>
-                    <MDXRemote source={post.content} components={components} />
+                    <MDXRemote
+                        source={post.content}
+                        components={components}
+                        options={mdxOptions}
+                    />
                 </div>
             </article>
         );

@@ -7,6 +7,7 @@ import { getPostBySlug, getAllPosts } from '@/lib/mdx';
 import type { MDXProject, ProjectFrontMatter } from '@/lib/mdx';
 import { ProjectCarousel } from './ProjectCarousel';
 import components from '@/components/mdx-components';
+import { mdxOptions } from '@/lib/mdx-utils';
 
 interface ProjectPageProps {
     params: {
@@ -105,6 +106,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                     <MDXRemote
                         source={project.content}
                         components={components}
+                        options={mdxOptions}
                     />
                 </div>
             </article>

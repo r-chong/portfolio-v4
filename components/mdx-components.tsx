@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import 'katex/dist/katex.min.css';
 
 // Define custom MDX components
 const components = {
@@ -64,7 +65,6 @@ const components = {
             />
         </div>
     ),
-    // Add more custom components as needed
 };
 
 export default components;

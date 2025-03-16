@@ -83,7 +83,7 @@ export const getPostBySlug = async <T extends FrontMatter>(
             ? new Date(data.date).toISOString()
             : new Date().toISOString();
 
-        // Return the raw content instead of serializing it
+        // Return the raw content
         console.log(
             `Processed MDX for ${slug}, content length:`,
             content.length

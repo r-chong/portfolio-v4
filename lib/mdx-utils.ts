@@ -1,0 +1,42 @@
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+
+/**
+ * Configuration for MDX processing with math support
+ */
+export const mdxOptions = {
+    mdxOptions: {
+        remarkPlugins: [[remarkMath]],
+        rehypePlugins: [[rehypeKatex]],
+        format: 'mdx',
+        development: process.env.NODE_ENV === 'development',
+    },
+};
+
+/**
+ * Preprocesses MDX content to escape LaTeX backslashes
+ */
+export function preprocessMDX(content: string): string {
+    // Find all <math> and <inlinemath> tags and escape backslashes inside them
+    const mathRegex = /(<(math|inlinemath)>)([\s\S]*?)(<\/(math|inlinemath)>)/g;
+
+    return content.replace(
+        mathRegex,
+        (match, openTag, tagName, content, closeTag) => {
+            // Escape backslashes in the content
+            const escapedContent = content.replace(/\\/g, '\\\\');
+            return openTag + escapedContent + closeTag;
+        }
+    );
+}
+
+/**
+ * Serializes MDX content with math support
+ */
+export async function serializeMDX(content: string) {
+    return serialize(content, {
+        mdxOptions: {
+            development: process.env.NODE_ENV === 'development',
+        },
+    });
+}
