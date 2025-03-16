@@ -10,3 +10,159 @@ body.resume-page {
 body.resume-page > div {
     min-height: 100vh !important;
 }
+
+/* MDX content styling */
+.mdx-content {
+    width: 100%;
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 0 1rem;
+    font-size: 1rem;
+    line-height: 1.75;
+    color: #374151;
+}
+
+.dark .mdx-content {
+    color: #d1d5db;
+}
+
+.mdx-content img {
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    max-width: 100%;
+    height: auto;
+}
+
+.mdx-content p,
+.mdx-content h1,
+.mdx-content h2,
+.mdx-content h3,
+.mdx-content h4,
+.mdx-content h5,
+.mdx-content h6 {
+    text-align: center;
+    font-family: Georgia, serif;
+    max-width: 100%;
+}
+
+.mdx-content p {
+    margin-bottom: 1.5rem;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-align: left;
+    max-width: 38em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.mdx-content p + p {
+    margin-top: -0.75rem;
+}
+
+.mdx-content h1 {
+    font-size: 1.875rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.025em;
+}
+
+.mdx-content h2 {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    letter-spacing: -0.015em;
+}
+
+.mdx-content h3 {
+    font-size: 1.25rem;
+    margin-top: 1.75rem;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
+}
+
+.mdx-content ul,
+.mdx-content ol {
+    width: 100%;
+    max-width: 38em;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Georgia, serif;
+    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.mdx-content li {
+    margin-bottom: 0.5rem;
+    position: relative;
+}
+
+.mdx-content a {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+    transition: color 0.2s ease;
+}
+
+.mdx-content blockquote {
+    font-style: italic;
+    border-left-width: 4px;
+    padding-left: 1rem;
+    margin: 2rem auto;
+    max-width: 38em;
+    text-align: left;
+}
+
+/* Responsive adjustments */
+@media (min-width: 640px) {
+    .mdx-content {
+        max-width: 85%;
+        padding: 0 1.5rem;
+        font-size: 1.0625rem;
+    }
+
+    .mdx-content blockquote {
+        max-width: 85%;
+    }
+}
+
+@media (min-width: 768px) {
+    .mdx-content {
+        max-width: 75%;
+        padding: 0 2rem;
+        font-size: 1.125rem;
+        line-height: 1.8;
+    }
+
+    .mdx-content h1 {
+        font-size: 2.25rem;
+    }
+
+    .mdx-content h2 {
+        font-size: 1.75rem;
+    }
+
+    .mdx-content h3 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .mdx-content {
+        max-width: 65%;
+    }
+
+    .mdx-content ul,
+    .mdx-content ol {
+        max-width: 38em;
+    }
+}
+
+@media (min-width: 1280px) {
+    .mdx-content {
+        max-width: 60%;
+    }
+}

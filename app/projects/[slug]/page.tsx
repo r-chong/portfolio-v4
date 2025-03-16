@@ -73,18 +73,20 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         console.log('Content length:', project.content.length);
 
         return (
-            <article className='prose dark:prose-invert max-w-none'>
-                <div className='mb-8'>
-                    <h1>{project.frontMatter.title}</h1>
+            <article className='prose prose-center dark:prose-invert max-w-none px-4 sm:px-6'>
+                <div className='mb-8 text-center'>
+                    <h1 className='text-2xl sm:text-3xl md:text-4xl font-bold font-georgia mb-4'>
+                        {project.frontMatter.title}
+                    </h1>
 
                     {/* Use ProjectCarousel instead of single image */}
                     <ProjectCarousel post={project.frontMatter} />
 
-                    <div className='flex flex-wrap gap-4 mb-4'>
+                    <div className='flex flex-wrap justify-center gap-3 my-6'>
                         {project.frontMatter.stack?.map((tech) => (
                             <span
                                 key={tech}
-                                className='px-3 py-1 text-sm bg-gray-100 dark:bg-gray-800 rounded-full'
+                                className='px-3 py-1 text-sm bg-gray-100 dark:bg-gray-800 rounded-full mb-2'
                             >
                                 {tech}
                             </span>
@@ -95,14 +97,14 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                             href={project.frontMatter.projectLink}
                             target='_blank'
                             rel='noopener noreferrer'
-                            className='inline-block px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors mb-4'
+                            className='inline-block px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors mb-4 mt-2'
                         >
                             View Project →
                         </a>
                     )}
                 </div>
                 {/* Render MDX content */}
-                <div className='mdx-content'>
+                <div className='mdx-content font-georgia text-base sm:text-lg'>
                     <MDXRemote
                         source={project.content}
                         components={components}
