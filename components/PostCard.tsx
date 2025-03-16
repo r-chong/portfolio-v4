@@ -1,6 +1,6 @@
 'use client';
 
-import Link from 'next/link';
+import Link, { LinkProps } from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { format, parseISO } from 'date-fns';
@@ -29,7 +29,8 @@ export default function PostCard({ post, onTagClick }: PostCardProps) {
         return (
             <div className='flex items-center gap-3 py-1'>
                 <Link
-                    href={`/posts/${post.slug}`}
+                    // any is typed as a last resort for dynamic routes
+                    href={`/posts/${post.slug}` as any}
                     className='text-blue-600 font-bold underline dark:text-blue-400 hover:underline'
                 >
                     {post.title}
@@ -51,7 +52,7 @@ export default function PostCard({ post, onTagClick }: PostCardProps) {
             className='group'
         >
             <Link
-                href={`/posts/${post.slug}`}
+                href={`/posts/${post.slug}` as any}
                 className='flex justify-between gap-4 p-4 rounded-xl border border-transparent hover:border-gray-200 dark:hover:border-gray-800 hover:bg-gray-100/50 dark:hover:bg-gray-800/50 transition-all duration-300'
             >
                 <div className='space-y-2 flex-grow'>

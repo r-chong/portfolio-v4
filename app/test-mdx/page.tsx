@@ -3,6 +3,7 @@ import path from 'path';
 import matter from 'gray-matter';
 import { serialize } from 'next-mdx-remote/serialize';
 import { MDXRemote } from 'next-mdx-remote/rsc';
+import components from '@/components/mdx-components';
 
 export default async function TestMDXPage() {
     // Read a sample MDX file directly
@@ -33,7 +34,7 @@ export default async function TestMDXPage() {
 
             <div className='prose dark:prose-invert max-w-none'>
                 <h2 className='text-2xl font-semibold mb-4'>Content</h2>
-                <MDXRemote {...mdxSource} />
+                <MDXRemote source={content} components={components} />
             </div>
         </div>
     );

@@ -1,14 +1,15 @@
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
+import { serialize } from 'next-mdx-remote/serialize';
 
 /**
  * Configuration for MDX processing with math support
  */
 export const mdxOptions = {
     mdxOptions: {
-        remarkPlugins: [[remarkMath]],
-        rehypePlugins: [[rehypeKatex]],
-        format: 'mdx',
+        remarkPlugins: [remarkMath],
+        rehypePlugins: [rehypeKatex],
+        format: 'mdx' as const,
         development: process.env.NODE_ENV === 'development',
     },
 };

@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import Link from 'next/link';
+import Link, { LinkProps } from 'next/link';
 import { getAllPosts } from '@/lib/mdx';
 import type { MDXPost } from '@/lib/mdx';
 
@@ -17,7 +17,7 @@ export default async function PostsPage() {
             <div className='space-y-8'>
                 {posts.map((post) => (
                     <article key={post.slug} className='group'>
-                        <Link href={`/posts/${post.slug}`}>
+                        <Link href={`/posts/${post.slug}` as LinkProps['href']}>
                             <div className='space-y-2'>
                                 <h2 className='text-2xl font-semibold group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors'>
                                     {post.frontMatter.title}

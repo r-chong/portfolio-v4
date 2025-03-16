@@ -125,7 +125,7 @@ function BlogContent({ initialPosts = [], allTags = [] }: BlogClientProps) {
             if (selectedTags.length > 0) {
                 if (
                     !post.tags ||
-                    !selectedTags.every((tag) => post.tags.includes(tag))
+                    !selectedTags.every((tag) => post.tags?.includes(tag))
                 ) {
                     return false;
                 }
