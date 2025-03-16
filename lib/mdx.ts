@@ -1,7 +1,6 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { serialize } from 'next-mdx-remote/serialize';
 import readingTime from 'reading-time';
 
 // Base frontmatter type
@@ -47,47 +46,66 @@ const POSTS_PATH = path.join(ROOT_PATH, 'content/posts');
 const PROJECTS_PATH = path.join(ROOT_PATH, 'content/projects');
 
 export const getFiles = (type: 'posts' | 'projects') => {
-    const dirPath = type === 'posts' ? POSTS_PATH : PROJECTS_PATH;
-    return fs.readdirSync(dirPath).filter((file) => {
-        const isDirectory = fs
-            .lstatSync(path.join(dirPath, file))
-            .isDirectory();
-        return !isDirectory && /\.mdx?$/.test(file);
-    });
+    try {
+        const dirPath = type === 'posts' ? POSTS_PATH : PROJECTS_PATH;
+        console.log(`Looking for files in: ${dirPath}`);
+
+        const files = fs.readdirSync(dirPath).filter((file) => {
+            const isDirectory = fs
+                .lstatSync(path.join(dirPath, file))
+                .isDirectory();
+            return !isDirectory && /\.mdx?$/.test(file);
+        });
+
+        console.log(`Found ${files.length} files in ${dirPath}`);
+        return files;
+    } catch (error) {
+        console.error(`Error getting files from ${type}:`, error);
+        return [];
+    }
 };
 
 export const getPostBySlug = async <T extends FrontMatter>(
     slug: string,
     type: 'posts' | 'projects'
 ): Promise<MDXContent<T>> => {
-    const dirPath = type === 'posts' ? POSTS_PATH : PROJECTS_PATH;
-    const filePath = path.join(dirPath, `${slug}.mdx`);
-    const source = fs.readFileSync(filePath, 'utf8');
+    try {
+        const dirPath = type === 'posts' ? POSTS_PATH : PROJECTS_PATH;
+        const filePath = path.join(dirPath, `${slug}.mdx`);
+        console.log(`Reading file: ${filePath}`);
 
-    const { data, content } = matter(source);
+        const source = fs.readFileSync(filePath, 'utf8');
 
-    // Ensure date is in ISO format
-    const date = data.date
-        ? new Date(data.date).toISOString()
-        : new Date().toISOString();
+        const { data, content } = matter(source);
 
-    const mdxSource = await serialize(content, {
-        parseFrontmatter: true,
-        mdxOptions: {
-            development: process.env.NODE_ENV === 'development',
-        },
-    });
+        // Ensure date is in ISO format
+        const date = data.date
+            ? new Date(data.date).toISOString()
+            : new Date().toISOString();
 
-    return {
-        slug,
-        frontMatter: {
-            ...data,
-            date,
-            type: type === 'posts' ? 'Post' : 'Project',
-        } as T,
-        content: mdxSource as any,
-        readingTime: readingTime(content).text,
-    };
+        // Return the raw content instead of serializing it
+        console.log(
+            `Processed MDX for ${slug}, content length:`,
+            content.length
+        );
+
+        return {
+            slug,
+            frontMatter: {
+                ...data,
+                date,
+                type: type === 'posts' ? 'Post' : 'Project',
+            } as T,
+            content: content,
+            readingTime: readingTime(content).text,
+        };
+    } catch (error) {
+        console.error(
+            `Error getting post by slug ${slug} from ${type}:`,
+            error
+        );
+        throw error;
+    }
 };
 
 export const getAllPosts = async <T extends FrontMatter>(

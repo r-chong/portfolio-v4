@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { getPostBySlug, getAllPosts } from '@/lib/mdx';
 import type { MDXProject, ProjectFrontMatter } from '@/lib/mdx';
 import { ProjectCarousel } from './ProjectCarousel';
+import components from '@/components/mdx-components';
 
 interface ProjectPageProps {
     params: {
@@ -60,10 +61,15 @@ export async function generateMetadata({
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
     try {
+        console.log(`Attempting to fetch project with slug: ${params.slug}`);
         const project = await getPostBySlug<MDXProject['frontMatter']>(
             params.slug,
             'projects'
         );
+        console.log(
+            `Successfully fetched project: ${project.frontMatter.title}`
+        );
+        console.log('Content length:', project.content.length);
 
         return (
             <article className='prose dark:prose-invert max-w-none'>
@@ -94,10 +100,20 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                         </a>
                     )}
                 </div>
-                <MDXRemote {...project.content} />
+                {/* Render MDX content */}
+                <div className='mdx-content'>
+                    <MDXRemote
+                        source={project.content}
+                        components={components}
+                    />
+                </div>
             </article>
         );
     } catch (error) {
+        console.error(
+            `Error rendering project page for slug ${params.slug}:`,
+            error
+        );
         notFound();
     }
 }

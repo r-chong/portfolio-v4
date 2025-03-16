@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { getPostBySlug, getAllPosts } from '@/lib/mdx';
 import type { MDXPost, PostFrontMatter } from '@/lib/mdx';
+import components from '@/components/mdx-components';
 
 interface PostPageProps {
     params: {
@@ -58,10 +59,13 @@ export async function generateMetadata({
 
 export default async function PostPage({ params }: PostPageProps) {
     try {
+        console.log(`Attempting to fetch post with slug: ${params.slug}`);
         const post = await getPostBySlug<MDXPost['frontMatter']>(
             params.slug,
             'posts'
         );
+        console.log(`Successfully fetched post: ${post.frontMatter.title}`);
+        console.log('Content length:', post.content.length);
 
         return (
             <article className='prose dark:prose-invert max-w-none'>
@@ -81,10 +85,16 @@ export default async function PostPage({ params }: PostPageProps) {
                         <span>{post.readingTime}</span>
                     </div>
                 </div>
-                <MDXRemote {...post.content} />
+                <div className='mdx-content'>
+                    <MDXRemote source={post.content} components={components} />
+                </div>
             </article>
         );
     } catch (error) {
+        console.error(
+            `Error rendering post page for slug ${params.slug}:`,
+            error
+        );
         notFound();
     }
 }
