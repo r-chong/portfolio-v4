@@ -1,7 +1,7 @@
 import { compareDesc } from 'date-fns';
-import { allPosts } from 'contentlayer/generated';
 import { Metadata } from 'next';
 import BlogClient from './BlogClient';
+import { getAllPosts, type PostFrontMatter } from '@/lib/mdx';
 
 export const metadata: Metadata = {
     title: 'Blog',
@@ -11,14 +11,15 @@ export const metadata: Metadata = {
 // Make the component async and add error handling
 export default async function BlogPage() {
     try {
-        // Ensure we have posts before sorting
-        if (!Array.isArray(allPosts)) {
-            throw new Error('Posts data is not available');
-        }
-
-        const sortedPosts = [...allPosts].sort((a, b) =>
-            compareDesc(new Date(a.date), new Date(b.date))
-        );
+        const posts = await getAllPosts<PostFrontMatter>('posts');
+        const sortedPosts = posts
+            .map((post) => ({
+                ...post.frontMatter,
+                slug: post.slug,
+                readingTime: post.readingTime,
+                date: post.frontMatter.date || '', // Ensure date is always a string
+            }))
+            .sort((a, b) => compareDesc(new Date(a.date), new Date(b.date)));
 
         // Get unique tags from all posts
         const allTags = Array.from(

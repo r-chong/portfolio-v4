@@ -1,11 +1,22 @@
 import './globals.css';
 import Header from '@/components/Header';
-import { Inter } from 'next/font/google';
+import { Inter, Source_Sans_3 } from 'next/font/google';
 import Footer from '@/components/Footer';
 import Script from 'next/script';
 import ClientLayout from '@/components/ClientLayout';
+import 'katex/dist/katex.min.css';
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({
+    subsets: ['latin'],
+    display: 'swap',
+    variable: '--font-inter',
+});
+
+const sourceSansPro = Source_Sans_3({
+    subsets: ['latin'],
+    display: 'swap',
+    variable: '--font-source-sans-pro',
+});
 
 export default function RootLayout({
     children,
@@ -13,7 +24,10 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang='en' className='light'>
+        <html
+            lang='en'
+            className={`light ${inter.variable} ${sourceSansPro.variable}`}
+        >
             <head>
                 <Script
                     async
