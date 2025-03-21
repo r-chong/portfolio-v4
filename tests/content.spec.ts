@@ -164,19 +164,10 @@ test.describe('Content Tests', () => {
         }
     });
 
-    test('Resume page loads and displays content', async ({ page }) => {
-        await page.goto('/resume');
+    test('serves resume PDF file', async ({ request }) => {
+        const response = await request.get('/resume/Reese_Chong_resume.pdf');
 
-        // Check that the resume iframe is visible
-        const resumeFrame = page.locator('iframe');
-        await expect(resumeFrame).toBeVisible();
-
-        // Check that the download button is visible
-        const downloadButton = page.locator('a', { hasText: 'Download' });
-        await expect(downloadButton).toBeVisible();
-
-        // Instead of checking the href attribute which might be empty in tests,
-        // just verify the button exists and is clickable
-        await expect(downloadButton).toBeEnabled();
+        expect(response.status()).toBe(200);
+        expect(response.headers()['content-type']).toContain('application/pdf');
     });
 });
