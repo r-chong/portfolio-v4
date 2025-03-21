@@ -6,7 +6,14 @@
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
-        "lint": "next lint"
+        "lint": "next lint",
+        "test": "playwright test",
+        "test:ui": "playwright test --ui",
+        "test:debug": "playwright test --debug",
+        "test:chromium": "playwright test --project=chromium",
+        "test:firefox": "playwright test --project=firefox",
+        "test:webkit": "playwright test --project=webkit",
+        "test:mobile": "playwright test --project=\"Mobile Chrome\" --project=\"Mobile Safari\""
     },
     "overrides": {
         "next-contentlayer": {
@@ -21,12 +28,12 @@
         "@next/third-parties": "^14.0.5-canary.59",
         "@types/mdx": "^2.0.11",
         "bundle-analyzer": "^0.0.6",
-        "contentlayer": "^0.3.4",
         "date-fns": "^3.6.0",
         "embla-carousel-react": "^8.5.2",
         "framer-motion": "^11.0.14",
+        "gray-matter": "^4.0.3",
+        "katex": "^0.16.21",
         "next": "14.1.3",
-        "next-contentlayer": "^0.3.4",
         "next-mdx-remote": "^4.4.1",
         "pdfjs-dist": "^4.10.38",
         "pliny": "^0.2.2",
@@ -36,9 +43,13 @@
         "react-pdf": "^9.2.1",
         "react-toast": "^1.0.3",
         "react-vertical-timeline-component": "^3.6.0",
+        "reading-time": "^1.5.0",
+        "rehype-katex": "^6.0.3",
+        "remark-math": "^5.1.1",
         "sharp": "^0.33.2"
     },
     "devDependencies": {
+        "@playwright/test": "^1.51.0",
         "@tailwindcss/typography": "^0.5.10",
         "@types/node": "^20",
         "@types/react": "^18",
