@@ -5,6 +5,7 @@ import { readFileSync } from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import components from '@/components/mdx-components';
+import { mdxOptions } from '@/lib/mdx-utils';
 
 export const metadata: Metadata = {
     title: 'Now',
@@ -23,7 +24,11 @@ export default function NowPage() {
         <article className='flex flex-col items-center w-full font-georgia'>
             <div className='container max-w-2xl px-4 mx-auto mt-8 sm:px-6 md:mt-12'>
                 <div className='prose dark:prose-invert prose-quoteless prose-neutral'>
-                    <MDXRemote source={content} components={components} />
+                    <MDXRemote 
+                        source={content} 
+                        components={components} 
+                        options={mdxOptions}
+                    />
                 </div>
             </div>
         </article>
