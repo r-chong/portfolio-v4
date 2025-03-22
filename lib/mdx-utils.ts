@@ -1,43 +1,23 @@
-import remarkMath from 'remark-math';
+import remarkGfm from 'remark-gfm';
+import remarkBreaks from 'remark-breaks';
+import rehypeSlug from 'rehype-slug';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeKatex from 'rehype-katex';
-import { serialize } from 'next-mdx-remote/serialize';
+// Add other plugins as needed
 
-/**
- * Configuration for MDX processing with math support
- */
-export const mdxOptions = {
-    mdxOptions: {
-        remarkPlugins: [remarkMath],
-        rehypePlugins: [rehypeKatex],
-        format: 'mdx' as const,
-        development: process.env.NODE_ENV === 'development',
-    },
+import type { MDXRemoteProps } from 'next-mdx-remote/rsc';
+import type { Pluggable } from 'unified';
+
+const plugins = {
+    remarkPlugins: [remarkGfm, remarkBreaks],
+    rehypePlugins: [
+        rehypeSlug,
+        [rehypeAutolinkHeadings, { behavior: 'wrap' }],
+        rehypeKatex as Pluggable,
+    ],
 };
 
-/**
- * Preprocesses MDX content to escape LaTeX backslashes
- */
-export function preprocessMDX(content: string): string {
-    // Find all <math> and <inlinemath> tags and escape backslashes inside them
-    const mathRegex = /(<(math|inlinemath)>)([\s\S]*?)(<\/(math|inlinemath)>)/g;
-
-    return content.replace(
-        mathRegex,
-        (match, openTag, tagName, content, closeTag) => {
-            // Escape backslashes in the content
-            const escapedContent = content.replace(/\\/g, '\\\\');
-            return openTag + escapedContent + closeTag;
-        }
-    );
-}
-
-/**
- * Serializes MDX content with math support
- */
-export async function serializeMDX(content: string) {
-    return serialize(content, {
-        mdxOptions: {
-            development: process.env.NODE_ENV === 'development',
-        },
-    });
-}
+export const mdxOptions: MDXRemoteProps['options'] = {
+    ...plugins,
+    parseFrontmatter: true,
+};

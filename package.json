@@ -44,7 +44,11 @@
         "react-toast": "^1.0.3",
         "react-vertical-timeline-component": "^3.6.0",
         "reading-time": "^1.5.0",
+        "rehype-autolink-headings": "^7.1.0",
         "rehype-katex": "^6.0.3",
+        "rehype-slug": "^6.0.0",
+        "remark-breaks": "^4.0.0",
+        "remark-gfm": "^4.0.1",
         "remark-math": "^5.1.1",
         "sharp": "^0.33.2"
     },
