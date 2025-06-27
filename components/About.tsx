@@ -19,43 +19,32 @@ export default function About() {
             <SectionHeading>About me</SectionHeading>
             <div className='space-y-4 text-base sm:text-md'>
                 <p>
-                    I&apos;m a CS and Business Double Degree student at
-                    UWaterloo. Looking for s25 internships.
+                    I&apos;m a CS student at UWaterloo. Looking for w26
+                    internships.
                 </p>
                 <p>Recent ventures:</p>
                 {/* TODO: add highlights behind keywords like Warp */}
                 <ul className='list-disc pl-6 space-y-2'>
-                    <li>Campus Ambassador at Warp.dev</li>
-                    <li>Developing a RAG solution for a small-sized company</li>
                     <li>
-                        Running a{' '}
                         <a
-                            href='https://jamhacks.ca'
+                            href='https://trytorial.com'
                             target='_blank'
-                            rel='nofollow'
-                            className='text-blue-500 font-bold underline'
+                            className=' font-bold underline'
                         >
-                            hackathon
-                        </a>{' '}
-                        getting 200+ underrepresented youths into tech.
+                            TryTorial.com
+                        </a>
                     </li>
-                    <li>Next.js full-stack at SlaySchool</li>
-                    <li>
-                        Drone research project under masters&apos; students at
-                        UofT Aerospace (UTIAS)
-                    </li>
+                    <li>Developing clean tech software at Elastic Energy</li>
+                    <li>Campus Ambassador at Warp.dev</li>
                 </ul>
                 <p>
-                    In my free time, you&apos;ll find me rock climbing, staying
-                    up in E7 until 4am, and doing random sidequests in Waterloo.
-                    I also{' '}
                     <a
                         href='https://x.com/_reesechong'
                         target='_blank'
                         rel='nofollow'
                         className='text-blue-500 font-bold underline'
                     >
-                        tweet
+                        twitter
                     </a>{' '}
                     +{' '}
                     <Link

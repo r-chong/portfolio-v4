@@ -5,17 +5,17 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeKatex from 'rehype-katex';
 // Add other plugins as needed
 
-import type { MDXRemoteProps } from 'next-mdx-remote/rsc';
-import type { Pluggable } from 'unified';
-
-const plugins = {
-    remarkPlugins: [remarkGfm, remarkBreaks],
-    rehypePlugins: [
-        rehypeSlug,
-        [rehypeAutolinkHeadings, { behavior: 'wrap' }],
-        rehypeKatex as Pluggable,
-    ],
-};
+/**
+ * Configuration for MDX processing with math support
+ */
+export const mdxOptions = {
+    mdxOptions: {
+        remarkPlugins: [remarkMath] as any[],
+        rehypePlugins: [rehypeKatex] as any[],
+        format: 'mdx' as const,
+        development: process.env.NODE_ENV === 'development',
+    },
+} as const;
 
 export const mdxOptions: MDXRemoteProps['options'] = {
     ...plugins,
