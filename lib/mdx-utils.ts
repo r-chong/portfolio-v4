@@ -20,6 +20,7 @@ const plugins = {
 /**
  * Configuration for MDX processing with math support
  */
+
 export const mdxOptions: MDXRemoteProps['options'] = {
     ...plugins,
     parseFrontmatter: true,
