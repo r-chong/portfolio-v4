@@ -10,6 +10,8 @@ import coffeeCoachImg from '@/public/projects/CoffeeCoach.png';
 import geniusChatImg from '@/public/projects/Accessible_Chat2.png';
 import csyaWebsiteImg from '@/public/projects/CSYAWebsite.png';
 import chatgpmeImg from '@/public/projects/ChatGPME.png';
+import trytorialImg from '@/public/projects/torial.png';
+import dojangImg from '@/public/projects/dojang.png';
 import { StaticImageData } from 'next/image';
 
 // will change these to external links
@@ -111,6 +113,29 @@ interface ProjectData {
 }
 
 export const projectsData: ProjectData[] = [
+    {
+        title: 'Trytorial',
+        description:
+            'A text-to-Manim video API that brings STEM and non-STEM concepts to life through stunning animated visualizations.',
+        tags: ['Python', 'Manim', 'Google Cloud Platform'],
+        imageUrl: trytorialImg,
+        blogLink: '/projects/torial',
+    },
+
+    {
+        title: 'Dojang',
+        description:
+            'A web application that creates a personalized learning experience through embedding your textbook with curriculum-specific practice questions, interactive flashcards, AI-driven mini-lessons, and intelligent feedback.',
+        tags: [
+            'TypeScript',
+            'React',
+            'Vector Database',
+            'OpenAI API',
+            'Next.js',
+        ],
+        imageUrl: dojangImg,
+        blogLink: '/projects/dojang',
+    },
     {
         title: 'ChatGPMe',
         description:
