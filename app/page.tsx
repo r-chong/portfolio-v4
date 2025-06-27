@@ -15,10 +15,10 @@ export default function Home() {
             {/* <SectionDivider /> */}
             <About />
 
-            <div className='flex justify-center mb-8'>
+            {/* <div className='flex justify-center mb-8'>
                 <Linktree />
-            </div>
-            <SectionDivider />
+            </div> */}
+            {/* <SectionDivider /> */}
 
             <SectionHeading>Featured Projects</SectionHeading>
             <div className='max-w-2xl mx-auto'>
