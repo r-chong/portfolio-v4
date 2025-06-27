@@ -7,12 +7,12 @@ import { serialize } from 'next-mdx-remote/serialize';
  */
 export const mdxOptions = {
     mdxOptions: {
-        remarkPlugins: [remarkMath],
-        rehypePlugins: [rehypeKatex],
+        remarkPlugins: [remarkMath] as any[],
+        rehypePlugins: [rehypeKatex] as any[],
         format: 'mdx' as const,
         development: process.env.NODE_ENV === 'development',
     },
-};
+} as const;
 
 /**
  * Preprocesses MDX content to escape LaTeX backslashes
