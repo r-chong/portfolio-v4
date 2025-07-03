@@ -20,14 +20,19 @@ export default function Intro() {
                         }}
                     >
                         <Image
-                            src='/xmas_247.jpeg'
+                            src='/sf.JPEG'
                             alt='Image of Reese Chong'
-                            width={192}
-                            height={192}
-                            quality={95}
+                            width={360}
+                            height={360}
+                            quality={100}
                             draggable='false'
                             priority={true}
+                            unoptimized={false}
+                            sizes='(max-width: 768px) 144px, 144px'
                             className='w-36 h-36 rounded-full object-cover border-[0.35rem] border-white shadow-xl'
+                            style={{
+                                imageRendering: 'crisp-edges',
+                            }}
                         />
                     </motion.div>
                     {/* TODO: Make it wave */}
