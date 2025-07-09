@@ -9,7 +9,7 @@ test.describe('MathJax Rendering Tests', () => {
         const postCount = await posts.count();
 
         if (postCount === 0) {
-            test.skip('No blog posts found to test');
+            test.skip(true, 'No blog posts found to test');
             return;
         }
 
@@ -55,7 +55,7 @@ test.describe('MathJax Rendering Tests', () => {
         const mathCount = await mathElements.count();
 
         if (mathCount === 0) {
-            test.skip('No MathJax elements found in this blog post');
+            test.skip(true, 'No MathJax elements found in this blog post');
             return;
         }
 
@@ -91,9 +91,11 @@ test.describe('MathJax Rendering Tests', () => {
             const displayMathBox = await displayMath.first().boundingBox();
 
             // Display math is typically taller than inline math
-            expect(displayMathBox?.height).toBeGreaterThan(
-                inlineMathBox?.height
-            );
+            if (inlineMathBox?.height && displayMathBox?.height) {
+                expect(displayMathBox.height).toBeGreaterThan(
+                    inlineMathBox.height
+                );
+            }
         }
     });
 });

@@ -9,7 +9,7 @@ test.describe('Compact Mode Functionality', () => {
         const postCount = await posts.count();
 
         if (postCount === 0) {
-            test.skip('No blog posts found to test compact mode');
+            test.skip(true, 'No blog posts found to test compact mode');
             return;
         }
 
@@ -29,6 +29,10 @@ test.describe('Compact Mode Functionality', () => {
             .boundingBox()
             .then((box) => box?.height);
 
+        if (!initialHeight) {
+            throw new Error('Could not measure initial height');
+        }
+
         // Toggle compact mode on
         await compactToggle.click();
 
@@ -42,6 +46,10 @@ test.describe('Compact Mode Functionality', () => {
         const compactHeight = await firstPost
             .boundingBox()
             .then((box) => box?.height);
+
+        if (!compactHeight) {
+            throw new Error('Could not measure compact height');
+        }
 
         // In compact mode, the height should be less than in non-compact mode
         expect(compactHeight).toBeLessThan(initialHeight);
@@ -59,6 +67,10 @@ test.describe('Compact Mode Functionality', () => {
         const nonCompactHeight = await firstPost
             .boundingBox()
             .then((box) => box?.height);
+
+        if (!nonCompactHeight) {
+            throw new Error('Could not measure non-compact height');
+        }
 
         // The height should be back to approximately the initial height
         // Using approximately because there might be small differences due to rendering
@@ -86,6 +98,10 @@ test.describe('Compact Mode Functionality', () => {
 
         // Store the current state for later comparison
         const stateToCheck = newState;
+
+        if (!stateToCheck) {
+            throw new Error('Could not get toggle state');
+        }
 
         // Navigate away and come back
         await page.goto('/');

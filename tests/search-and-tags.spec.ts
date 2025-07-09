@@ -58,7 +58,7 @@ test.describe('Search and Tags Functionality', () => {
         const tagCount = await tagButtons.count();
 
         if (tagCount === 0) {
-            test.skip('No tags found to test');
+            test.skip(true, 'No tags found to test');
             return;
         }
 
@@ -114,7 +114,7 @@ test.describe('Search and Tags Functionality', () => {
 
         // If there are no posts, skip the test
         if (initialPostCount === 0) {
-            test.skip('No blog posts found to test search functionality');
+            test.skip(true, 'No blog posts found to test search functionality');
             return;
         }
 
@@ -154,7 +154,7 @@ test.describe('Search and Tags Functionality', () => {
         const tagCount = await tagButtons.count();
 
         if (tagCount === 0) {
-            test.skip('No tags found to test');
+            test.skip(true, 'No tags found to test');
             return;
         }
 
@@ -163,7 +163,7 @@ test.describe('Search and Tags Functionality', () => {
 
         // If there are no posts, skip the test
         if (initialPostCount === 0) {
-            test.skip('No blog posts found to test tag filtering');
+            test.skip(true, 'No blog posts found to test tag filtering');
             return;
         }
 

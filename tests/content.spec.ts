@@ -9,7 +9,7 @@ test.describe('Content Tests', () => {
         const postCount = await posts.count();
 
         if (postCount === 0) {
-            test.skip('No blog posts found to test');
+            test.skip(true, 'No blog posts found to test');
             return;
         }
 
@@ -71,7 +71,7 @@ test.describe('Content Tests', () => {
         const projectCount = await projects.count();
 
         if (projectCount === 0) {
-            test.skip('No projects found to test');
+            test.skip(true, 'No projects found to test');
             return;
         }
 
