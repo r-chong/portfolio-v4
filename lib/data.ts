@@ -12,6 +12,7 @@ import csyaWebsiteImg from '@/public/projects/CSYAWebsite.png';
 import chatgpmeImg from '@/public/projects/ChatGPME.png';
 import trytorialImg from '@/public/projects/torial.png';
 import dojangImg from '@/public/projects/dojang.png';
+import utiasImg from '@/public/projects/utias_3.jpg';
 import { StaticImageData } from 'next/image';
 
 // will change these to external links
@@ -158,6 +159,14 @@ export const projectsData: ProjectData[] = [
         ],
         imageUrl: lexploraImg,
         blogLink: '/projects/lexplora',
+    },
+    {
+        title: 'UofT Aerospace',
+        description:
+            'I did drone research at the University of Toronto Institute of Aerospace Studies exploring how quadrotor drones with slung payloads can transport turtles off roads safely.',
+        tags: ['Arduino', 'CATIA', 'Hardware', 'Research'],
+        imageUrl: utiasImg,
+        blogLink: '/projects/utias',
     },
     {
         title: 'Hawkeye',
