@@ -1,0 +1,259 @@
+---
+title: Every Udemy Course is Free
+date: 2025-07-22
+imageUrl: /slack_gradient.jpg
+description: I'm not even talking about pirating
+tags:
+    - learning
+---
+
+Right now you don't need to pay ANYTHING for any online course.
+
+I was thinking about buying some courses about backend development and then I realized:
+
+The biggest blocker is no longer the information you have access to. No, the internet has literally everything, especially for web development which is largely open source and documented.
+
+The only blocker is knowing WHAT to learn -and so peoples' courses with tables of contents tell us all of the intricacies of what we don't know to search for yet!
+
+The first 60% of a udemy course will be discovered by any beginner. Another 20% will come from a year or so of experience. But the final 20% is for the truly seasoned. Those are advanced concepts that a beginner doesn't know because they simply don't know what to
+search for.
+
+That's the real value from these courses -you can essentially just extract these learning "success criteria" and find it yourself on YouTube, documentation, and the like.
+
+It's as easy as pasting a set of Udemy Table of Contents into ChatGPT and asking for that last 20%.
+
+This is what I got for pasting a set of React.js Udemy table of contents:
+
+<div className="p-6 rounded-xl border-l-4 border-blue-500 bg-slate-50 dark:bg-slate-800 space-y-6">
+
+<h2 className='text-2xl font-bold text-slate-900 dark:text-white'>
+    📘 ChatGPT Response
+</h2>
+
+<section>
+    <h3 className='text-xl font-semibold text-slate-800 dark:text-slate-100'>
+        1. React Server Components (RSC)
+    </h3>
+    <p className='text-sm italic text-slate-600 dark:text-slate-400'>
+        New in React 18/19 and requires different mental models about rendering
+        and data-fetching.
+    </p>
+    <ul className='list-disc list-inside text-slate-700 dark:text-slate-300 space-y-1'>
+        <li>
+            Separates logic between client and server without duplicating code.
+        </li>
+        <li>Enables zero-bundle size on the client for server-only logic.</li>
+        <li>Most juniors wouldn't know this exists or why it's so powerful.</li>
+    </ul>
+    <p className='text-blue-600 dark:text-blue-400 text-sm'>
+        🔍 Search: "React Server Components vs Client Components real-world
+        usage"
+    </p>
+</section>
+
+<hr className='border-slate-300 dark:border-slate-600' />
+
+<section>
+    <h3 className='text-xl font-semibold text-slate-800 dark:text-slate-100'>
+        2. useImperativeHandle & Component APIs
+    </h3>
+    <p className='text-sm italic text-slate-600 dark:text-slate-400'>
+        Exposing methods from child components to parent components.
+    </p>
+    <ul className='list-disc list-inside text-slate-700 dark:text-slate-300 space-y-1'>
+        <li>
+            Rarely needed, but essential in complex UI libraries or when
+            building your own component frameworks.
+        </li>
+    </ul>
+    <p className='text-blue-600 dark:text-blue-400 text-sm'>
+        🔍 Search: "React useImperativeHandle tutorial for custom modals"
+    </p>
+</section>
+
+<hr className='border-slate-300 dark:border-slate-600' />
+
+<section>
+    <h3 className='text-xl font-semibold text-slate-800 dark:text-slate-100'>
+        3. Portals
+    </h3>
+    <p className='text-sm italic text-slate-600 dark:text-slate-400'>
+        Render components outside the main DOM tree (e.g. modals, tooltips).
+    </p>
+    <ul className='list-disc list-inside text-slate-700 dark:text-slate-300 space-y-1'>
+        <li>
+            Not just a trick — vital for accessibility, keyboard navigation, and
+            layout integrity.
+        </li>
+    </ul>
+    <p className='text-blue-600 dark:text-blue-400 text-sm'>
+        🔍 Search: "React createPortal accessibility best practices"
+    </p>
+</section>
+
+<hr className='border-slate-300 dark:border-slate-600' />
+
+<section>
+    <h3 className='text-xl font-semibold text-slate-800 dark:text-slate-100'>
+        4. useReducer with Context (aka Redux Lite)
+    </h3>
+    <p className='text-sm italic text-slate-600 dark:text-slate-400'>
+        For scalable, predictable state management without Redux.
+    </p>
+    <ul className='list-disc list-inside text-slate-700 dark:text-slate-300 space-y-1'>
+        <li>
+            Essential for managing logic in large apps without bloated state
+            trees.
+        </li>
+    </ul>
+    <p className='text-blue-600 dark:text-blue-400 text-sm'>
+        🔍 Search: "React useReducer and Context pattern for complex apps"
+    </p>
+</section>
+
+<hr className='border-slate-300 dark:border-slate-600' />
+
+<section>
+    <h3 className='text-xl font-semibold text-slate-800 dark:text-slate-100'>
+        5. Performance Optimizations
+    </h3>
+    <p className='text-sm italic text-slate-600 dark:text-slate-400'>
+        React.memo, useMemo, useCallback aren’t performance fixes — they’re
+        tradeoffs.
+    </p>
+    <ul className='list-disc list-inside text-slate-700 dark:text-slate-300 space-y-1'>
+        <li>
+            Understanding when not to use them is more important than using them
+            blindly.
+        </li>
+    </ul>
+    <p className='text-blue-600 dark:text-blue-400 text-sm'>
+        🔍 Search: "React memo vs useMemo vs useCallback performance profiling"
+    </p>
+</section>
+
+<hr className='border-slate-300 dark:border-slate-600' />
+
+<section>
+    <h3 className='text-xl font-semibold text-slate-800 dark:text-slate-100'>
+        6. Custom Hooks as Abstractions
+    </h3>
+    <p className='text-sm italic text-slate-600 dark:text-slate-400'>
+        Writing composable, context-aware logic using your own hooks.
+    </p>
+    <ul className='list-disc list-inside text-slate-700 dark:text-slate-300 space-y-1'>
+        <li>
+            This turns "just a component" into reusable infrastructure —
+            beginner devs often miss this pattern entirely.
+        </li>
+    </ul>
+    <p className='text-blue-600 dark:text-blue-400 text-sm'>
+        🔍 Search: "Custom React hooks for fetching, modals, forms, etc."
+    </p>
+</section>
+
+<hr className='border-slate-300 dark:border-slate-600' />
+
+<section>
+    <h3 className='text-xl font-semibold text-slate-800 dark:text-slate-100'>
+        7. Form Actions (React 19+)
+    </h3>
+    <p className='text-sm italic text-slate-600 dark:text-slate-400'>
+        New paradigm using progressive enhancement.
+    </p>
+    <ul className='list-disc list-inside text-slate-700 dark:text-slate-300 space-y-1'>
+        <li>Form submissions are server-handled automatically if JS fails.</li>
+    </ul>
+    <p className='text-blue-600 dark:text-blue-400 text-sm'>
+        🔍 Search: "React 19 form actions tutorial with validation"
+    </p>
+</section>
+
+<hr className='border-slate-300 dark:border-slate-600' />
+
+<section>
+    <h3 className='text-xl font-semibold text-slate-800 dark:text-slate-100'>
+        8. TanStack Query (React Query)
+    </h3>
+    <p className='text-sm italic text-slate-600 dark:text-slate-400'>
+        Abstracts loading, caching, refetching, and stale data handling.
+    </p>
+    <ul className='list-disc list-inside text-slate-700 dark:text-slate-300 space-y-1'>
+        <li>
+            Leverages stale-while-revalidate and minimizes the need for Redux in
+            data-heavy apps.
+        </li>
+    </ul>
+    <p className='text-blue-600 dark:text-blue-400 text-sm'>
+        🔍 Search: "React Query real-world example with pagination and caching"
+    </p>
+</section>
+
+<hr className='border-slate-300 dark:border-slate-600' />
+
+<section>
+    <h3 className='text-xl font-semibold text-slate-800 dark:text-slate-100'>
+        9. Auth Logic + Routing + Data Fetching Flow
+    </h3>
+    <p className='text-sm italic text-slate-600 dark:text-slate-400'>
+        Combining auth checks, redirects, protected routes, and lazy data
+        loading into a coherent UX is hard.
+    </p>
+    <ul className='list-disc list-inside text-slate-700 dark:text-slate-300 space-y-1'>
+        <li>
+            Especially when you have server/client split (Next.js) — many junior
+            devs just copy boilerplate.
+        </li>
+    </ul>
+    <p className='text-blue-600 dark:text-blue-400 text-sm'>
+        🔍 Search: "Auth flow React Next.js getServerSideProps + middleware +
+        client redirect"
+    </p>
+</section>
+
+<hr className='border-slate-300 dark:border-slate-600' />
+
+<section>
+    <h3 className='text-xl font-semibold text-slate-800 dark:text-slate-100'>
+        10. Next.js App Router Mental Model
+    </h3>
+    <p className='text-sm italic text-slate-600 dark:text-slate-400'>
+        Nested layouts, server-only components, use client directive.
+    </p>
+    <ul className='list-disc list-inside text-slate-700 dark:text-slate-300 space-y-1'>
+        <li>
+            Requires understanding partial hydration and how to isolate
+            interactivity.
+        </li>
+    </ul>
+    <p className='text-blue-600 dark:text-blue-400 text-sm'>
+        🔍 Search: "Next.js App Router vs Pages Router tradeoffs"
+    </p>
+</section>
+
+<hr className='border-slate-300 dark:border-slate-600' />
+
+<section>
+    <h3 className='text-xl font-semibold text-slate-800 dark:text-slate-100'>
+        Bonus: Meta Concepts Only Pros Talk About
+    </h3>
+    <ul className='list-disc list-inside text-slate-700 dark:text-slate-300 space-y-1'>
+        <li>Unidirectional data flow discipline (even in shared state).</li>
+        <li>State colocation and normalization (minimal, scoped state).</li>
+        <li>
+            Component API ergonomics (props design, function signatures,
+            accessibility).
+        </li>
+        <li>
+            Static vs runtime data decisions (preload? defer? cache? mutate?).
+        </li>
+        <li>
+            Design systems & reusable components with Tailwind, Styled
+            Components, and CSS-in-JS.
+        </li>
+    </ul>
+</section>
+
+</div>
+
+The barrier isn't the amount of courses we can pay for. It's the amount of focused time we put into learning.
