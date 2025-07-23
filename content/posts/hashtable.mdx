@@ -1,0 +1,68 @@
+---
+title: The Hash Table
+date: 2025-07-23
+description: Abstract Data Type
+imageUrl: /wizard.png
+tags:
+    - technical
+    - dsa
+---
+
+### ...The key to your value
+
+Hash Tables are often spoken as being equal to HashMaps, but HashMaps are the implementation of the abstract data type (ADT), in a specific language, whereas the Hash Table is the ADT itself.
+
+Continuing with semantics, as soon as we implement the ADT, it becomes the Hash Table **Data Structure**.
+
+Here's the data structure in some common languages:
+
+-   HashMap (Java/Kotlin)
+-   unordered_map (C++)
+-   dict (Python)
+-   Dictionary/Hashtable (C#)
+-   dictionary (.net C#)
+-   table (Lua)
+-   Map (JS post-ES6)
+
+# The main idea:
+
+We create an array of pointers to various indexes. At each index lives a "bucket". These are the slots of values that give us our O(1) lookup.
+Occasionally they are linked lists or dynamic arrays or balanced trees... it just has to be something that stores more than one value, in order to accommodate our hashing function returning an index it's used already.
+
+As we add keys, the number of buckets/indexes the table has doubles so that operations continue to average O(1) and our linked lists at each bucket remain as short as possible.
+
+Note that the table of pointers creates each bucket immediately on creation, so insertion does not ever append **new buckets** to this array.
+
+# Functions:
+
+We have four functions: hash, insert, search, and delete
+
+### Hash
+
+The hash function turns a key into an integer using an operation that spreads out items deterministically (i.e., if we do the same hash again we'll get the exact same number) into "buckets", which, if the hash lands on the same index (a **collision**), it then either:
+
+-   Creates a linked list or dynamic array to accommodate the multiple items. This is called chaining.
+-   Searches for the next available slot. This is called open addressing.
+
+Good hash functions ensure that similar keys end up with different codes.
+After hashing, you apply modulo by the current table size to confine it to [0…N–1] where N is the table length.
+
+Let me be clear: ideally we don't want collisions to happen. So we also set a threshold for the average that each bucket holds (size / N).
+
+When that threshold is hit, we double the number of buckets and re‑hash every existing entry. Now our data is spread out over twice as many buckets and should have less collisions again.
+
+Now, the following only apply if you're using the chaining strategy:
+
+### Insert
+
+Insert hashes a new item's key, creates a new Entry and adds it to that index's linked list
+
+### Search
+
+The search function hashes the key and checks that index. If necessary, it loops through and finds the item that has equal key. But most of the time collisions don't happen so this is O(1) time complexity.
+
+### Delete
+
+The delete function hashes the key and checks that index. if necessary, it loops through and removes pointers to said key.
+
+In non-garbage-collected languages like C/C++, it then frees it from memory.
