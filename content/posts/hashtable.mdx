@@ -59,10 +59,10 @@ Insert hashes a new item's key, creates a new Entry and adds it to that index's 
 
 ### Search
 
-The search function hashes the key and checks that index. If necessary, it loops through and finds the item that has equal key. But most of the time collisions don't happen so this is O(1) time complexity.
+The search function hashes the key and checks that index. If necessary, it loops through and finds the item that has an equal key. But most of the time collisions don't happen so this is O(1) time complexity.
 
 ### Delete
 
-The delete function hashes the key and checks that index. if necessary, it loops through and removes pointers to said key.
+The delete function hashes the key and checks that index. If necessary, it loops through and removes pointers to said key.
 
 In non-garbage-collected languages like C/C++, it then frees it from memory.
